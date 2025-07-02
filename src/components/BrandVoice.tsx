@@ -1,4 +1,5 @@
 
+
 import { Upload, Settings, CheckCircle, MessageSquare, ArrowRight, BarChart3, Globe, Zap, Star } from "lucide-react";
 
 const BrandVoice = () => {
@@ -75,42 +76,6 @@ const BrandVoice = () => {
                   </div>
                 </div>
               ))}
-              
-              {/* Testimonial Section */}
-              <div className="mt-8 p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl border border-green-100">
-                <div className="flex items-start gap-3">
-                  <div className="flex text-yellow-400 mt-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} size={16} fill="currentColor" />
-                    ))}
-                  </div>
-                </div>
-                <blockquote className="text-gray-800 mt-3 mb-3 italic">
-                  "LEXA perfectly captured our brand voice from day one. Our response rates increased by 60% because prospects finally felt like they were hearing from us, not a generic sales bot."
-                </blockquote>
-                <div className="text-sm text-gray-600">
-                  <span className="font-medium">Sarah Chen</span>, VP of Marketing at TechFlow
-                </div>
-              </div>
-              
-              {/* CTA Section */}
-              <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl border border-blue-100">
-                <div className="flex items-center gap-3 mb-3">
-                  <MessageSquare className="text-blue-600" size={24} />
-                  <h4 className="text-lg font-semibold text-gray-900">Ready to see it in action?</h4>
-                </div>
-                <p className="text-gray-700 mb-4">
-                  Upload your brand guidelines and watch LEXA transform generic outreach into authentic, on-brand conversations.
-                </p>
-                <div className="space-y-3">
-                  <button className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium">
-                    Start Your Brand Training
-                  </button>
-                  <button className="inline-flex items-center gap-2 text-blue-600 font-medium hover:text-blue-700 transition-colors">
-                    Learn how it works <ArrowRight size={16} />
-                  </button>
-                </div>
-              </div>
             </div>
 
             <div className="space-y-6">
@@ -158,3 +123,4 @@ const BrandVoice = () => {
 };
 
 export default BrandVoice;
+
