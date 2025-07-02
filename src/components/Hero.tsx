@@ -17,43 +17,43 @@ const Hero = () => {
 
   const useCaseScenarios = [
     {
-      src: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop",
+      src: "/lovable-uploads/9634f1c7-0fbd-456b-8771-e05c1503f7c2.png",
       alt: "Slack campaign creation with Covexa AI agent assistance",
       title: "Campaign Creation in Slack",
       description: "Watch Lauren request a campaign and see Covexa AI instantly build a targeted outreach sequence with personalized messaging"
     },
     {
-      src: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=800&h=600&fit=crop",
+      src: "/lovable-uploads/9b4fd9c5-ab1b-4163-8863-97e55a183690.png",
       alt: "Slack campaign performance reporting and analytics",
       title: "Campaign Performance Reporting",
       description: "Real-time campaign results delivered directly in Slack with detailed metrics and actionable insights"
     },
     {
-      src: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=600&fit=crop",
+      src: "/lovable-uploads/8a3776ac-601a-43c9-9d59-ee6feb9ff683.png",
       alt: "Google Sheets smart campaign building from lead data",
       title: "Smart Campaign from Sheets",
       description: "Covexa analyzes your Google Sheets data and suggests 'Build campaign from this Sheet' with intelligent lead segmentation"
     },
     {
-      src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+      src: "/lovable-uploads/e7613ec2-303a-4ce1-9297-72d0d62cc230.png",
       alt: "Google Meet real-time sales intelligence and insights",
       title: "Real-time Meeting Intelligence",
       description: "Get live insights, talking points, and next steps during Google Meet calls to close more deals"
     },
     {
-      src: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=800&h=600&fit=crop",
+      src: "/lovable-uploads/50b003ba-a4d0-4c57-9194-197bba77c57b.png",
       alt: "Google Docs automated content briefs and campaign recaps",
       title: "Automated Content Generation",
       description: "Covexa creates detailed content briefs and campaign performance summaries directly in Google Docs"
     },
     {
-      src: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop",
+      src: "/lovable-uploads/71bdaaff-de2a-416f-b8dd-8ea50c224e50.png",
       alt: "Google Calendar meeting preparation with contextual insights",
       title: "Intelligent Meeting Prep",
       description: "Automated meeting preparation with prospect insights and personalized talking points synced to your calendar"
     },
     {
-      src: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=800&h=600&fit=crop",
+      src: "/lovable-uploads/ef7b7ce8-bbdc-49da-9498-790c6e2f717b.png",
       alt: "Automated product feedback handling and response workflows",
       title: "Product Feedback Automation",
       description: "Intelligent customer feedback analysis with automated responses and smart follow-up recommendations"
