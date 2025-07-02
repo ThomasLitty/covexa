@@ -1,22 +1,35 @@
 
-import { Upload, Settings, CheckCircle, MessageSquare } from "lucide-react";
+import { Upload, Settings, CheckCircle, MessageSquare, ArrowRight } from "lucide-react";
 
 const BrandVoice = () => {
   const features = [
     {
       icon: <Upload size={24} />,
       title: "Upload your brand guidelines",
-      description: "Let LEXA learn from past approvals and existing content"
+      description: "Import existing content, style guides, and approved messaging to train LEXA"
     },
     {
       icon: <Settings size={24} />,
       title: "Customize tone by persona",
-      description: "Adjust messaging style for different segments and audiences"
+      description: "Fine-tune messaging style for executives, technical buyers, and end users"
     },
     {
       icon: <CheckCircle size={24} />,
       title: "Ensure compliance and consistency",
-      description: "All outbound copy aligns with your voice — clear, compliant, and consistent"
+      description: "Every message aligns with your voice guidelines and legal requirements"
+    }
+  ];
+
+  const brandExamples = [
+    {
+      type: "Professional & Data-Driven",
+      input: "Follow up with enterprise prospect",
+      output: "Hi Sarah, I noticed your team's recent expansion into EMEA markets. Based on similar companies we've helped scale internationally, I believe our platform could reduce your operational overhead by 35-40%. Would you be open to a brief conversation about your current challenges?"
+    },
+    {
+      type: "Casual & Direct",
+      input: "Follow up with enterprise prospect", 
+      output: "Hey Sarah! Saw the news about your EMEA expansion - congrats! We've helped a bunch of companies tackle the same scaling challenges. Mind if I share how we cut ops costs by 35% for similar teams? Quick 15-min chat?"
     }
   ];
 
@@ -30,14 +43,14 @@ const BrandVoice = () => {
               <span className="text-blue-600"> Not Ours</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Whether you're a polished enterprise or a fast-moving startup, Covexa adapts to your unique brand tone and style.
+              Whether you're a polished enterprise or a fast-moving startup, Covexa adapts to your unique brand voice, tone, and messaging style — ensuring every outreach feels authentically you.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <div className="space-y-6">
               {features.map((feature, index) => (
-                <div key={index} className="flex items-start gap-4">
+                <div key={index} className="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 transition-colors duration-200">
                   <div className="text-blue-600 flex-shrink-0 mt-1">
                     {feature.icon}
                   </div>
@@ -48,30 +61,55 @@ const BrandVoice = () => {
                 </div>
               ))}
               
-              <div className="mt-8 p-6 bg-gray-50 rounded-2xl">
-                <p className="text-lg text-gray-700 font-medium">
-                  Covexa's messaging agent doesn't just write — it represents you.
+              <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl border border-blue-100">
+                <div className="flex items-center gap-3 mb-3">
+                  <MessageSquare className="text-blue-600" size={24} />
+                  <h4 className="text-lg font-semibold text-gray-900">Ready to see it in action?</h4>
+                </div>
+                <p className="text-gray-700 mb-4">
+                  Upload your brand guidelines and watch LEXA transform generic outreach into authentic, on-brand conversations.
                 </p>
+                <button className="inline-flex items-center gap-2 text-blue-600 font-medium hover:text-blue-700 transition-colors">
+                  Learn how it works <ArrowRight size={16} />
+                </button>
               </div>
             </div>
 
-            <div className="relative">
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl p-8 shadow-lg">
-                <div className="text-center">
-                  <MessageSquare className="mx-auto text-blue-600 mb-6" size={64} />
-                  <div className="space-y-4">
-                    <div className="bg-white rounded-lg p-4 shadow-sm text-left">
-                      <div className="text-sm text-gray-500 mb-2">Sample Brand Voice</div>
-                      <div className="text-gray-800">"Professional yet approachable, data-driven but human"</div>
-                    </div>
-                    <div className="grid grid-cols-1 gap-4">
-                      <div className="bg-white rounded-lg p-4 shadow-sm">
-                        <div className="text-sm text-blue-600 font-medium mb-1">LEXA Output</div>
-                        <div className="text-sm text-gray-700">"Hi John, saw your team's recent growth milestone..."</div>
+            <div className="space-y-6">
+              <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl p-6 shadow-lg">
+                <div className="text-center mb-6">
+                  <h4 className="text-lg font-semibold text-gray-900 mb-2">Brand Voice Examples</h4>
+                  <p className="text-sm text-gray-600">Same input, different brand personalities</p>
+                </div>
+                
+                <div className="space-y-6">
+                  {brandExamples.map((example, index) => (
+                    <div key={index} className="bg-white rounded-xl p-5 shadow-sm border border-gray-200">
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                        <span className="text-sm font-medium text-blue-600">{example.type}</span>
+                      </div>
+                      
+                      <div className="space-y-3">
+                        <div className="bg-gray-50 rounded-lg p-3">
+                          <div className="text-xs text-gray-500 mb-1">Input:</div>
+                          <div className="text-sm text-gray-700 italic">"{example.input}"</div>
+                        </div>
+                        
+                        <div className="bg-blue-50 rounded-lg p-3">
+                          <div className="text-xs text-blue-600 font-medium mb-1">LEXA Output:</div>
+                          <div className="text-sm text-gray-800">"{example.output}"</div>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
+              </div>
+              
+              <div className="text-center p-4 bg-gray-50 rounded-xl">
+                <p className="text-sm text-gray-600">
+                  <span className="font-medium text-gray-800">Pro tip:</span> The more context you provide, the better LEXA represents your brand
+                </p>
               </div>
             </div>
           </div>
