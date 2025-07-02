@@ -1,5 +1,4 @@
-
-import { TrendingUp, Zap, Brain, Target, Users } from "lucide-react";
+import { TrendingUp, Zap, Brain, Target, Users, Radar, DollarSign } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const PredictiveIntelligence = () => {
@@ -7,16 +6,22 @@ const PredictiveIntelligence = () => {
 
   const capabilities = [
     {
+      agent: "TORA",
+      title: "Intent Signal Detection",
+      description: "Monitor buying signals across channels to prioritize high-intent prospects",
+      icon: <Radar size={32} />
+    },
+    {
+      agent: "NIRA",
+      title: "Revenue Attribution Modeling",
+      description: "Track revenue impact across touchpoints to optimize GTM spend",
+      icon: <DollarSign size={32} />
+    },
+    {
       agent: "TORA + VARA",
       title: "Lead Scoring",
       description: "Score leads based on conversion likelihood",
       icon: <Target size={32} />
-    },
-    {
-      agent: "Quality Filter",
-      title: "Segment Suppression",
-      description: "Suppress low-quality or fatigued segments",
-      icon: <Users size={32} />
     },
     {
       agent: "NIRA",
@@ -35,6 +40,12 @@ const PredictiveIntelligence = () => {
       title: "Behavioral Personalization",
       description: "Personalize tone and offers by behavior signals",
       icon: <Brain size={32} />
+    },
+    {
+      agent: "Quality Filter",
+      title: "Segment Suppression",
+      description: "Suppress low-quality or fatigued segments",
+      icon: <Users size={32} />
     }
   ];
 
