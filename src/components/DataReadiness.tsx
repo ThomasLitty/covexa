@@ -64,7 +64,7 @@ const DataReadiness = () => {
             {/* Minimum Requirements */}
             <div className="bg-gray-50 rounded-2xl p-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                🧱 Minimum Requirements
+                Minimum Requirements
               </h3>
               <div className="space-y-4">
                 {requirements.map((req, index) => (
@@ -81,7 +81,7 @@ const DataReadiness = () => {
             {/* What Covexa Can Do */}
             <div className="bg-blue-50 rounded-2xl p-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                🧠 What Covexa Can Do:
+                What Covexa Can Do:
               </h3>
               <div className="space-y-4">
                 {capabilities.map((cap, index) => (
