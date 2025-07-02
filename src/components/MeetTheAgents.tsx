@@ -1,4 +1,5 @@
 
+import React from 'react';
 import { Database, MessageSquare, Shield, Send, Settings, BarChart3, Radar, User, Pen, Activity, Eye, Network } from "lucide-react";
 
 const MeetTheAgents = () => {
