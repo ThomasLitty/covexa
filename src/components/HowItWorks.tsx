@@ -78,7 +78,7 @@ const HowItWorks = () => {
               How It Works
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Seven AI agents work together to transform your GTM operations from messy data to closed deals
+              Seven AI agents work invisibly within your existing tools to transform GTM operations — no new apps to learn
             </p>
           </div>
 
@@ -110,135 +110,124 @@ const HowItWorks = () => {
               ))}
             </div>
 
-            {/* Chat Demo Section */}
-            <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200 shadow-lg sticky top-8">
-              <div className="bg-white rounded-lg p-5 shadow-sm">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-7 h-7 bg-blue-600 rounded flex items-center justify-center">
-                    <span className="text-white text-xs font-bold">#</span>
-                  </div>
-                  <span className="font-semibold text-gray-800 text-sm">gtm-campaigns</span>
-                  <span className="text-xs text-gray-500 ml-auto">Live Demo</span>
+            {/* Workflow Visualization */}
+            <div className="space-y-6">
+              {/* CRM Integration Demo */}
+              <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                <div className="bg-gray-50 px-4 py-2 border-b border-gray-200 flex items-center gap-2">
+                  <div className="w-4 h-4 rounded-full bg-red-500"></div>
+                  <div className="w-4 h-4 rounded-full bg-yellow-500"></div>
+                  <div className="w-4 h-4 rounded-full bg-green-500"></div>
+                  <span className="ml-2 text-sm font-medium text-gray-600">Salesforce • CRM</span>
                 </div>
-                
-                <div className="space-y-3 text-left">
-                  {/* SDR Initial Request */}
-                  <div className="flex items-start gap-2">
-                    <div className="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-gray-600 text-xs font-medium">J</span>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="font-medium text-gray-800 mb-1 text-sm">Jake (SDR)</div>
-                      <div className="bg-gray-100 rounded-lg p-2 text-gray-700 text-sm">
-                        /covexa launch campaign for fintech CTOs in Singapore
-                      </div>
+                <div className="p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="font-semibold text-gray-900">Lead: TechCorp Singapore</h4>
+                    <div className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
+                      🤖 Covexa Enhanced
                     </div>
                   </div>
-
-                  {/* Agent Questions */}
-                  <div className="flex items-start gap-2">
-                    <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-white text-xs font-bold">C</span>
+                  <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <span className="text-gray-500">Contact:</span>
+                      <div className="font-medium">Sarah Chen, CTO</div>
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="font-medium text-blue-600 mb-1 text-sm">Covexa</div>
-                      <div className="bg-blue-50 rounded-lg p-2 text-gray-700 text-sm">
-                        Great! I'll help you launch that campaign. A few quick questions:
-                        <br />• What's your primary goal? (Demo bookings, trial signups, etc.)
-                        <br />• Company size range you're targeting?
-                        <br />• Any specific pain points to focus on?
-                      </div>
+                    <div>
+                      <span className="text-gray-500">Company Size:</span>
+                      <div className="font-medium">450 employees</div>
                     </div>
                   </div>
-
-                  {/* SDR Response */}
-                  <div className="flex items-start gap-2">
-                    <div className="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-gray-600 text-xs font-medium">J</span>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="font-medium text-gray-800 mb-1 text-sm">Jake (SDR)</div>
-                      <div className="bg-gray-100 rounded-lg p-2 text-gray-700 text-sm">
-                        Demo bookings for our new API security platform. Target 100-1000 employees, Singapore, CTO or CISO. Focus on compliance and data protection challenges.
+                  <div className="mt-3 p-3 bg-green-50 border border-green-200 rounded-lg">
+                    <div className="flex items-start gap-2">
+                      <div className="w-5 h-5 bg-green-600 rounded-full flex items-center justify-center mt-0.5">
+                        <span className="text-white text-xs">✓</span>
                       </div>
-                    </div>
-                  </div>
-
-                  {/* Agent Analysis & Recommendations */}
-                  <div className="flex items-start gap-2">
-                    <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-white text-xs font-bold">C</span>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="font-medium text-blue-600 mb-1 text-sm">Covexa</div>
-                      <div className="bg-blue-50 rounded-lg p-2 text-gray-700 text-sm">
-                        <div className="font-medium mb-1">✅ Analysis Complete</div>
-                        <div className="text-xs space-y-1">
-                          <div>• Found <span className="font-semibold text-blue-600">247 qualified CTOs</span> in Singapore fintech (100-1000 employees)</div>
-                          <div>• Enriched missing data with inferred data</div>
-                          <div className="text-green-600 font-semibold">• High intent signals detected for 31 prospects ; Click here to view more details.</div>
-                          <div>• Recommended: Multi-touch email + LinkedIn sequence</div>
-                          <div>• Compliance check: ✅ Passed</div>
+                      <div>
+                        <div className="font-medium text-green-800 text-sm">High Intent Signal Detected</div>
+                        <div className="text-green-700 text-xs mt-1">
+                          Recently viewed API security solutions, downloaded compliance whitepaper
                         </div>
                       </div>
                     </div>
                   </div>
+                  <div className="mt-3 flex gap-2">
+                    <button className="bg-blue-600 text-white px-3 py-1.5 rounded text-sm font-medium">
+                      🤖 Auto-craft Sequence
+                    </button>
+                    <button className="border border-gray-300 text-gray-700 px-3 py-1.5 rounded text-sm">
+                      View Details
+                    </button>
+                  </div>
+                </div>
+              </div>
 
-                  {/* Message Options */}
-                  <div className="flex items-start gap-2">
-                    <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-white text-xs font-bold">C</span>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="font-medium text-blue-600 mb-1 text-sm">Covexa</div>
-                      <div className="bg-blue-50 rounded-lg p-2 text-gray-700 text-sm">
-                        <div className="font-medium mb-2">Generated 3 message variants:</div>
-                        <div className="text-xs space-y-1">
-                          <div className="bg-white p-1.5 rounded border-l-2 border-green-400">
-                            <span className="font-medium">A:</span> Compliance-focused (mentions recent MAS regulations)
-                          </div>
-                          <div className="bg-white p-1.5 rounded border-l-2 border-yellow-400">
-                            <span className="font-medium">B:</span> ROI-focused (emphasizes cost savings)
-                          </div>
-                          <div className="bg-white p-1.5 rounded border-l-2 border-purple-400">
-                            <span className="font-medium">C:</span> Innovation-focused (API-first approach)
-                          </div>
-                        </div>
-                        <div className="mt-2 text-xs text-gray-600">
-                          Click to View and Approve or provide your feedback.
-                        </div>
-                      </div>
+              {/* Email Platform Integration */}
+              <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                <div className="bg-gray-50 px-4 py-2 border-b border-gray-200 flex items-center gap-2">
+                  <div className="w-4 h-4 rounded-full bg-red-500"></div>
+                  <div className="w-4 h-4 rounded-full bg-yellow-500"></div>
+                  <div className="w-4 h-4 rounded-full bg-green-500"></div>
+                  <span className="ml-2 text-sm font-medium text-gray-600">Outreach • Email Sequence</span>
+                </div>
+                <div className="p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="font-semibold text-gray-900">Compose Email</h4>
+                    <div className="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">
+                      🤖 AI-Generated
                     </div>
                   </div>
-
-                  {/* Launch Confirmation */}
-                  <div className="flex items-start gap-2">
-                    <div className="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-gray-600 text-xs font-medium">J</span>
+                  <div className="space-y-3">
+                    <div className="text-sm">
+                      <span className="text-gray-500">To:</span> sarah.chen@techcorp.sg
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="font-medium text-gray-800 mb-1 text-sm">Jake (SDR)</div>
-                      <div className="bg-gray-100 rounded-lg p-2 text-gray-700 text-sm">
-                        🚀 Variant A Approved!
-                      </div>
+                    <div className="text-sm">
+                      <span className="text-gray-500">Subject:</span> 
+                      <span className="ml-2 font-medium">API Security Compliance Made Simple for Singapore Fintech</span>
+                    </div>
+                    <div className="bg-gray-50 p-3 rounded-lg text-sm text-gray-700 leading-relaxed">
+                      Hi Sarah,<br/><br/>
+                      I noticed TechCorp recently explored API security solutions. With Singapore's upcoming data protection regulations, I thought you'd find our compliance-first approach interesting...<br/><br/>
+                      <span className="text-blue-600">🤖 Personalized based on recent activity & compliance focus</span>
                     </div>
                   </div>
+                  <div className="mt-4 flex gap-2">
+                    <button className="bg-green-600 text-white px-3 py-1.5 rounded text-sm font-medium">
+                      ✓ Send Now
+                    </button>
+                    <button className="border border-gray-300 text-gray-700 px-3 py-1.5 rounded text-sm">
+                      🤖 Generate Variant
+                    </button>
+                  </div>
+                </div>
+              </div>
 
-                  {/* Campaign Launch */}
-                  <div className="flex items-start gap-2">
-                    <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-white text-xs font-bold">C</span>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="font-medium text-blue-600 mb-1 text-sm">Covexa</div>
-                      <div className="bg-green-50 rounded-lg p-2 text-gray-700 border border-green-200">
-                        <div className="font-medium text-green-800 mb-1 text-sm">🚀 Campaign "Singapore Fintech CTOs" Launched!</div>
-                        <div className="text-xs space-y-0.5 text-gray-700">
-                          <div>• 247 prospects enrolled in 5-touch sequence</div>
-                          <div>• First emails sending in 10 minutes</div>
-                          <div>• LinkedIn outreach starting tomorrow 9 AM SGT</div>
-                          <div>• Real-time stats available in dashboard</div>
+              {/* Slack Integration */}
+              <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                <div className="bg-gray-50 px-4 py-2 border-b border-gray-200 flex items-center gap-2">
+                  <div className="w-4 h-4 rounded-full bg-red-500"></div>
+                  <div className="w-4 h-4 rounded-full bg-yellow-500"></div>
+                  <div className="w-4 h-4 rounded-full bg-green-500"></div>
+                  <span className="ml-2 text-sm font-medium text-gray-600">Slack • #revenue-ops</span>
+                </div>
+                <div className="p-4">
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                    <div className="flex items-start gap-2">
+                      <div className="w-6 h-6 bg-blue-600 rounded flex items-center justify-center">
+                        <span className="text-white text-xs font-bold">C</span>
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-medium text-blue-600 text-sm">Covexa Bot</div>
+                        <div className="text-gray-700 text-sm mt-1">
+                          📈 <strong>Campaign Update:</strong> Singapore CTOs sequence launched successfully
+                          <br/>• 247 prospects enrolled
+                          <br/>• 31 high-intent leads prioritized  
+                          <br/>• First responses expected within 24h
+                          <br/><br/>
+                          <span className="text-green-600">🎯 Ready to launch LinkedIn sequence?</span>
                         </div>
+                        <button className="mt-2 bg-blue-600 text-white px-3 py-1 rounded text-xs">
+                          Launch LinkedIn Sequence
+                        </button>
                       </div>
                     </div>
                   </div>
