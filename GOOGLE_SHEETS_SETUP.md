@@ -14,7 +14,9 @@ Follow these steps to set up a Google Sheet to receive waitlist submissions:
    - C1: Email
    - D1: Company
    - E1: Role
-   - F1: Source
+   - F1: Phone
+   - G1: Country
+   - H1: Source
 
 ## Step 2: Open Google Apps Script
 
@@ -41,10 +43,12 @@ function doPost(e) {
     const email = data.email || '';
     const company = data.company || '';
     const role = data.role || '';
+    const phone = data.phone || '';
+    const country = data.country || '';
     const source = data.source || 'unknown';
     
     // Append the data to the sheet
-    sheet.appendRow([timestamp, name, email, company, role, source]);
+    sheet.appendRow([timestamp, name, email, company, role, phone, country, source]);
     
     // Return success response
     return ContentService
@@ -114,3 +118,4 @@ function doOptions(e) {
 - If you get permission errors, make sure the script is deployed with "Execute as: Me" and "Who has access: Anyone"
 - If CORS errors occur, double-check that the doOptions function is included in your script
 - Make sure your Google Sheet has the correct column headers in the first row
+

@@ -28,6 +28,8 @@ const waitlistSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
   company: z.string().optional(),
   role: z.string().optional(),
+  phone: z.string().optional(),
+  country: z.string().optional(),
 });
 
 type WaitlistFormData = z.infer<typeof waitlistSchema>;
@@ -49,6 +51,8 @@ const WaitlistModal = ({ isOpen, onClose, source = "unknown" }: WaitlistModalPro
       email: "",
       company: "",
       role: "",
+      phone: "",
+      country: "",
     },
   });
 
@@ -157,6 +161,34 @@ const WaitlistModal = ({ isOpen, onClose, source = "unknown" }: WaitlistModalPro
                   <FormLabel>Role</FormLabel>
                   <FormControl>
                     <Input placeholder="VP of Sales" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            
+            <FormField
+              control={form.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Phone Number</FormLabel>
+                  <FormControl>
+                    <Input placeholder="+1 (555) 123-4567" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            
+            <FormField
+              control={form.control}
+              name="country"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Country</FormLabel>
+                  <FormControl>
+                    <Input placeholder="United States" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
