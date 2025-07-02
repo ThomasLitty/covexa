@@ -1,4 +1,3 @@
-
 import { Database, MessageSquare, Shield, Send, Settings, BarChart3, Radar, User, Pen, Activity, Eye, Network } from "lucide-react";
 
 const MeetTheAgents = () => {
@@ -102,7 +101,6 @@ const MeetTheAgents = () => {
                 <p className="text-gray-200 text-sm"></p>
               </div>
             </div>
-            <p className="text-gray-600 mt-6 text-lg">Start here - ORRA handles everything else</p>
           </div>
 
           {/* Background Agents Grid */}
@@ -116,7 +114,7 @@ const MeetTheAgents = () => {
                   key={index}
                   className="group flex flex-col items-center p-4 rounded-xl bg-gray-50 hover:bg-white hover:shadow-md transition-all duration-300 border border-transparent hover:border-gray-200"
                 >
-                  <div className={`p-3 ${agent.color} rounded-full mb-3 group-hover:animate-pulse transition-all duration-300`}>
+                  <div className={`p-3 ${agent.color} rounded-full mb-3 group-hover:scale-110 transition-all duration-300`}>
                     <div className="text-white">
                       {agent.icon}
                     </div>
