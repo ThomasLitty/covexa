@@ -327,9 +327,9 @@ const DataManagement = () => {
           </div>
 
           {/* Centered Integration Note */}
-          <div className="mt-12 max-w-2xl mx-auto">
-            <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border border-green-200">
-              <p className="text-sm text-green-800 font-medium text-center">
+          <div className="mt-16 text-center">
+            <div className="bg-blue-50 rounded-2xl p-8 max-w-4xl mx-auto">
+              <p className="text-lg text-gray-700 font-medium">
                 ✅ Works seamlessly with your existing CRM, marketing automation, and sales tools
               </p>
             </div>
