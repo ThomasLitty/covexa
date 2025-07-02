@@ -1,48 +1,61 @@
 
-import { Database, MessageSquare, Shield, Send, Settings, BarChart3, Radar, User } from "lucide-react";
+import { Database, MessageSquare, Shield, Send, Settings, BarChart3, Radar, User, Pen, PaperPlane, Activity, Eye } from "lucide-react";
 
 const MeetTheAgents = () => {
   // ORRA as the primary user interface
   const centralAgent = {
     name: "ORRA",
-    role: "Your AI Assistant",
+    role: "Orchestration & retry logic",
     description: "The only agent you need to talk to",
-    icon: <Settings size={40} />,
-    color: "bg-blue-600",
-    textColor: "text-white"
+    icon: <Activity size={40} />,
+    color: "bg-gray-600",
+    textColor: "text-white",
+    accentColor: "gray"
   };
 
-  // Background worker agents
+  // Background worker agents with style guide colors and icons
   const backgroundAgents = [
     {
-      name: "MIRA",
-      role: "Multi-channel execution",
-      icon: <Send size={20} />,
+      name: "VARA",
+      role: "Data validation + enrichment",
+      icon: <Database size={20} />,
+      color: "bg-green-600",
+      accentColor: "green"
     },
     {
-      name: "VARA", 
-      role: "Data validation",
-      icon: <Database size={20} />,
+      name: "LEXA", 
+      role: "Messaging + tone shaping",
+      icon: <Pen size={20} />,
+      color: "bg-indigo-600",
+      accentColor: "indigo"
     },
     {
       name: "LIA",
-      role: "Compliance monitoring",
+      role: "Compliance, suppression, consent",
       icon: <Shield size={20} />,
+      color: "bg-red-600",
+      accentColor: "red"
     },
     {
-      name: "TORA",
-      role: "Intent detection",
-      icon: <Radar size={20} />,
-    },
-    {
-      name: "LEXA",
-      role: "Message optimization",
-      icon: <MessageSquare size={20} />,
+      name: "MIRA",
+      role: "Campaign execution + sequences",
+      icon: <PaperPlane size={20} />,
+      color: "bg-cyan-600",
+      accentColor: "cyan"
     },
     {
       name: "NIRA",
-      role: "Performance analysis",
-      icon: <BarChart3 size={20} />,
+      role: "Analytics + reporting",
+      icon: <Eye size={20} />,
+      color: "bg-violet-600",
+      accentColor: "violet"
+    },
+    {
+      name: "TORA",
+      role: "Intent detection + scoring",
+      icon: <Radar size={20} />,
+      color: "bg-orange-600",
+      accentColor: "orange"
     }
   ];
 
@@ -67,8 +80,8 @@ const MeetTheAgents = () => {
               <span className="font-medium text-gray-700">You</span>
             </div>
             <div className="w-8 h-0.5 bg-blue-300"></div>
-            <div className="flex items-center space-x-2 bg-blue-600 rounded-full px-6 py-3 shadow-lg">
-              <Settings size={20} className="text-white" />
+            <div className="flex items-center space-x-2 bg-gray-600 rounded-full px-6 py-3 shadow-lg animate-pulse">
+              <Activity size={20} className="text-white" />
               <span className="font-semibold text-white">ORRA</span>
             </div>
             <div className="w-8 h-0.5 bg-gray-300"></div>
@@ -80,13 +93,13 @@ const MeetTheAgents = () => {
           {/* ORRA - Primary Interface */}
           <div className="text-center mb-16">
             <div className="inline-block relative">
-              <div className="w-48 h-48 bg-blue-600 rounded-full shadow-xl flex flex-col items-center justify-center text-white relative animate-pulse">
-                <div className="p-4 bg-blue-500 rounded-full mb-3">
+              <div className="w-48 h-48 bg-gray-600 rounded-full shadow-xl flex flex-col items-center justify-center text-white relative animate-pulse">
+                <div className="p-4 bg-gray-500 rounded-full mb-3">
                   {centralAgent.icon}
                 </div>
                 <h3 className="text-2xl font-bold mb-1">{centralAgent.name}</h3>
-                <p className="text-blue-100 font-medium mb-2">{centralAgent.role}</p>
-                <p className="text-blue-200 text-sm">{centralAgent.description}</p>
+                <p className="text-gray-100 font-medium mb-2">Your AI Assistant</p>
+                <p className="text-gray-200 text-sm">{centralAgent.description}</p>
               </div>
             </div>
             <p className="text-gray-600 mt-6 text-lg">Start here - ORRA handles everything else</p>
@@ -101,13 +114,15 @@ const MeetTheAgents = () => {
               {backgroundAgents.map((agent, index) => (
                 <div
                   key={index}
-                  className="flex flex-col items-center p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors opacity-70"
+                  className="group flex flex-col items-center p-4 rounded-xl bg-gray-50 hover:bg-white hover:shadow-md transition-all duration-300 border border-transparent hover:border-gray-200"
                 >
-                  <div className="p-3 bg-gray-200 rounded-full mb-3">
-                    {agent.icon}
+                  <div className={`p-3 ${agent.color} rounded-full mb-3 group-hover:animate-pulse transition-all duration-300`}>
+                    <div className="text-white">
+                      {agent.icon}
+                    </div>
                   </div>
-                  <h5 className="font-semibold text-gray-700 text-sm mb-1">{agent.name}</h5>
-                  <p className="text-xs text-gray-500 text-center">{agent.role}</p>
+                  <h5 className="font-semibold text-gray-800 text-sm mb-1 text-center">{agent.name}</h5>
+                  <p className="text-xs text-gray-600 text-center leading-relaxed">{agent.role}</p>
                 </div>
               ))}
             </div>
