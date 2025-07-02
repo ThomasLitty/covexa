@@ -32,7 +32,7 @@ const Integrations = () => {
       name: "HubSpot", 
       icon: (
         <img 
-          src="/lovable-uploads/d2e9ca25-54b6-4ec7-a52b-57d5c0192395.png" 
+          src="/lovable-uploads/bb6ecefa-1818-41f8-a4f0-083f999e9e4d.png" 
           alt="HubSpot" 
           className="w-16 h-16 object-contain"
         />
@@ -64,11 +64,13 @@ const Integrations = () => {
     { 
       name: "Clearbit", 
       icon: (
-        <svg viewBox="0 0 24 24" className="w-16 h-16" fill="currentColor">
-          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.182c5.423 0 9.818 4.395 9.818 9.818S17.423 21.818 12 21.818 2.182 17.423 2.182 12 6.577 2.182 12 2.182zm0 3.273a6.545 6.545 0 1 0 0 13.09 6.545 6.545 0 0 0 0-13.09z"/>
-        </svg>
+        <img 
+          src="/lovable-uploads/a505b481-291c-4bc3-963d-6f98b5748177.png" 
+          alt="Clearbit" 
+          className="w-16 h-16 object-contain"
+        />
       ),
-      color: "text-indigo-600"
+      color: ""
     },
     { 
       name: "Salesforce", 
@@ -93,11 +95,13 @@ const Integrations = () => {
     { 
       name: "Bombora", 
       icon: (
-        <svg viewBox="0 0 24 24" className="w-16 h-16" fill="currentColor">
-          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-        </svg>
+        <img 
+          src="/lovable-uploads/a8a82d48-5586-40b8-a03f-3e37baf58c33.png" 
+          alt="Bombora" 
+          className="w-16 h-16 object-contain"
+        />
       ),
-      color: "text-yellow-600"
+      color: ""
     }
   ];
 
