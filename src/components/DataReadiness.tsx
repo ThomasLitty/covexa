@@ -47,9 +47,6 @@ const DataReadiness = () => {
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <div className="text-sm font-medium text-blue-600 mb-4 tracking-wide uppercase">
-            Data Readiness for AI GTM
-          </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Your CRM Doesn't Need to Be Perfect —
             <span className="text-blue-600"> Just AI-Ready</span>
