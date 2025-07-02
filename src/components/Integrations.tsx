@@ -1,4 +1,3 @@
-
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 const Integrations = () => {
@@ -15,11 +14,13 @@ const Integrations = () => {
     { 
       name: "HubSpot", 
       icon: (
-        <svg viewBox="0 0 24 24" className="w-10 h-10" fill="currentColor">
-          <path d="M12.01 0C5.373 0 0 5.373 0 12.01s5.373 12.01 12.01 12.01 12.01-5.373 12.01-12.01S18.647 0 12.01 0zm5.64 17.614c-.94 0-1.73-.625-1.976-1.48a4.851 4.851 0 0 1-3.854 1.954c-2.676 0-4.847-2.17-4.847-4.847 0-2.676 2.17-4.847 4.847-4.847 1.461 0 2.77.65 3.668 1.677V7.403c0-.942.764-1.706 1.706-1.706s1.706.764 1.706 1.706v8.505c0 .942-.764 1.706-1.706 1.706h-.544z"/>
-        </svg>
+        <img 
+          src="/lovable-uploads/d2e9ca25-54b6-4ec7-a52b-57d5c0192395.png" 
+          alt="HubSpot" 
+          className="w-10 h-10 object-contain"
+        />
       ),
-      color: "text-orange-600"
+      color: ""
     },
     { 
       name: "Gmail", 
