@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 const DataManagement = () => {
   const [animationStep, setAnimationStep] = useState(0);
   const [enrichedRows, setEnrichedRows] = useState<Set<number>>(new Set());
+  const [processingRow, setProcessingRow] = useState<number | null>(null);
+  const [currentStage, setCurrentStage] = useState(0);
 
   const features = [
     "Enriches missing titles, industries, and emails",
@@ -24,6 +26,10 @@ const DataManagement = () => {
     { id: 6, name: "emma davis", title: "", company: "microsoft", email: "edavis@msft", status: "incomplete" },
     { id: 7, name: "ALEX BROWN", title: "unknown", company: "Facebook", email: "", status: "missing" },
     { id: 8, name: "jenny white", title: "Manager", company: "???", email: "jwhite@comp", status: "invalid" },
+    { id: 9, name: "david lee", title: "", company: "netflix", email: "dlee@", status: "incomplete" },
+    { id: 10, name: "MARIA GARCIA", title: "unknown", company: "???", email: "", status: "missing" },
+    { id: 11, name: "tom brown", title: "CEO", company: "startup", email: "tom@start", status: "invalid" },
+    { id: 12, name: "anna wilson", title: "", company: "Amazon", email: "awilson@amzn", status: "partial" },
   ];
 
   const enrichedData = [
@@ -35,24 +41,42 @@ const DataManagement = () => {
     { id: 6, name: "Emma Davis", title: "Data Scientist", company: "Microsoft", email: "emma.davis@microsoft.com", status: "verified" },
     { id: 7, name: "Alex Brown", title: "UX Designer", company: "Meta", email: "alex.brown@meta.com", status: "verified" },
     { id: 8, name: "Jenny White", title: "Operations Manager", company: "CloudTech Solutions", email: "jenny.white@cloudtech.com", status: "verified" },
+    { id: 9, name: "David Lee", title: "Content Manager", company: "Netflix", email: "david.lee@netflix.com", status: "verified" },
+    { id: 10, name: "Maria Garcia", title: "Sales Director", company: "TechSolutions", email: "maria.garcia@techsolutions.com", status: "verified" },
+    { id: 11, name: "Tom Brown", title: "Founder & CEO", company: "InnovateTech", email: "tom.brown@innovatetech.com", status: "verified" },
+    { id: 12, name: "Anna Wilson", title: "Software Engineer", company: "Amazon", email: "anna.wilson@amazon.com", status: "verified" },
   ];
 
   useEffect(() => {
     const interval = setInterval(() => {
       setAnimationStep((prev) => {
         if (prev < sampleData.length) {
-          setEnrichedRows(current => new Set([...current, prev]));
+          // Set processing state
+          setProcessingRow(prev);
+          setCurrentStage(0);
+          
+          // Animate through processing stages
+          setTimeout(() => setCurrentStage(1), 200);
+          setTimeout(() => setCurrentStage(2), 400);
+          setTimeout(() => setCurrentStage(3), 600);
+          setTimeout(() => {
+            setCurrentStage(4);
+            setEnrichedRows(current => new Set([...current, prev]));
+            setProcessingRow(null);
+          }, 800);
+          
           return prev + 1;
         } else {
-          // Reset animation after a pause
+          // Reset animation after showing all data
           setTimeout(() => {
             setEnrichedRows(new Set());
-            return 0;
-          }, 2000);
-          return prev;
+            setCurrentStage(0);
+            setProcessingRow(null);
+          }, 3000);
+          return 0;
         }
       });
-    }, 800);
+    }, 1200);
 
     return () => clearInterval(interval);
   }, []);
@@ -62,6 +86,7 @@ const DataManagement = () => {
   };
 
   const getRowStatus = (index: number) => {
+    if (processingRow === index) return 'processing';
     return enrichedRows.has(index) ? 'enriched' : 'original';
   };
 
@@ -104,10 +129,10 @@ const DataManagement = () => {
               </div>
 
               {/* Google Sheets-like Interface */}
-              <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+              <div className="bg-white rounded-lg shadow-sm overflow-hidden border">
                 {/* Header */}
-                <div className="bg-gray-50 border-b border-gray-200 px-4 py-2">
-                  <div className="grid grid-cols-5 gap-2 text-xs font-medium text-gray-600">
+                <div className="bg-gray-50 border-b border-gray-200 px-4 py-3">
+                  <div className="grid grid-cols-5 gap-2 text-xs font-medium text-gray-600 uppercase tracking-wide">
                     <div>Name</div>
                     <div>Title</div>
                     <div>Company</div>
@@ -117,45 +142,66 @@ const DataManagement = () => {
                 </div>
 
                 {/* Data Rows */}
-                <div className="max-h-64 overflow-hidden">
+                <div className="max-h-80 overflow-y-auto">
                   {sampleData.map((_, index) => {
                     const rowData = getRowData(index);
                     const rowStatus = getRowStatus(index);
-                    const isEnriching = animationStep === index;
+                    const isProcessing = processingRow === index;
                     
                     return (
                       <div 
                         key={index}
-                        className={`grid grid-cols-5 gap-2 px-4 py-2 text-xs border-b border-gray-100 transition-all duration-500 ${
+                        className={`grid grid-cols-5 gap-2 px-4 py-3 text-xs border-b border-gray-100 transition-all duration-500 ${
                           rowStatus === 'enriched' 
-                            ? 'bg-green-50 border-green-200' 
+                            ? 'bg-gradient-to-r from-green-50 to-emerald-50 border-green-200' 
+                            : rowStatus === 'processing'
+                            ? 'bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-300 shadow-md transform scale-[1.02]'
                             : rowStatus === 'original' && (rowData.status === 'incomplete' || rowData.status === 'missing' || rowData.status === 'invalid')
-                            ? 'bg-red-50 border-red-200'
-                            : 'bg-white'
-                        } ${isEnriching ? 'animate-pulse bg-blue-50' : ''}`}
+                            ? 'bg-gradient-to-r from-red-50 to-pink-50 border-red-200'
+                            : 'bg-white hover:bg-gray-50'
+                        } ${isProcessing ? 'animate-pulse ring-2 ring-blue-300' : ''}`}
                       >
-                        <div className={`truncate ${rowStatus === 'enriched' ? 'text-green-700 font-medium' : rowData.status === 'incomplete' ? 'text-red-600' : 'text-gray-700'}`}>
+                        <div className={`truncate font-medium ${
+                          rowStatus === 'enriched' ? 'text-green-700' : 
+                          rowStatus === 'processing' ? 'text-blue-700' :
+                          rowData.status === 'incomplete' ? 'text-red-600' : 'text-gray-700'
+                        }`}>
                           {rowData.name}
                         </div>
-                        <div className={`truncate ${rowStatus === 'enriched' ? 'text-green-700 font-medium' : !rowData.title || rowData.title === 'unknown' ? 'text-red-600' : 'text-gray-700'}`}>
+                        <div className={`truncate ${
+                          rowStatus === 'enriched' ? 'text-green-700 font-medium' : 
+                          rowStatus === 'processing' ? 'text-blue-700' :
+                          !rowData.title || rowData.title === 'unknown' ? 'text-red-600' : 'text-gray-700'
+                        }`}>
                           {rowData.title || '—'}
                         </div>
-                        <div className={`truncate ${rowStatus === 'enriched' ? 'text-green-700 font-medium' : rowData.company === '???' ? 'text-red-600' : 'text-gray-700'}`}>
+                        <div className={`truncate ${
+                          rowStatus === 'enriched' ? 'text-green-700 font-medium' : 
+                          rowStatus === 'processing' ? 'text-blue-700' :
+                          rowData.company === '???' ? 'text-red-600' : 'text-gray-700'
+                        }`}>
                           {rowData.company}
                         </div>
-                        <div className={`truncate ${rowStatus === 'enriched' ? 'text-green-700 font-medium' : !rowData.email || rowData.email.includes('...') || !rowData.email.includes('@') ? 'text-red-600' : 'text-gray-700'}`}>
+                        <div className={`truncate ${
+                          rowStatus === 'enriched' ? 'text-green-700 font-medium' : 
+                          rowStatus === 'processing' ? 'text-blue-700' :
+                          !rowData.email || rowData.email.includes('...') || !rowData.email.includes('@') ? 'text-red-600' : 'text-gray-700'
+                        }`}>
                           {rowData.email || '—'}
                         </div>
-                        <div className="flex items-center gap-1">
-                          <div className={`w-2 h-2 rounded-full ${
-                            rowStatus === 'enriched' ? 'bg-green-500' : 
+                        <div className="flex items-center gap-2">
+                          <div className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                            rowStatus === 'enriched' ? 'bg-green-500 shadow-md' : 
+                            rowStatus === 'processing' ? 'bg-blue-500 animate-ping' :
                             rowData.status === 'incomplete' || rowData.status === 'missing' || rowData.status === 'invalid' ? 'bg-red-500' : 'bg-yellow-500'
                           }`}></div>
-                          <span className={`text-xs ${
+                          <span className={`text-xs font-medium ${
                             rowStatus === 'enriched' ? 'text-green-600' : 
+                            rowStatus === 'processing' ? 'text-blue-600' :
                             rowData.status === 'incomplete' || rowData.status === 'missing' || rowData.status === 'invalid' ? 'text-red-600' : 'text-yellow-600'
                           }`}>
-                            {rowStatus === 'enriched' ? 'verified' : rowData.status}
+                            {rowStatus === 'enriched' ? 'verified' : 
+                             rowStatus === 'processing' ? 'enriching...' : rowData.status}
                           </span>
                         </div>
                       </div>
@@ -163,44 +209,72 @@ const DataManagement = () => {
                   })}
                   
                   {/* Additional rows to show scale */}
-                  {Array.from({ length: 12 }, (_, i) => (
-                    <div key={`extra-${i}`} className="grid grid-cols-5 gap-2 px-4 py-2 text-xs border-b border-gray-100 bg-gray-50">
-                      <div className="truncate text-gray-400">Loading...</div>
+                  {Array.from({ length: 88 }, (_, i) => (
+                    <div key={`extra-${i}`} className="grid grid-cols-5 gap-2 px-4 py-3 text-xs border-b border-gray-100 bg-gray-50/50">
+                      <div className="truncate text-gray-400">Row {sampleData.length + i + 1}</div>
+                      <div className="truncate text-gray-400">Pending...</div>
                       <div className="truncate text-gray-400">—</div>
                       <div className="truncate text-gray-400">—</div>
-                      <div className="truncate text-gray-400">—</div>
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-gray-300"></div>
-                        <span className="text-xs text-gray-400">pending</span>
+                        <span className="text-xs text-gray-400">queued</span>
                       </div>
                     </div>
                   ))}
                 </div>
 
                 {/* Footer showing total rows */}
-                <div className="bg-gray-50 border-t border-gray-200 px-4 py-2">
-                  <div className="text-xs text-gray-500">
-                    Showing 20 of 1,247 rows • {enrichedRows.size} enriched
+                <div className="bg-gray-50 border-t border-gray-200 px-4 py-3">
+                  <div className="flex justify-between items-center">
+                    <div className="text-xs text-gray-500">
+                      Showing 100 of 12,847 rows • <span className="text-green-600 font-medium">{enrichedRows.size} enriched</span>
+                    </div>
+                    {processingRow !== null && (
+                      <div className="text-xs text-blue-600 font-medium animate-pulse">
+                        Processing row {processingRow + 1}...
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
 
               {/* Processing Pipeline */}
-              <div className="mt-4 bg-white rounded-lg p-4 shadow-sm">
-                <div className="text-xs font-medium text-gray-600 mb-3">PROCESSING PIPELINE</div>
+              <div className="mt-6 bg-white rounded-lg p-4 shadow-sm border">
+                <div className="text-xs font-medium text-gray-600 mb-4 uppercase tracking-wide">PROCESSING PIPELINE</div>
                 <div className="flex justify-between items-center">
                   {pipelineSteps.map((step, index) => (
                     <div key={index} className="flex flex-col items-center relative">
-                      <div className={`${step.color} mb-1 ${animationStep > 0 && index <= 1 ? 'animate-pulse' : ''}`}>
+                      <div className={`p-2 rounded-full transition-all duration-300 ${
+                        currentStage >= index ? 
+                        `${step.color} bg-current bg-opacity-10 scale-110 shadow-md` : 
+                        'text-gray-300'
+                      } ${currentStage === index ? 'animate-pulse ring-4 ring-current ring-opacity-20' : ''}`}>
                         {step.icon}
                       </div>
-                      <span className="text-xs text-gray-600 text-center">{step.label}</span>
+                      <span className={`text-xs text-center mt-2 transition-colors ${
+                        currentStage >= index ? step.color : 'text-gray-400'
+                      }`}>
+                        {step.label}
+                      </span>
                       {index < pipelineSteps.length - 1 && (
-                        <ArrowRight className="text-gray-300 absolute left-8 top-2" size={12} />
+                        <ArrowRight className={`absolute left-12 top-3 transition-colors ${
+                          currentStage > index ? 'text-blue-400' : 'text-gray-300'
+                        }`} size={16} />
                       )}
                     </div>
                   ))}
                 </div>
+                {processingRow !== null && (
+                  <div className="mt-4 text-center">
+                    <div className="text-xs text-blue-600 font-medium">
+                      {currentStage === 0 && "Analyzing raw data..."}
+                      {currentStage === 1 && "Enriching missing fields..."}
+                      {currentStage === 2 && "Validating information..."}
+                      {currentStage === 3 && "Applying segmentation rules..."}
+                      {currentStage === 4 && "Enrichment complete!"}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
