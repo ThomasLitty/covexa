@@ -11,33 +11,33 @@ const DataManagement = () => {
 
   const features = [
     "Enriches missing titles, industries, and emails",
+    "Standardizes company sizes and job roles automatically",
+    "Derives location data from IP addresses", 
     "Suppresses risky or non-consented leads (e.g., GDPR)",
-    "Deduplicates records across sources",
-    "Segments leads based on ICP match",
-    "Standardizes messy CRM fields automatically"
+    "Deduplicates records across sources"
   ];
 
   // Sample data with realistic minimum data requirements
   const sampleData = [
-    { id: 1, name: "John Doe", title: "", company: "TechCorp", email: "j.doe@techcorp.com", status: "enrichable" },
-    { id: 2, name: "S. Smith", title: "unknown", company: "", email: "", status: "insufficient" },
-    { id: 3, name: "Mike", title: "VP", company: "StartupXYZ", email: "mike@startupxyz.com", status: "enrichable" },
-    { id: 4, name: "Lisa Chen", title: "", company: "Google", email: "lchen@google.com", status: "enrichable" },
-    { id: 5, name: "", title: "Director", company: "Apple", email: "director@apple.com", status: "insufficient" },
-    { id: 6, name: "Emma Davis", title: "", company: "Microsoft", email: "", status: "insufficient" },
-    { id: 7, name: "Alex Brown", title: "Designer", company: "Meta", email: "alex.brown@meta.com", status: "enrichable" },
-    { id: 8, name: "Jenny W", title: "Manager", company: "", email: "jenny@", status: "insufficient" },
+    { id: 1, name: "John Doe", title: "Sr SW Eng", company: "TechCorp", email: "j.doe@techcorp.com", companySize: "~500", location: "", ip: "", status: "enrichable" },
+    { id: 2, name: "S. Smith", title: "unknown", company: "", email: "", companySize: "", location: "", ip: "192.168.1.1", status: "insufficient" },
+    { id: 3, name: "Mike Johnson", title: "VP Sales", company: "StartupXYZ", email: "mike@startupxyz.com", companySize: "Small", location: "", ip: "", status: "enrichable" },
+    { id: 4, name: "Lisa Chen", title: "PM", company: "Google", email: "lchen@google.com", companySize: "Big", location: "", ip: "", status: "enrichable" },
+    { id: 5, name: "", title: "Dir", company: "Apple", email: "director@apple.com", companySize: "", location: "", ip: "203.0.113.5", status: "insufficient" },
+    { id: 6, name: "Emma Davis", title: "Marketing Mgr", company: "Microsoft Corp", email: "emma@microsoft.com", companySize: "Enterprise", location: "", ip: "198.51.100.42", status: "enrichable" },
+    { id: 7, name: "Alex Brown", title: "UX Designer", company: "Meta", email: "alex.brown@meta.com", companySize: "", location: "", ip: "", status: "enrichable" },
+    { id: 8, name: "Jenny W", title: "Mgr", company: "", email: "jenny@", companySize: "", location: "", ip: "192.0.2.15", status: "insufficient" },
   ];
 
   const enrichedData = [
-    { id: 1, name: "John Doe", title: "Senior Software Engineer", company: "TechCorp Inc.", email: "j.doe@techcorp.com", status: "verified" },
-    { id: 2, name: "S. Smith", title: "unknown", company: "", email: "", status: "insufficient" },
-    { id: 3, name: "Mike Johnson", title: "VP of Sales", company: "StartupXYZ", email: "mike@startupxyz.com", status: "verified" },
-    { id: 4, name: "Lisa Chen", title: "Product Manager", company: "Google Inc", email: "lchen@google.com", status: "verified" },
-    { id: 5, name: "", title: "Director", company: "Apple", email: "director@apple.com", status: "insufficient" },
-    { id: 6, name: "Emma Davis", title: "", company: "Microsoft", email: "", status: "insufficient" },
-    { id: 7, name: "Alex Brown", title: "UX/UI Designer", company: "Meta Platforms", email: "alex.brown@meta.com", status: "verified" },
-    { id: 8, name: "Jenny W", title: "Manager", company: "", email: "jenny@", status: "insufficient" },
+    { id: 1, name: "John Doe", title: "Senior Software Engineer", company: "TechCorp Inc.", email: "j.doe@techcorp.com", companySize: "Mid-Market (201-1000)", location: "San Francisco, CA", ip: "", status: "verified" },
+    { id: 2, name: "S. Smith", title: "unknown", company: "", email: "", companySize: "", location: "Private Network", ip: "192.168.1.1", status: "insufficient" },
+    { id: 3, name: "Mike Johnson", title: "VP of Sales", company: "StartupXYZ", email: "mike@startupxyz.com", companySize: "Small Business (1-50)", location: "Austin, TX", ip: "", status: "verified" },
+    { id: 4, name: "Lisa Chen", title: "Product Manager", company: "Google Inc", email: "lchen@google.com", companySize: "Enterprise (10,000+)", location: "Mountain View, CA", ip: "", status: "verified" },
+    { id: 5, name: "", title: "Dir", company: "Apple", email: "director@apple.com", companySize: "", location: "Sydney, Australia", ip: "203.0.113.5", status: "insufficient" },
+    { id: 6, name: "Emma Davis", title: "Marketing Manager", company: "Microsoft Corp", email: "emma@microsoft.com", companySize: "Enterprise (10,000+)", location: "London, UK", ip: "198.51.100.42", status: "verified" },
+    { id: 7, name: "Alex Brown", title: "UX/UI Designer", company: "Meta Platforms", email: "alex.brown@meta.com", companySize: "Enterprise (10,000+)", location: "Menlo Park, CA", ip: "", status: "verified" },
+    { id: 8, name: "Jenny W", title: "Mgr", company: "", email: "jenny@", companySize: "", location: "Boston, MA", ip: "192.0.2.15", status: "insufficient" },
   ];
 
   const startAnimation = () => {
@@ -136,9 +136,9 @@ const DataManagement = () => {
             >
               <div className="text-center mb-6">
                 <FileSpreadsheet className="mx-auto text-blue-600 mb-4" size={32} />
-                <h4 className="text-lg font-semibold text-gray-900 mb-2">Live Data Enrichment</h4>
+                <h4 className="text-lg font-semibold text-gray-900 mb-2">Live Data Enrichment & Standardization</h4>
                 <p className="text-sm text-gray-600">
-                  {!isAnimating ? "Hover to see data enrichment in action" : "Enriching records with sufficient data..."}
+                  {!isAnimating ? "Hover to see data enrichment in action" : "Enriching & standardizing records..."}
                 </p>
               </div>
 
@@ -146,11 +146,12 @@ const DataManagement = () => {
               <div className="bg-white rounded-lg shadow-sm overflow-hidden border">
                 {/* Header */}
                 <div className="bg-gray-50 border-b border-gray-200 px-4 py-3">
-                  <div className="grid grid-cols-5 gap-2 text-xs font-medium text-gray-600 uppercase tracking-wide">
+                  <div className="grid grid-cols-6 gap-2 text-xs font-medium text-gray-600 uppercase tracking-wide">
                     <div>Name</div>
                     <div>Title</div>
                     <div>Company</div>
-                    <div>Email</div>
+                    <div>Company Size</div>
+                    <div>Location</div>
                     <div>Status</div>
                   </div>
                 </div>
@@ -165,7 +166,7 @@ const DataManagement = () => {
                     return (
                       <div 
                         key={index}
-                        className={`grid grid-cols-5 gap-2 px-4 py-3 text-xs border-b border-gray-100 transition-all duration-500 ${
+                        className={`grid grid-cols-6 gap-2 px-4 py-3 text-xs border-b border-gray-100 transition-all duration-500 ${
                           rowStatus === 'enriched' 
                             ? 'bg-gradient-to-r from-green-50 to-emerald-50 border-green-200' 
                             : rowStatus === 'processing'
@@ -199,9 +200,16 @@ const DataManagement = () => {
                         <div className={`truncate ${
                           rowStatus === 'enriched' ? 'text-green-700 font-medium' : 
                           rowStatus === 'processing' ? 'text-blue-700' :
-                          !rowData.email || !rowData.email.includes('@') || rowData.email.endsWith('@') ? 'text-red-600' : 'text-gray-700'
+                          !rowData.companySize ? 'text-gray-500' : 'text-gray-700'
                         }`}>
-                          {rowData.email || '—'}
+                          {rowData.companySize || '—'}
+                        </div>
+                        <div className={`truncate ${
+                          rowStatus === 'enriched' ? 'text-green-700 font-medium' : 
+                          rowStatus === 'processing' ? 'text-blue-700' :
+                          !rowData.location ? 'text-gray-500' : 'text-gray-700'
+                        }`}>
+                          {rowData.location || (rowData.ip ? `IP: ${rowData.ip}` : '—')}
                         </div>
                         <div className="flex items-center gap-2">
                           <div className={`w-3 h-3 rounded-full transition-all duration-300 ${
