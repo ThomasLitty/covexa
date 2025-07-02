@@ -1,3 +1,4 @@
+
 import { Database, MessageSquare, Shield, Send, Settings, BarChart3, Radar } from "lucide-react";
 
 const MeetTheAgents = () => {
@@ -74,13 +75,21 @@ const MeetTheAgents = () => {
           <div className="relative w-full h-[600px] md:h-[700px] flex items-center justify-center">
             {/* Central Agent - ORRA */}
             <div className="absolute z-10">
-              <div className={`bg-white rounded-2xl p-8 shadow-xl border-4 ${centralAgent.accentColor} transform hover:scale-105 transition-transform duration-300`}>
-                <div className="text-center">
-                  <div className={`p-4 rounded-lg ${centralAgent.color} mx-auto mb-4 w-fit`}>
-                    {centralAgent.icon}
+              <div className="relative transform hover:scale-105 transition-transform duration-300">
+                {/* Hexagon shape for central agent - larger */}
+                <div 
+                  className="w-48 h-48 bg-white shadow-xl border-4 border-gray-200 relative"
+                  style={{
+                    clipPath: 'polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%)'
+                  }}
+                >
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
+                    <div className={`p-4 rounded-lg ${centralAgent.color} mb-3`}>
+                      {centralAgent.icon}
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{centralAgent.name}</h3>
+                    <p className="text-gray-600 text-sm text-center max-w-[120px] leading-tight">{centralAgent.role}</p>
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{centralAgent.name}</h3>
-                  <p className="text-gray-600 text-sm max-w-[200px]">{centralAgent.role}</p>
                 </div>
               </div>
             </div>
@@ -88,7 +97,7 @@ const MeetTheAgents = () => {
             {/* Circular Agents */}
             {circularAgents.map((agent, index) => {
               const angle = (index * 60) - 90; // Start from top, 60 degrees apart
-              const radius = 250; // Distance from center
+              const radius = 280; // Distance from center
               const x = Math.cos(angle * Math.PI / 180) * radius;
               const y = Math.sin(angle * Math.PI / 180) * radius;
               
@@ -101,13 +110,21 @@ const MeetTheAgents = () => {
                     top: `calc(50% + ${y}px)`
                   }}
                 >
-                  <div className={`bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 ${agent.accentColor} transform hover:scale-105`}>
-                    <div className="text-center">
-                      <div className={`p-3 rounded-lg ${agent.color} mx-auto mb-3 w-fit`}>
-                        {agent.icon}
+                  <div className="relative transform hover:scale-105 transition-all duration-300">
+                    {/* Hexagon shape */}
+                    <div 
+                      className={`w-36 h-36 bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 border-2 ${agent.accentColor} relative`}
+                      style={{
+                        clipPath: 'polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%)'
+                      }}
+                    >
+                      <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
+                        <div className={`p-3 rounded-lg ${agent.color} mb-2`}>
+                          {agent.icon}
+                        </div>
+                        <h3 className="text-lg font-bold text-gray-900 mb-1">{agent.name}</h3>
+                        <p className="text-gray-600 text-xs text-center max-w-[100px] leading-tight">{agent.role}</p>
                       </div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-2">{agent.name}</h3>
-                      <p className="text-gray-600 text-sm max-w-[160px]">{agent.role}</p>
                     </div>
                   </div>
                   
@@ -115,7 +132,7 @@ const MeetTheAgents = () => {
                   <div 
                     className="absolute w-0.5 bg-gray-300 opacity-30"
                     style={{
-                      height: `${radius - 80}px`,
+                      height: `${radius - 120}px`,
                       left: '50%',
                       top: '50%',
                       transformOrigin: 'top',
