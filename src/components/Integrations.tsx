@@ -102,7 +102,13 @@ const Integrations = () => {
         </div>
 
         <div className="max-w-6xl mx-auto overflow-hidden">
-          <div className="flex animate-scroll space-x-8">
+          <div className="flex space-x-8" style={{
+            animation: 'scroll 30s linear infinite',
+            animationPlayState: 'running'
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.animationPlayState = 'paused'}
+          onMouseLeave={(e) => e.currentTarget.style.animationPlayState = 'running'}
+          >
             {duplicatedIntegrations.map((integration, index) => (
               <div 
                 key={index} 
@@ -117,7 +123,7 @@ const Integrations = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes scroll {
           0% {
             transform: translateX(0);
@@ -125,14 +131,6 @@ const Integrations = () => {
           100% {
             transform: translateX(-50%);
           }
-        }
-        
-        .animate-scroll {
-          animation: scroll 30s linear infinite;
-        }
-        
-        .animate-scroll:hover {
-          animation-play-state: paused;
         }
       `}</style>
     </section>
