@@ -119,18 +119,6 @@ const MeetTheAgents = () => {
                     top: `calc(50% + ${y}px)`
                   }}
                 >
-                  {/* Connection line to center */}
-                  <div 
-                    className="absolute w-0.5 bg-gray-300 opacity-50"
-                    style={{
-                      height: `${radius - 96}px`,
-                      left: '50%',
-                      top: '50%',
-                      transformOrigin: '0 0',
-                      transform: `rotate(${angle + 180}deg)`
-                    }}
-                  />
-                  
                   {/* Agent Circle */}
                   <div className="group flex flex-col items-center">
                     <div className={`w-24 h-24 ${agent.color} rounded-full shadow-lg flex flex-col items-center justify-center text-white group-hover:scale-110 transition-all duration-300`}>
