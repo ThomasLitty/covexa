@@ -21,7 +21,7 @@ const Hero = () => {
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto">
-              Covexa is your GTM execution layer — unify messy data, accelerate campaign creation, and orchestrate AI-powered outreach that leverages real-time intent signals and works across the tools your team already uses.
+              Covexa is your GTM execution layer — unify messy data, accelerate campaign creation, and orchestrate AI-powered outreach that leverages real-time intent signals and works across the tools your team already uses— an intelligent GTM execution layer that coordinates apps, agents, and actions across your entire revenue stack.
             </p>
 
             <div className="flex justify-center mb-16">
