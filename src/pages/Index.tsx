@@ -11,7 +11,6 @@ import PredictiveIntelligence from "@/components/PredictiveIntelligence";
 import UseCases from "@/components/UseCases";
 import DeploymentModel from "@/components/DeploymentModel";
 import Integrations from "@/components/Integrations";
-import SecurityPrivacy from "@/components/SecurityPrivacy";
 import Testimonials from "@/components/Testimonials";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
@@ -60,8 +59,6 @@ const Index = () => {
         <div className="bg-gradient-to-b from-white to-gray-50 py-8">
           <Integrations />
         </div>
-        
-        <SecurityPrivacy />
         
         <div className="bg-gray-50">
           <Testimonials />
