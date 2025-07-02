@@ -22,8 +22,8 @@ const CovexaLogo: React.FC<CovexaLogoProps> = ({
 
   const textSizes = {
     small: 'text-lg',
-    medium: 'text-2xl',
-    large: 'text-3xl'
+    medium: 'text-xl',
+    large: 'text-2xl'
   };
 
   const getColors = () => {
@@ -31,20 +31,23 @@ const CovexaLogo: React.FC<CovexaLogoProps> = ({
       case 'white':
         return {
           primary: '#ffffff',
-          secondary: '#f8fafc',
-          accent: '#e2e8f0'
+          secondary: '#f1f5f9',
+          accent: '#e2e8f0',
+          nodes: ['#ffffff', '#f8fafc', '#f1f5f9', '#e2e8f0', '#cbd5e1', '#94a3b8', '#64748b']
         };
       case 'monochrome':
         return {
           primary: '#374151',
           secondary: '#6b7280',
-          accent: '#9ca3af'
+          accent: '#9ca3af',
+          nodes: ['#374151', '#4b5563', '#6b7280', '#9ca3af', '#d1d5db', '#e5e7eb', '#f3f4f6']
         };
       default:
         return {
-          primary: '#2563eb',
-          secondary: '#06b6d4',
-          accent: '#8b5cf6'
+          primary: '#1e293b', // Deep charcoal
+          secondary: '#475569', // Slate
+          accent: '#3b82f6', // Indigo
+          nodes: ['#1e293b', '#334155', '#475569', '#64748b', '#06b6d4', '#8b5cf6', '#6366f1'] // Charcoal to soft accents
         };
     }
   };
@@ -60,71 +63,99 @@ const CovexaLogo: React.FC<CovexaLogoProps> = ({
           fill="none" 
           xmlns="http://www.w3.org/2000/svg"
         >
-          <defs>
-            <linearGradient id={`primaryGradient-${variant}`} x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor={colors.primary} />
-              <stop offset="50%" stopColor={colors.secondary} />
-              <stop offset="100%" stopColor={colors.accent} />
-            </linearGradient>
-            <linearGradient id={`energyGradient-${variant}`} x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor={colors.secondary} stopOpacity="0.8" />
-              <stop offset="50%" stopColor={colors.accent} stopOpacity="0.9" />
-              <stop offset="100%" stopColor={colors.primary} stopOpacity="0.7" />
-            </linearGradient>
-            <radialGradient id={`glowGradient-${variant}`} cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor={colors.accent} stopOpacity="0.6" />
-              <stop offset="100%" stopColor={colors.primary} stopOpacity="0.1" />
-            </radialGradient>
-          </defs>
+          {/* The Modular Glyph - 7 geometric nodes representing the 7 Covexa agents */}
+          {/* Arranged in hexagonal formation for orchestration */}
           
-          {/* Glow effect background */}
-          <circle 
-            cx="16" 
-            cy="16" 
-            r="14" 
-            fill={`url(#glowGradient-${variant})`}
-            className="animate-pulse"
+          {/* Center node - Core orchestration */}
+          <rect 
+            x="13" 
+            y="13" 
+            width="6" 
+            height="6" 
+            rx="1.5" 
+            fill={colors.nodes[0]}
           />
           
-          {/* Main dynamic shape - like a forward-moving "C" with energy */}
-          <path 
-            d="M 6 16 Q 6 8 16 8 Q 20 8 22 10 L 20 12 Q 18 10 16 10 Q 8 10 8 16 Q 8 22 16 22 Q 18 22 20 20 L 22 22 Q 20 24 16 24 Q 6 24 6 16 Z"
-            fill={`url(#primaryGradient-${variant})`}
-            className="drop-shadow-sm"
+          {/* Top node */}
+          <rect 
+            x="13.5" 
+            y="6" 
+            width="5" 
+            height="5" 
+            rx="1.25" 
+            fill={colors.nodes[1]}
           />
           
-          {/* Energy streaks suggesting motion and AI power */}
-          <path 
-            d="M 18 12 L 26 8 L 24 10 L 26 12 L 18 16"
-            stroke={`url(#energyGradient-${variant})`}
-            strokeWidth="1.5"
-            fill="none"
-            strokeLinecap="round"
-            className="opacity-80"
+          {/* Top right node */}
+          <rect 
+            x="21" 
+            y="9.5" 
+            width="5" 
+            height="5" 
+            rx="1.25" 
+            fill={colors.nodes[2]}
           />
           
-          <path 
-            d="M 18 20 L 26 24 L 24 22 L 26 20 L 18 16"
-            stroke={`url(#energyGradient-${variant})`}
-            strokeWidth="1.5"
-            fill="none"
-            strokeLinecap="round"
-            className="opacity-80"
+          {/* Bottom right node */}
+          <rect 
+            x="21" 
+            y="17.5" 
+            width="5" 
+            height="5" 
+            rx="1.25" 
+            fill={colors.nodes[3]}
           />
           
-          {/* Small accent dots suggesting intelligence/data points */}
-          <circle cx="12" cy="13" r="1.5" fill={colors.accent} className="opacity-70" />
-          <circle cx="14" cy="19" r="1" fill={colors.secondary} className="opacity-60" />
-          <circle cx="10" cy="16" r="0.8" fill={colors.primary} className="opacity-50" />
+          {/* Bottom node */}
+          <rect 
+            x="13.5" 
+            y="21" 
+            width="5" 
+            height="5" 
+            rx="1.25" 
+            fill={colors.nodes[4]}
+          />
+          
+          {/* Bottom left node */}
+          <rect 
+            x="6" 
+            y="17.5" 
+            width="5" 
+            height="5" 
+            rx="1.25" 
+            fill={colors.nodes[5]}
+          />
+          
+          {/* Top left node */}
+          <rect 
+            x="6" 
+            y="9.5" 
+            width="5" 
+            height="5" 
+            rx="1.25" 
+            fill={colors.nodes[6]}
+          />
+          
+          {/* Subtle connection lines for orchestration (very light) */}
+          <g opacity="0.15" stroke={colors.primary} strokeWidth="0.5">
+            {/* Center to all outer nodes */}
+            <line x1="16" y1="13" x2="16" y2="11" />
+            <line x1="19" y1="15" x2="21" y2="13" />
+            <line x1="19" y1="17" x2="21" y2="19" />
+            <line x1="16" y1="19" x2="16" y2="21" />
+            <line x1="13" y1="17" x2="11" y2="19" />
+            <line x1="13" y1="15" x2="11" y2="13" />
+          </g>
         </svg>
       </div>
       
       {showText && (
-        <span className={`font-bold ${textSizes[size]} ${
+        <span className={`font-semibold ${textSizes[size]} ${
           variant === 'white' ? 'text-white' : 
           variant === 'monochrome' ? 'text-gray-800' : 
-          'text-gray-900'
-        } tracking-tight`}>
+          'text-slate-900'
+        } tracking-tight`} 
+        style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
           Covexa
         </span>
       )}
