@@ -7,6 +7,7 @@ import AIReadiness from "@/components/AIReadiness";
 import BrandVoice from "@/components/BrandVoice";
 import MeetTheAgents from "@/components/MeetTheAgents";
 import UseCases from "@/components/UseCases";
+import Integrations from "@/components/Integrations";
 import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
 import FinalCTA from "@/components/FinalCTA";
@@ -23,6 +24,7 @@ const Index = () => {
       <BrandVoice />
       <MeetTheAgents />
       <UseCases />
+      <Integrations />
       <Testimonials />
       <Pricing />
       <FinalCTA />
