@@ -61,7 +61,7 @@ const WaitlistModal = ({ isOpen, onClose, source = "unknown" }: WaitlistModalPro
     
     try {
       // Replace this URL with your Google Apps Script Web App URL
-      const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwoFrKItUhY55LawHfkPoUSPWCQegbJWIl8WLeiAx8zfidG-B3QvUnA-JYDlskLUfvCTA/exec";
       
       const formData = {
         ...data,
