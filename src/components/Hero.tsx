@@ -1,11 +1,19 @@
 
 import { ArrowRight } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Hero = () => {
+  const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation(0.2);
+
   return (
-    <section id="home" className="min-h-screen bg-white pt-20 relative">
+    <section className="min-h-screen bg-white pt-20 relative overflow-hidden">
       <div className="container mx-auto px-4 py-20">
-        <div className="max-w-4xl mx-auto text-center">
+        <div 
+          ref={heroRef}
+          className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${
+            heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
             The AI Agent System
             <span className="text-blue-600"> for Modern GTM</span>
@@ -24,7 +32,7 @@ const Hero = () => {
 
           {/* Slack Mockup Placeholder */}
           <div className="max-w-4xl mx-auto">
-            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200 shadow-lg">
+            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200 shadow-lg transform hover:shadow-xl transition-all duration-500">
               <div className="bg-white rounded-lg p-6 shadow-sm">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
@@ -55,6 +63,9 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      
+      {/* Subtle gradient overlay for smooth transition to next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-gray-50 pointer-events-none"></div>
     </section>
   );
 };

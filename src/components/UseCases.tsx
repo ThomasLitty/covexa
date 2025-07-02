@@ -1,7 +1,10 @@
 
 import { Target, Settings, TrendingUp, Users, Crown, RefreshCw, Database } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const UseCases = () => {
+  const { ref: sectionRef, isVisible } = useScrollAnimation(0.1);
+
   const roles = [
     {
       role: "CRO",
@@ -41,9 +44,14 @@ const UseCases = () => {
   ];
 
   return (
-    <section id="use-cases" className="py-20 bg-white">
+    <section className="py-20 bg-white relative">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div 
+          ref={sectionRef}
+          className={`text-center mb-16 transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Built for GTM Teams
             <span className="text-blue-600"> That Ship Fast</span>
@@ -52,18 +60,27 @@ const UseCases = () => {
 
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {roles.map((item, index) => (
-            <div key={index} className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-shadow duration-300">
+            <div 
+              key={index} 
+              className={`bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-500 transform hover:-translate-y-2 hover:bg-white ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: `${index * 100}ms` }}
+            >
               <div className="flex items-center gap-4 mb-4">
-                <div className="text-blue-600">
+                <div className="text-blue-600 transform transition-transform duration-300 hover:scale-110">
                   {item.icon}
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900">{item.role}</h3>
               </div>
-              <p className="text-gray-600 text-lg">{item.value}</p>
+              <p className="text-gray-600 text-lg leading-relaxed">{item.value}</p>
             </div>
           ))}
         </div>
       </div>
+      
+      {/* Smooth transition gradient */}
+      <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-b from-transparent to-gray-50 pointer-events-none"></div>
     </section>
   );
 };

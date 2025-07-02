@@ -1,7 +1,10 @@
 
 import { Users, MessageSquare, Shield, Zap, BarChart3 } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const HowItWorks = () => {
+  const { ref: sectionRef, isVisible } = useScrollAnimation(0.1);
+
   const steps = [
     {
       step: 1,
@@ -41,9 +44,14 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section id="how-it-works" className="py-20 bg-gray-50">
+    <section className="py-20 bg-gray-50 relative">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div 
+          ref={sectionRef}
+          className={`text-center mb-16 transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Campaigns Powered by Where You Work.
             <span className="text-blue-600"> Results Driven by AI Agents.</span>
@@ -55,12 +63,20 @@ const HowItWorks = () => {
 
         <div className="max-w-5xl mx-auto">
           {steps.map((item, index) => (
-            <div key={index} className="flex items-center gap-8 mb-12 last:mb-0">
-              <div className="hidden md:flex items-center justify-center w-16 h-16 bg-blue-600 text-white rounded-full font-bold text-xl flex-shrink-0">
+            <div 
+              key={index} 
+              className={`flex items-center gap-8 mb-12 last:mb-0 transition-all duration-700 ${
+                isVisible 
+                  ? 'opacity-100 translate-x-0' 
+                  : `opacity-0 ${index % 2 === 0 ? 'translate-x-8' : '-translate-x-8'}`
+              }`}
+              style={{ transitionDelay: `${index * 200}ms` }}
+            >
+              <div className="hidden md:flex items-center justify-center w-16 h-16 bg-blue-600 text-white rounded-full font-bold text-xl flex-shrink-0 shadow-lg">
                 {item.step}
               </div>
               
-              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 flex-1">
+              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 flex-1 transform hover:-translate-y-1">
                 <div className="flex items-start gap-6">
                   <div className="text-blue-600 flex-shrink-0">
                     {item.icon}
@@ -80,6 +96,9 @@ const HowItWorks = () => {
           ))}
         </div>
       </div>
+      
+      {/* Smooth transition to next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-b from-transparent to-white pointer-events-none"></div>
     </section>
   );
 };
