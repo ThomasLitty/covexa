@@ -104,7 +104,7 @@ const PredictiveIntelligence = () => {
           {/* Centered last item */}
           <div className="flex justify-center mt-8">
             <div 
-              className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 w-full max-w-sm ${
+              className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 w-full md:w-1/2 lg:w-1/3 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
               style={{ transitionDelay: `${400 + 6 * 100}ms` }}
