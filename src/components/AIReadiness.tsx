@@ -80,14 +80,14 @@ const AIReadiness = () => {
                 </div>
               </div>
             </div>
-            
-            {/* Result */}
-            <div className="mt-16 text-center">
-              <div className="bg-blue-50 rounded-2xl p-8 max-w-4xl mx-auto">
-                <p className="text-lg text-gray-700 font-medium">
-                  📊 Result: Structured, AI-actionable GTM data — ready for automation and scale.
-                </p>
-              </div>
+          </div>
+          
+          {/* Result */}
+          <div className="mt-16 text-center">
+            <div className="bg-blue-50 rounded-2xl p-8 max-w-4xl mx-auto">
+              <p className="text-lg text-gray-700 font-medium">
+                📊 Result: Structured, AI-actionable GTM data — ready for automation and scale.
+              </p>
             </div>
           </div>
         </div>
