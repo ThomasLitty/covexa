@@ -19,7 +19,7 @@ const Header = () => {
   // Track active section for navigation highlighting
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'how-it-works', 'data-management', 'predictive-intelligence', 'use-cases', 'contact'];
+      const sections = ['home', 'ai-readiness', 'how-it-works', 'use-cases'];
       const scrollPosition = window.scrollY + 100;
 
       for (const sectionId of sections) {
@@ -40,11 +40,9 @@ const Header = () => {
 
   const navItems = [
     { id: 'home', label: 'Home' },
+    { id: 'ai-readiness', label: 'AI Readiness' },
     { id: 'how-it-works', label: 'How It Works' },
-    { id: 'data-management', label: 'Data Management' },
-    { id: 'predictive-intelligence', label: 'AI Intelligence' },
-    { id: 'use-cases', label: 'Use Cases' },
-    { id: 'contact', label: 'Contact' }
+    { id: 'use-cases', label: 'Use Cases' }
   ];
 
   const handleWaitlistClick = (source: string) => {
