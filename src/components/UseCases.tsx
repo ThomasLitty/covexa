@@ -1,5 +1,5 @@
 
-import { Target, Settings, TrendingUp, Users, Crown, RefreshCw, Database } from "lucide-react";
+import { Target, Settings, TrendingUp, Users, Crown, RefreshCw, Database, BarChart, GitBranch } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const UseCases = () => {
@@ -40,6 +40,16 @@ const UseCases = () => {
       role: "Data Intelligence",
       value: "Feed clean, enriched, and scored data into your GTM reporting stack",
       icon: <Database size={32} />
+    },
+    {
+      role: "Marketing Ops",
+      value: "Automate lead scoring and campaign attribution with clean data flows",
+      icon: <GitBranch size={32} />
+    },
+    {
+      role: "Reporting and Analytics",
+      value: "Get unified GTM metrics with real-time performance dashboards",
+      icon: <BarChart size={32} />
     }
   ];
 
