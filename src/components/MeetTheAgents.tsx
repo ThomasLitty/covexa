@@ -141,12 +141,12 @@ const MeetTheAgents = () => {
           <div className="md:hidden">
             {/* ORRA - Central Agent (Mobile) */}
             <div className="flex justify-center mb-8">
-              <div className="w-32 h-32 bg-gray-600 rounded-full shadow-xl flex flex-col items-center justify-center text-white">
-                <div className="p-3 bg-gray-500 rounded-full mb-2">
-                  <Network size={24} />
+              <div className="w-36 h-36 bg-gray-600 rounded-full shadow-xl flex flex-col items-center justify-center text-white">
+                <div className="p-2 bg-gray-500 rounded-full mb-2">
+                  <Network size={20} />
                 </div>
                 <h3 className="text-lg font-bold mb-1">{centralAgent.name}</h3>
-                <p className="text-gray-100 font-medium text-center px-2 text-xs">AI Orchestrator</p>
+                <p className="text-gray-100 font-medium text-center px-2 text-xs leading-tight">AI Orchestrator</p>
               </div>
             </div>
 
