@@ -1,104 +1,236 @@
 
-import { Users, MessageSquare, Shield, Zap, BarChart3 } from "lucide-react";
+import { Bot, Users, Shield, Zap, BarChart3 } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const HowItWorks = () => {
-  const { ref: sectionRef, isVisible } = useScrollAnimation(0.1);
+  const { ref, isVisible } = useScrollAnimation(0.2);
 
   const steps = [
     {
-      step: 1,
+      number: "1",
       title: "Segment and enrich your leads",
       agent: "VARA",
-      icon: <Users size={32} />,
-      description: "AI agent analyzes and enriches lead data with missing information"
+      description: "AI agent analyzes and enriches lead data with missing information",
+      icon: <Users className="w-6 h-6" />,
+      color: "bg-blue-500"
     },
     {
-      step: 2,
+      number: "2", 
       title: "Generate tone-perfect copy",
       agent: "LEXA",
-      icon: <MessageSquare size={32} />,
-      description: "Creates personalized messaging that resonates with each segment"
+      description: "Creates personalized messaging that resonates with each segment",
+      icon: <Bot className="w-6 h-6" />,
+      color: "bg-purple-500"
     },
     {
-      step: 3,
-      title: "Apply compliance rules",
+      number: "3",
+      title: "Apply compliance rules", 
       agent: "LIA",
-      icon: <Shield size={32} />,
-      description: "Ensures all outreach meets legal and company compliance standards"
+      description: "Ensures all outreach meets legal and company compliance standards",
+      icon: <Shield className="w-6 h-6" />,
+      color: "bg-green-500"
     },
     {
-      step: 4,
+      number: "4",
       title: "Sequence and fallback logic",
-      agent: "MIRA + ORRA",
-      icon: <Zap size={32} />,
-      description: "Sets up smart sequences with automated follow-up workflows"
+      agent: "MIRA + ORRA", 
+      description: "Sets up smart sequences with automated follow-up workflows",
+      icon: <Zap className="w-6 h-6" />,
+      color: "bg-orange-500"
     },
     {
-      step: 5,
+      number: "5",
       title: "Launch and track results",
       agent: "NIRA",
-      icon: <BarChart3 size={32} />,
-      description: "Deploys campaigns and provides real-time performance analytics"
+      description: "Deploys campaigns and provides real-time performance analytics", 
+      icon: <BarChart3 className="w-6 h-6" />,
+      color: "bg-red-500"
     }
   ];
 
   return (
-    <section className="py-20 bg-gray-50 relative">
+    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4">
-        <div 
-          ref={sectionRef}
-          className={`text-center mb-16 transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Campaigns Powered by Where You Work.
-            <span className="text-blue-600"> Results Driven by AI Agents.</span>
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Covexa is built on intelligent modular agents — each specialized in a GTM task — working together to handle segmentation, copy, enrichment, compliance, and launch.
-          </p>
-        </div>
+        <div className="max-w-6xl mx-auto">
+          <div 
+            ref={ref}
+            className={`text-center mb-16 transition-all duration-1000 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              How It Works
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Five AI agents work together to transform your GTM operations from messy data to closed deals
+            </p>
+          </div>
 
-        <div className="max-w-5xl mx-auto">
-          {steps.map((item, index) => (
-            <div 
-              key={index} 
-              className={`flex items-center gap-8 mb-12 last:mb-0 transition-all duration-700 ${
-                isVisible 
-                  ? 'opacity-100 translate-x-0' 
-                  : `opacity-0 ${index % 2 === 0 ? 'translate-x-8' : '-translate-x-8'}`
-              }`}
-              style={{ transitionDelay: `${index * 200}ms` }}
-            >
-              <div className="hidden md:flex items-center justify-center w-16 h-16 bg-blue-600 text-white rounded-full font-bold text-xl flex-shrink-0 shadow-lg">
-                {item.step}
-              </div>
-              
-              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 flex-1 transform hover:-translate-y-1">
-                <div className="flex items-start gap-6">
-                  <div className="text-blue-600 flex-shrink-0">
-                    {item.icon}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Steps Section */}
+            <div className="space-y-8">
+              {steps.map((step, index) => (
+                <div 
+                  key={index}
+                  className={`flex items-start gap-6 transition-all duration-700 delay-${index * 100} ${
+                    isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+                  }`}
+                >
+                  <div className={`${step.color} text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-lg flex-shrink-0`}>
+                    {step.number}
                   </div>
                   <div className="flex-1">
-                    <div className="flex items-center gap-4 mb-2">
-                      <h3 className="text-xl font-semibold text-gray-900">{item.title}</h3>
-                      <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
-                        {item.agent}
-                      </span>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      {step.title}
+                    </h3>
+                    <div className="text-sm font-medium text-blue-600 mb-2">
+                      {step.agent}
                     </div>
-                    <p className="text-gray-600">{item.description}</p>
+                    <p className="text-gray-600 leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Chat Demo Section */}
+            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200 shadow-lg">
+              <div className="bg-white rounded-lg p-6 shadow-sm">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
+                    <span className="text-white text-sm font-bold">#</span>
+                  </div>
+                  <span className="font-semibold text-gray-800">gtm-campaigns</span>
+                  <span className="text-xs text-gray-500 ml-auto">Live Demo</span>
+                </div>
+                
+                <div className="space-y-4 text-left">
+                  {/* SDR Initial Request */}
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                      <span className="text-gray-600 text-sm font-medium">J</span>
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-medium text-gray-800 mb-1">Jake (SDR)</div>
+                      <div className="bg-gray-100 rounded-lg p-3 text-gray-700">
+                        /covexa launch campaign for fintech CTOs in Singapore
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Agent Questions */}
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                      <span className="text-white text-sm font-bold">C</span>
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-medium text-blue-600 mb-1">Covexa</div>
+                      <div className="bg-blue-50 rounded-lg p-3 text-gray-700">
+                        Great! I'll help you launch that campaign. A few quick questions:
+                        <br />• What's your primary goal? (Demo bookings, trial signups, etc.)
+                        <br />• Company size range you're targeting?
+                        <br />• Any specific pain points to focus on?
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* SDR Response */}
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                      <span className="text-gray-600 text-sm font-medium">J</span>
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-medium text-gray-800 mb-1">Jake (SDR)</div>
+                      <div className="bg-gray-100 rounded-lg p-3 text-gray-700">
+                        Demo bookings for our new API security platform. Target 100-1000 employees. Focus on compliance and data protection challenges.
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Agent Analysis & Recommendations */}
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                      <span className="text-white text-sm font-bold">C</span>
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-medium text-blue-600 mb-1">Covexa</div>
+                      <div className="bg-blue-50 rounded-lg p-3 text-gray-700">
+                        <div className="font-medium mb-2">✅ Analysis Complete</div>
+                        <div className="text-sm space-y-1">
+                          <div>• Found <span className="font-semibold text-blue-600">247 qualified CTOs</span> in Singapore fintech (100-1000 employees)</div>
+                          <div>• High intent signals detected for 31 prospects</div>
+                          <div>• Recommended: Multi-touch email + LinkedIn sequence</div>
+                          <div>• Compliance check: ✅ Passed</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Message Options */}
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                      <span className="text-white text-sm font-bold">C</span>
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-medium text-blue-600 mb-1">Covexa</div>
+                      <div className="bg-blue-50 rounded-lg p-3 text-gray-700">
+                        <div className="font-medium mb-2">Generated 3 message variants:</div>
+                        <div className="text-sm space-y-2">
+                          <div className="bg-white p-2 rounded border-l-2 border-green-400">
+                            <span className="font-medium">A:</span> Compliance-focused (mentions recent MAS regulations)
+                          </div>
+                          <div className="bg-white p-2 rounded border-l-2 border-yellow-400">
+                            <span className="font-medium">B:</span> ROI-focused (emphasizes cost savings)
+                          </div>
+                          <div className="bg-white p-2 rounded border-l-2 border-purple-400">
+                            <span className="font-medium">C:</span> Innovation-focused (API-first approach)
+                          </div>
+                        </div>
+                        <div className="mt-2 text-sm text-gray-600">
+                          React with 🚀 to launch with variant A, or choose another option.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Launch Confirmation */}
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                      <span className="text-gray-600 text-sm font-medium">J</span>
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-medium text-gray-800 mb-1">Jake (SDR)</div>
+                      <div className="bg-gray-100 rounded-lg p-3 text-gray-700">
+                        🚀 (Variant A looks perfect!)
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Campaign Launch */}
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                      <span className="text-white text-sm font-bold">C</span>
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-medium text-blue-600 mb-1">Covexa</div>
+                      <div className="bg-green-50 rounded-lg p-3 text-gray-700 border border-green-200">
+                        <div className="font-medium text-green-800 mb-2">🚀 Campaign "Singapore Fintech CTOs" Launched!</div>
+                        <div className="text-sm space-y-1 text-gray-700">
+                          <div>• 247 prospects enrolled in 5-touch sequence</div>
+                          <div>• First emails sending in 10 minutes</div>
+                          <div>• LinkedIn outreach starting tomorrow 9 AM SGT</div>
+                          <div>• Real-time stats available in dashboard</div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          ))}
+          </div>
         </div>
       </div>
-      
-      {/* Smooth transition to next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-b from-transparent to-white pointer-events-none"></div>
     </section>
   );
 };
