@@ -26,13 +26,13 @@ const Index = () => {
           <MeetTheAgents />
         </div>
         
-        <section id="how-it-works">
-          <HowItWorks />
-        </section>
-        
         <div className="bg-gradient-to-b from-white to-gray-50 py-8">
           <AIReadiness />
         </div>
+        
+        <section id="how-it-works">
+          <HowItWorks />
+        </section>
         
         <section id="data-management" className="scroll-mt-20">
           <DataManagement />
