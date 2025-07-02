@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import MeetTheAgents from "@/components/MeetTheAgents";
 import HowItWorks from "@/components/HowItWorks";
 import AIReadiness from "@/components/AIReadiness";
+import DataReadiness from "@/components/DataReadiness";
 import DataManagement from "@/components/DataManagement";
 import BrandVoice from "@/components/BrandVoice";
 import PredictiveIntelligence from "@/components/PredictiveIntelligence";
@@ -29,6 +30,8 @@ const Index = () => {
         <div className="bg-gradient-to-b from-white to-gray-50 py-8">
           <AIReadiness />
         </div>
+        
+        <DataReadiness />
         
         <section id="how-it-works">
           <HowItWorks />
