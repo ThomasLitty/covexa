@@ -6,6 +6,7 @@ import DataManagement from "@/components/DataManagement";
 import AIReadiness from "@/components/AIReadiness";
 import BrandVoice from "@/components/BrandVoice";
 import MeetTheAgents from "@/components/MeetTheAgents";
+import PredictiveIntelligence from "@/components/PredictiveIntelligence";
 import UseCases from "@/components/UseCases";
 import Integrations from "@/components/Integrations";
 import Testimonials from "@/components/Testimonials";
@@ -41,6 +42,10 @@ const Index = () => {
         <div className="bg-white">
           <MeetTheAgents />
         </div>
+        
+        <section id="predictive-intelligence" className="scroll-mt-20">
+          <PredictiveIntelligence />
+        </section>
         
         <section id="use-cases" className="scroll-mt-20">
           <UseCases />
