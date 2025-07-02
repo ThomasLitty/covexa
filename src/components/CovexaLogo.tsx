@@ -56,11 +56,109 @@ const CovexaLogo: React.FC<CovexaLogoProps> = ({
 
   return (
     <div className={`flex items-center gap-3 ${className}`}>
-      <img 
-        src="/lovable-uploads/f0ba1cd4-eaac-4d19-bbc9-a715e90bb2a0.png" 
-        alt="Covexa"
-        className={sizeClasses[size]}
-      />
+      <div className="relative">
+        <svg 
+          className={sizeClasses[size]} 
+          viewBox="0 0 32 32" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {/* The Modular Glyph - 7 geometric nodes representing the 7 Covexa agents */}
+          {/* Arranged in hexagonal formation for orchestration */}
+          
+          {/* Center node - Core orchestration */}
+          <rect 
+            x="13" 
+            y="13" 
+            width="6" 
+            height="6" 
+            rx="1.5" 
+            fill={colors.nodes[0]}
+          />
+          
+          {/* Top node */}
+          <rect 
+            x="13.5" 
+            y="6" 
+            width="5" 
+            height="5" 
+            rx="1.25" 
+            fill={colors.nodes[1]}
+          />
+          
+          {/* Top right node */}
+          <rect 
+            x="21" 
+            y="9.5" 
+            width="5" 
+            height="5" 
+            rx="1.25" 
+            fill={colors.nodes[2]}
+          />
+          
+          {/* Bottom right node */}
+          <rect 
+            x="21" 
+            y="17.5" 
+            width="5" 
+            height="5" 
+            rx="1.25" 
+            fill={colors.nodes[3]}
+          />
+          
+          {/* Bottom node */}
+          <rect 
+            x="13.5" 
+            y="21" 
+            width="5" 
+            height="5" 
+            rx="1.25" 
+            fill={colors.nodes[4]}
+          />
+          
+          {/* Bottom left node */}
+          <rect 
+            x="6" 
+            y="17.5" 
+            width="5" 
+            height="5" 
+            rx="1.25" 
+            fill={colors.nodes[5]}
+          />
+          
+          {/* Top left node */}
+          <rect 
+            x="6" 
+            y="9.5" 
+            width="5" 
+            height="5" 
+            rx="1.25" 
+            fill={colors.nodes[6]}
+          />
+          
+          {/* Subtle connection lines for orchestration (very light) */}
+          <g opacity="0.15" stroke={colors.primary} strokeWidth="0.5">
+            {/* Center to all outer nodes */}
+            <line x1="16" y1="13" x2="16" y2="11" />
+            <line x1="19" y1="15" x2="21" y2="13" />
+            <line x1="19" y1="17" x2="21" y2="19" />
+            <line x1="16" y1="19" x2="16" y2="21" />
+            <line x1="13" y1="17" x2="11" y2="19" />
+            <line x1="13" y1="15" x2="11" y2="13" />
+          </g>
+        </svg>
+      </div>
+      
+      {showText && (
+        <span className={`font-semibold ${textSizes[size]} ${
+          variant === 'white' ? 'text-white' : 
+          variant === 'monochrome' ? 'text-gray-800' : 
+          'text-slate-900'
+        } tracking-tight`} 
+        style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+          Covexa
+        </span>
+      )}
     </div>
   );
 };
