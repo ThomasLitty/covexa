@@ -79,7 +79,7 @@ const PredictiveIntelligence = () => {
           </h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {capabilities.map((capability, index) => (
+            {capabilities.slice(0, 6).map((capability, index) => (
               <div 
                 key={index} 
                 className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 ${
@@ -99,6 +99,27 @@ const PredictiveIntelligence = () => {
                 <p className="text-gray-600 text-lg leading-relaxed">{capability.description}</p>
               </div>
             ))}
+          </div>
+          
+          {/* Centered last item */}
+          <div className="flex justify-center mt-8">
+            <div 
+              className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 max-w-md ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: `${400 + 6 * 100}ms` }}
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <div className="text-blue-600 transform transition-transform duration-300 hover:scale-110">
+                  {capabilities[6].icon}
+                </div>
+                <div>
+                  <div className="text-sm text-blue-600 font-medium mb-1">{capabilities[6].agent}</div>
+                  <h4 className="text-xl font-semibold text-gray-900">{capabilities[6].title}</h4>
+                </div>
+              </div>
+              <p className="text-gray-600 text-lg leading-relaxed">{capabilities[6].description}</p>
+            </div>
           </div>
         </div>
 
