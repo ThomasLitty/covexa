@@ -1,59 +1,61 @@
 
-import { Database, MessageSquare, Shield, Send, Settings, BarChart3, Radar } from "lucide-react";
+import { Database, MessageSquare, Shield, Send, Settings, BarChart3, Radar, User } from "lucide-react";
 
 const MeetTheAgents = () => {
-  // ORRA as the central orchestrator
+  // ORRA as the primary user interface
   const centralAgent = {
     name: "ORRA",
-    role: "Orchestrates workflows and fallback logic",
-    icon: <Settings size={40} />,
-    color: "bg-gray-100 text-gray-700",
-    accentColor: "border-gray-200"
+    role: "Your AI Assistant - Start Here",
+    description: "The only agent you need to talk to",
+    icon: <Settings size={48} />,
+    color: "bg-blue-100 text-blue-700",
+    accentColor: "border-blue-300",
+    bgColor: "bg-blue-50"
   };
 
-  // Other agents in the specified order: MIRA, VARA, LIA, TORA, LEXA, NIRA
-  const circularAgents = [
+  // Background worker agents
+  const backgroundAgents = [
     {
       name: "MIRA",
-      role: "Executes and sequences multi-channel sends",
-      icon: <Send size={32} />,
-      color: "bg-cyan-100 text-cyan-700",
-      accentColor: "border-cyan-200"
+      role: "Multi-channel execution",
+      icon: <Send size={24} />,
+      color: "bg-gray-100 text-gray-600",
+      accentColor: "border-gray-200"
     },
     {
-      name: "VARA",
-      role: "Validates and enriches lead data",
-      icon: <Database size={32} />,
-      color: "bg-green-100 text-green-700",
-      accentColor: "border-green-200"
+      name: "VARA", 
+      role: "Data validation",
+      icon: <Database size={24} />,
+      color: "bg-gray-100 text-gray-600",
+      accentColor: "border-gray-200"
     },
     {
       name: "LIA",
-      role: "Enforces compliance and suppression logic",
-      icon: <Shield size={32} />,
-      color: "bg-red-100 text-red-700",
-      accentColor: "border-red-200"
+      role: "Compliance monitoring",
+      icon: <Shield size={24} />,
+      color: "bg-gray-100 text-gray-600",
+      accentColor: "border-gray-200"
     },
     {
       name: "TORA",
-      role: "Detects intent signals and scores accounts",
-      icon: <Radar size={32} />,
-      color: "bg-orange-100 text-orange-700",
-      accentColor: "border-orange-200"
+      role: "Intent detection",
+      icon: <Radar size={24} />,
+      color: "bg-gray-100 text-gray-600",
+      accentColor: "border-gray-200"
     },
     {
       name: "LEXA",
-      role: "Writes, rewrites, and tunes GTM messaging",
-      icon: <MessageSquare size={32} />,
-      color: "bg-indigo-100 text-indigo-700",
-      accentColor: "border-indigo-200"
+      role: "Message optimization",
+      icon: <MessageSquare size={24} />,
+      color: "bg-gray-100 text-gray-600",
+      accentColor: "border-gray-200"
     },
     {
       name: "NIRA",
-      role: "Analyzes performance and surfaces insights",
-      icon: <BarChart3 size={32} />,
-      color: "bg-violet-100 text-violet-700",
-      accentColor: "border-violet-200"
+      role: "Performance analysis",
+      icon: <BarChart3 size={24} />,
+      color: "bg-gray-100 text-gray-600",
+      accentColor: "border-gray-200"
     }
   ];
 
@@ -62,42 +64,57 @@ const MeetTheAgents = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Intelligent Agents,
-            <span className="text-blue-600"> Purpose-Built for GTM</span>
+            One Interface,
+            <span className="text-blue-600"> Complete Automation</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Covexa is powered by a network of modular AI agents — each one specializing in a distinct GTM function. Together, they form an orchestrated system that turns your intent into execution.
+            You only need to talk to ORRA. Behind the scenes, ORRA orchestrates a network of specialized AI agents to handle every aspect of your GTM execution automatically.
           </p>
         </div>
 
         <div className="max-w-6xl mx-auto mb-12">
-          {/* Circular Layout Container */}
+          {/* User Flow Indicator */}
+          <div className="flex items-center justify-center mb-8 space-x-4">
+            <div className="flex items-center space-x-2 bg-white rounded-full px-4 py-2 shadow-md">
+              <User size={20} className="text-blue-600" />
+              <span className="font-medium text-gray-700">You</span>
+            </div>
+            <div className="w-8 h-0.5 bg-blue-300"></div>
+            <div className="flex items-center space-x-2 bg-blue-100 rounded-full px-4 py-2 border-2 border-blue-300">
+              <Settings size={20} className="text-blue-600" />
+              <span className="font-semibold text-blue-700">ORRA</span>
+            </div>
+            <div className="w-8 h-0.5 bg-gray-300"></div>
+            <div className="flex items-center space-x-2 bg-gray-100 rounded-full px-4 py-2">
+              <span className="text-sm text-gray-600">6 Specialist Agents</span>
+            </div>
+          </div>
+
+          {/* Agent Network Visualization */}
           <div className="relative w-full h-[600px] md:h-[700px] flex items-center justify-center">
-            {/* Central Agent - ORRA */}
+            {/* Central Agent - ORRA (Primary Interface) */}
             <div className="absolute z-10">
-              <div className="relative transform hover:scale-105 transition-transform duration-300">
-                {/* Hexagon shape for central agent - larger */}
-                <div 
-                  className="w-48 h-48 bg-white shadow-xl border-4 border-gray-200 relative"
-                  style={{
-                    clipPath: 'polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%)'
-                  }}
-                >
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
-                    <div className={`p-4 rounded-lg ${centralAgent.color} mb-3`}>
-                      {centralAgent.icon}
-                    </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{centralAgent.name}</h3>
-                    <p className="text-gray-600 text-sm text-center max-w-[120px] leading-tight">{centralAgent.role}</p>
+              <div className="relative transform hover:scale-105 transition-all duration-300 group">
+                {/* Pulse animation ring */}
+                <div className="absolute inset-0 rounded-full bg-blue-200 opacity-20 animate-ping"></div>
+                <div className="absolute inset-0 rounded-full bg-blue-100 opacity-40 animate-pulse"></div>
+                
+                {/* Main ORRA circle */}
+                <div className={`w-56 h-56 ${centralAgent.bgColor} rounded-full shadow-2xl border-4 ${centralAgent.accentColor} relative flex flex-col items-center justify-center p-8`}>
+                  <div className={`p-4 rounded-full ${centralAgent.color} mb-4`}>
+                    {centralAgent.icon}
                   </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{centralAgent.name}</h3>
+                  <p className="text-blue-600 font-semibold text-center mb-1">{centralAgent.role}</p>
+                  <p className="text-gray-600 text-sm text-center">{centralAgent.description}</p>
                 </div>
               </div>
             </div>
 
-            {/* Circular Agents */}
-            {circularAgents.map((agent, index) => {
+            {/* Background Worker Agents */}
+            {backgroundAgents.map((agent, index) => {
               const angle = (index * 60) - 90; // Start from top, 60 degrees apart
-              const radius = 280; // Distance from center
+              const radius = 300; // Distance from center
               const x = Math.cos(angle * Math.PI / 180) * radius;
               const y = Math.sin(angle * Math.PI / 180) * radius;
               
@@ -110,33 +127,37 @@ const MeetTheAgents = () => {
                     top: `calc(50% + ${y}px)`
                   }}
                 >
-                  <div className="relative transform hover:scale-105 transition-all duration-300">
-                    {/* Hexagon shape */}
-                    <div 
-                      className={`w-36 h-36 bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 border-2 ${agent.accentColor} relative`}
-                      style={{
-                        clipPath: 'polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%)'
-                      }}
-                    >
-                      <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
-                        <div className={`p-3 rounded-lg ${agent.color} mb-2`}>
-                          {agent.icon}
-                        </div>
-                        <h3 className="text-lg font-bold text-gray-900 mb-1">{agent.name}</h3>
-                        <p className="text-gray-600 text-xs text-center max-w-[100px] leading-tight">{agent.role}</p>
+                  <div className="relative transform hover:scale-105 transition-all duration-300 opacity-60 hover:opacity-80">
+                    {/* Background worker circle */}
+                    <div className={`w-28 h-28 bg-white rounded-full shadow-md border-2 ${agent.accentColor} relative flex flex-col items-center justify-center p-4`}>
+                      <div className={`p-2 rounded-full ${agent.color} mb-1`}>
+                        {agent.icon}
                       </div>
+                      <h4 className="text-sm font-bold text-gray-700 mb-1">{agent.name}</h4>
+                      <p className="text-xs text-gray-500 text-center leading-tight">{agent.role}</p>
                     </div>
                   </div>
                   
-                  {/* Connection line to center */}
+                  {/* Connection line to ORRA */}
                   <div 
-                    className="absolute w-0.5 bg-gray-300 opacity-30"
+                    className="absolute w-0.5 bg-gradient-to-r from-blue-300 to-gray-300 opacity-40"
                     style={{
-                      height: `${radius - 120}px`,
+                      height: `${radius - 140}px`,
                       left: '50%',
                       top: '50%',
                       transformOrigin: 'top',
                       transform: `rotate(${angle + 180}deg) translateX(-50%)`
+                    }}
+                  />
+                  
+                  {/* Animated flow indicator */}
+                  <div 
+                    className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-60 animate-pulse"
+                    style={{
+                      left: '50%',
+                      top: `${radius - 180}px`,
+                      transform: `rotate(${angle + 180}deg) translateX(-50%)`,
+                      animationDelay: `${index * 0.3}s`
                     }}
                   />
                 </div>
@@ -145,8 +166,8 @@ const MeetTheAgents = () => {
           </div>
           
           <div className="bg-blue-600 text-white rounded-3xl p-8 text-center">
-            <h3 className="text-2xl font-bold mb-4">Every agent is schema-based, explainable, and works together</h3>
-            <p className="text-blue-100 text-lg">Not just smarter, but safer.</p>
+            <h3 className="text-2xl font-bold mb-4">Simple for you, sophisticated behind the scenes</h3>
+            <p className="text-blue-100 text-lg">Just tell ORRA what you want. The specialist agents handle the rest automatically.</p>
           </div>
         </div>
       </div>
