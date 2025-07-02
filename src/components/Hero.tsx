@@ -1,5 +1,5 @@
 
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -15,17 +15,10 @@ const Hero = () => {
             Covexa is your AI GTM copilot — segment leads, generate messaging, and launch campaigns directly from Slack. No dashboards. No guesswork. Just pipeline.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+          <div className="flex justify-center mb-16">
             <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold flex items-center gap-2 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
               Join the Waitlist
               <ArrowRight size={20} />
-            </button>
-            
-            <button className="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition-colors duration-300 group">
-              <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 border border-gray-200">
-                <Play size={16} className="text-blue-600" />
-              </div>
-              Watch 60-Second Demo
             </button>
           </div>
 
