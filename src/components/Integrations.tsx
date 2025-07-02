@@ -1,21 +1,7 @@
 
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
 
 const Integrations = () => {
-  const [api, setApi] = useState<any>();
-
-  // Auto-scroll functionality
-  useEffect(() => {
-    if (!api) return;
-
-    const interval = setInterval(() => {
-      api.scrollNext();
-    }, 3000); // Auto-scroll every 3 seconds
-
-    return () => clearInterval(interval);
-  }, [api]);
-
   const integrations = [
     { 
       name: "Slack", 
@@ -25,8 +11,7 @@ const Integrations = () => {
           alt="Slack" 
           className="w-16 h-16 object-contain"
         />
-      ),
-      color: ""
+      )
     },
     { 
       name: "HubSpot", 
@@ -36,8 +21,7 @@ const Integrations = () => {
           alt="HubSpot" 
           className="w-16 h-16 object-contain"
         />
-      ),
-      color: ""
+      )
     },
     { 
       name: "Gmail", 
@@ -47,8 +31,7 @@ const Integrations = () => {
           alt="Gmail" 
           className="w-16 h-16 object-contain"
         />
-      ),
-      color: ""
+      )
     },
     { 
       name: "ZoomInfo", 
@@ -58,8 +41,7 @@ const Integrations = () => {
           alt="ZoomInfo" 
           className="w-16 h-16 object-contain"
         />
-      ),
-      color: ""
+      )
     },
     { 
       name: "Clearbit", 
@@ -69,8 +51,7 @@ const Integrations = () => {
           alt="Clearbit" 
           className="w-16 h-16 object-contain"
         />
-      ),
-      color: ""
+      )
     },
     { 
       name: "Salesforce", 
@@ -80,8 +61,7 @@ const Integrations = () => {
           alt="Salesforce" 
           className="w-16 h-16 object-contain"
         />
-      ),
-      color: ""
+      )
     },
     { 
       name: "6sense", 
@@ -91,8 +71,7 @@ const Integrations = () => {
           alt="6sense" 
           className="w-16 h-16 object-contain"
         />
-      ),
-      color: ""
+      )
     },
     { 
       name: "Bombora", 
@@ -102,10 +81,12 @@ const Integrations = () => {
           alt="Bombora" 
           className="w-16 h-16 object-contain"
         />
-      ),
-      color: ""
+      )
     }
   ];
+
+  // Duplicate the array to create seamless loop
+  const duplicatedIntegrations = [...integrations, ...integrations];
 
   return (
     <section className="py-20 bg-gray-50">
@@ -120,32 +101,40 @@ const Integrations = () => {
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto">
-          <Carousel
-            setApi={setApi}
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {integrations.map((integration, index) => (
-                <CarouselItem key={index} className="pl-2 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex flex-col items-center justify-center p-8 bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 h-40 transform hover:scale-105">
-                    <div className={`mb-4 transition-transform duration-300 ${integration.color}`}>
-                      {integration.icon}
-                    </div>
-                    <span className="text-sm font-medium text-gray-700 text-center">{integration.name}</span>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
+        <div className="max-w-6xl mx-auto overflow-hidden">
+          <div className="flex animate-scroll space-x-8">
+            {duplicatedIntegrations.map((integration, index) => (
+              <div 
+                key={index} 
+                className="flex-shrink-0 flex items-center justify-center p-8 bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 w-32 h-32"
+              >
+                <div className="transition-transform duration-300 hover:scale-110">
+                  {integration.icon}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        
+        .animate-scroll {
+          animation: scroll 30s linear infinite;
+        }
+        
+        .animate-scroll:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
     </section>
   );
 };
