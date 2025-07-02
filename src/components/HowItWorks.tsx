@@ -202,7 +202,7 @@ const HowItWorks = () => {
                     <div className="flex-1 min-w-0">
                       <div className="font-medium text-gray-800 mb-1 text-sm">Jake (SDR)</div>
                       <div className="bg-gray-100 rounded-lg p-2 text-gray-700 text-sm">
-                        🚀 (Variant A looks perfect!)
+                        🚀 Variant A Approved!
                       </div>
                     </div>
                   </div>
