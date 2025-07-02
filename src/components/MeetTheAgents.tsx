@@ -1,3 +1,4 @@
+
 import { Database, MessageSquare, Shield, Send, Settings, BarChart3, Radar, User, Pen, Activity, Eye, Network } from "lucide-react";
 
 const MeetTheAgents = () => {
@@ -67,7 +68,7 @@ const MeetTheAgents = () => {
             <span className="text-blue-600"> Complete Automation</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            You only need to talk to ORRA. Behind the scenes, ORRA orchestrates a network of specialized AI agents to handle every aspect of your GTM execution automatically.
+            You only need to talk to ORRA. Behind the scenes, ORRA manages a network of Intelligent Modular Agents (IMA) that think, learn, and adapt using advanced RAG to handle your entire GTM execution with true AI intelligence.
           </p>
         </div>
 
@@ -136,7 +137,7 @@ const MeetTheAgents = () => {
           {/* Bottom message */}
           <div className="bg-blue-600 text-white rounded-2xl p-8 text-center mt-12">
             <h3 className="text-2xl font-bold mb-4">Simple for you, sophisticated behind the scenes</h3>
-            <p className="text-blue-100 text-lg">Just tell ORRA what you want. The specialist agents handle the rest automatically.</p>
+            <p className="text-blue-100 text-lg">Just tell ORRA what you want. The intelligent agents handle the rest automatically.</p>
           </div>
         </div>
       </div>
