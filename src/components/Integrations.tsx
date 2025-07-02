@@ -32,7 +32,7 @@ const Integrations = () => {
       name: "HubSpot", 
       icon: (
         <img 
-          src="/lovable-uploads/bb6ecefa-1818-41f8-a4f0-083f999e9e4d.png" 
+          src="/lovable-uploads/edb4a77e-7c00-4ed1-a948-bb75153f3c9f.png" 
           alt="HubSpot" 
           className="w-16 h-16 object-contain"
         />
@@ -65,7 +65,7 @@ const Integrations = () => {
       name: "Clearbit", 
       icon: (
         <img 
-          src="/lovable-uploads/a505b481-291c-4bc3-963d-6f98b5748177.png" 
+          src="/lovable-uploads/0575a304-6d6d-4d75-a303-b43850b14f46.png" 
           alt="Clearbit" 
           className="w-16 h-16 object-contain"
         />
@@ -86,11 +86,13 @@ const Integrations = () => {
     { 
       name: "6sense", 
       icon: (
-        <svg viewBox="0 0 24 24" className="w-16 h-16" fill="currentColor">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-        </svg>
+        <img 
+          src="/lovable-uploads/ace93169-8927-4bc5-b35d-3d32181ccf7e.png" 
+          alt="6sense" 
+          className="w-16 h-16 object-contain"
+        />
       ),
-      color: "text-green-600"
+      color: ""
     },
     { 
       name: "Bombora", 
