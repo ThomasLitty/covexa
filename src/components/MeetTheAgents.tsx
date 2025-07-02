@@ -1,3 +1,4 @@
+
 import { Database, MessageSquare, Shield, Send, Settings, BarChart3, Radar, User, Pen, Activity, Eye, Network } from "lucide-react";
 
 const MeetTheAgents = () => {
@@ -71,7 +72,7 @@ const MeetTheAgents = () => {
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* User flow indicator */}
           <div className="flex items-center justify-center mb-12 space-x-6">
             <div className="flex items-center space-x-2 bg-white rounded-full px-4 py-2 shadow-sm border">
@@ -89,41 +90,60 @@ const MeetTheAgents = () => {
             </div>
           </div>
 
-          {/* ORRA - Primary Interface */}
-          <div className="text-center mb-16">
-            <div className="inline-block relative">
-              <div className="w-48 h-48 bg-gray-600 rounded-full shadow-xl flex flex-col items-center justify-center text-white relative">
+          {/* Central Agent with Surrounding Agents */}
+          <div className="relative flex items-center justify-center min-h-[600px]">
+            {/* ORRA - Central Agent */}
+            <div className="relative z-10">
+              <div className="w-48 h-48 bg-gray-600 rounded-full shadow-xl flex flex-col items-center justify-center text-white">
                 <div className="p-4 bg-gray-500 rounded-full mb-3">
                   {centralAgent.icon}
                 </div>
                 <h3 className="text-2xl font-bold mb-1">{centralAgent.name}</h3>
-                <p className="text-gray-100 font-medium mb-2">AI Orchestrator</p>
-                <p className="text-gray-200 text-sm"></p>
+                <p className="text-gray-100 font-medium text-center px-4">Workflow Orchestration</p>
               </div>
             </div>
-          </div>
 
-          {/* Background Agents Grid */}
-          <div className="bg-white rounded-2xl p-8 shadow-lg">
-            <h4 className="text-center text-gray-500 text-sm font-medium mb-6 uppercase tracking-wide">
-              Working Behind the Scenes
-            </h4>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-              {backgroundAgents.map((agent, index) => (
+            {/* Surrounding Agents in Circle */}
+            {backgroundAgents.map((agent, index) => {
+              const angle = (index * 60) - 90; // 60 degrees apart, starting from top
+              const radius = 200;
+              const x = Math.cos(angle * Math.PI / 180) * radius;
+              const y = Math.sin(angle * Math.PI / 180) * radius;
+              
+              return (
                 <div
                   key={index}
-                  className="group flex flex-col items-center p-4 rounded-xl bg-gray-50 hover:bg-white hover:shadow-md transition-all duration-300 border border-transparent hover:border-gray-200"
+                  className="absolute transform -translate-x-1/2 -translate-y-1/2"
+                  style={{
+                    left: `calc(50% + ${x}px)`,
+                    top: `calc(50% + ${y}px)`
+                  }}
                 >
-                  <div className={`p-3 ${agent.color} rounded-full mb-3 group-hover:scale-110 transition-all duration-300`}>
-                    <div className="text-white">
-                      {agent.icon}
+                  {/* Connection line to center */}
+                  <div 
+                    className="absolute w-0.5 bg-gray-300 opacity-50"
+                    style={{
+                      height: `${radius - 96}px`,
+                      left: '50%',
+                      top: '50%',
+                      transformOrigin: '0 0',
+                      transform: `rotate(${angle + 180}deg)`
+                    }}
+                  />
+                  
+                  {/* Agent Card */}
+                  <div className="group flex flex-col items-center p-4 rounded-xl bg-white hover:shadow-lg transition-all duration-300 border border-gray-200 min-w-[140px]">
+                    <div className={`p-3 ${agent.color} rounded-full mb-3 group-hover:scale-110 transition-all duration-300`}>
+                      <div className="text-white">
+                        {agent.icon}
+                      </div>
                     </div>
+                    <h5 className="font-semibold text-gray-800 text-sm mb-1 text-center">{agent.name}</h5>
+                    <p className="text-xs text-gray-600 text-center leading-relaxed">{agent.role}</p>
                   </div>
-                  <h5 className="font-semibold text-gray-800 text-sm mb-1 text-center">{agent.name}</h5>
-                  <p className="text-xs text-gray-600 text-center leading-relaxed">{agent.role}</p>
                 </div>
-              ))}
-            </div>
+              );
+            })}
           </div>
 
           {/* Bottom message */}
