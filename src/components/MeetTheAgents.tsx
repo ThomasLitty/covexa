@@ -80,7 +80,7 @@ const MeetTheAgents = () => {
               <span className="font-medium text-gray-700">You</span>
             </div>
             <div className="w-8 h-0.5 bg-blue-300"></div>
-            <div className="flex items-center space-x-2 bg-gray-600 rounded-full px-6 py-3 shadow-lg animate-pulse">
+            <div className="flex items-center space-x-2 bg-gray-600 rounded-full px-6 py-3 shadow-lg">
               <Activity size={20} className="text-white" />
               <span className="font-semibold text-white">ORRA</span>
             </div>
@@ -93,7 +93,7 @@ const MeetTheAgents = () => {
           {/* ORRA - Primary Interface */}
           <div className="text-center mb-16">
             <div className="inline-block relative">
-              <div className="w-48 h-48 bg-gray-600 rounded-full shadow-xl flex flex-col items-center justify-center text-white relative animate-pulse">
+              <div className="w-48 h-48 bg-gray-600 rounded-full shadow-xl flex flex-col items-center justify-center text-white relative">
                 <div className="p-4 bg-gray-500 rounded-full mb-3">
                   {centralAgent.icon}
                 </div>
