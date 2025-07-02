@@ -9,7 +9,8 @@ const DataManagement = () => {
   const [processingRow, setProcessingRow] = useState<number | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const { ref: demoRef, isVisible: demoVisible } = useScrollAnimation(0.5);
+  const [demoVisible, setDemoVisible] = useState(false);
+  const demoRef = useRef<HTMLDivElement>(null);
 
   const features = [
     {
@@ -122,12 +123,33 @@ const DataManagement = () => {
     };
   }, []);
 
-  // Trigger animation when section becomes visible
+  // Intersection observer to track visibility and control animation
   useEffect(() => {
-    if (demoVisible && !isAnimating) {
-      startAnimation();
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setDemoVisible(true);
+          if (!isAnimating) {
+            startAnimation();
+          }
+        } else {
+          setDemoVisible(false);
+          stopAnimation();
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (demoRef.current) {
+      observer.observe(demoRef.current);
     }
-  }, [demoVisible, isAnimating]);
+
+    return () => {
+      if (demoRef.current) {
+        observer.unobserve(demoRef.current);
+      }
+    };
+  }, [isAnimating]);
 
   const getRowData = (index: number) => {
     return enrichedRows.has(index) ? enrichedData[index] : sampleData[index];
