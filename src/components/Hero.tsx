@@ -3,10 +3,48 @@ import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import WaitlistModal from "./WaitlistModal";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const Hero = () => {
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation(0.2);
   const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
+
+  const integrationImages = [
+    {
+      src: "/lovable-uploads/0575a304-6d6d-4d75-a303-b43850b14f46.png",
+      alt: "Covexa Slack Integration"
+    },
+    {
+      src: "/lovable-uploads/1baa1fa2-cfe6-4ec4-bcf5-18661df0c49d.png",
+      alt: "Covexa Google Sheets Integration"
+    },
+    {
+      src: "/lovable-uploads/4e39d334-f02f-4ff2-8fe7-5faab452d263.png",
+      alt: "Covexa Google Meet Integration"
+    },
+    {
+      src: "/lovable-uploads/a505b481-291c-4bc3-963d-6f98b5748177.png",
+      alt: "Covexa Google Calendar Integration"
+    },
+    {
+      src: "/lovable-uploads/a8a82d48-5586-40b8-a03f-3e37baf58c33.png",
+      alt: "Covexa Google Docs Integration"
+    },
+    {
+      src: "/lovable-uploads/ace93169-8927-4bc5-b35d-3d32181ccf7e.png",
+      alt: "Covexa Product Feedback Interface"
+    },
+    {
+      src: "/lovable-uploads/bb6ecefa-1818-41f8-a4f0-083f999e9e4d.png",
+      alt: "Covexa Platform Overview"
+    }
+  ];
 
   return (
     <>
@@ -37,140 +75,41 @@ const Hero = () => {
               </button>
             </div>
 
-            {/* Interactive Conversation Demo */}
+            {/* Integration Carousel */}
             <div className="max-w-4xl mx-auto">
-              <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200 shadow-lg transform hover:shadow-xl transition-all duration-500">
-                <div className="bg-white rounded-lg p-6 shadow-sm">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
-                      <span className="text-white text-sm font-bold">#</span>
-                    </div>
-                    <span className="font-semibold text-gray-800">gtm-campaigns</span>
-                    <span className="text-xs text-gray-500 ml-auto">Live Demo</span>
-                  </div>
-                  
-                  <div className="space-y-4 text-left">
-                    {/* SDR Initial Request */}
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
-                        <span className="text-gray-600 text-sm font-medium">J</span>
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-medium text-gray-800 mb-1">Jake (SDR)</div>
-                        <div className="bg-gray-100 rounded-lg p-3 text-gray-700">
-                          /covexa launch campaign for fintech CTOs in Singapore
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Agent Questions */}
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                        <span className="text-white text-sm font-bold">C</span>
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-medium text-blue-600 mb-1">Covexa</div>
-                        <div className="bg-blue-50 rounded-lg p-3 text-gray-700">
-                          Great! I'll help you launch that campaign. A few quick questions:
-                          <br />• What's your primary goal? (Demo bookings, trial signups, etc.)
-                          <br />• Company size range you're targeting?
-                          <br />• Any specific pain points to focus on?
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* SDR Response */}
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
-                        <span className="text-gray-600 text-sm font-medium">J</span>
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-medium text-gray-800 mb-1">Jake (SDR)</div>
-                        <div className="bg-gray-100 rounded-lg p-3 text-gray-700">
-                          Demo bookings for our new API security platform. Target 100-1000 employees. Focus on compliance and data protection challenges.
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Agent Analysis & Recommendations */}
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                        <span className="text-white text-sm font-bold">C</span>
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-medium text-blue-600 mb-1">Covexa</div>
-                        <div className="bg-blue-50 rounded-lg p-3 text-gray-700">
-                          <div className="font-medium mb-2">✅ Analysis Complete</div>
-                          <div className="text-sm space-y-1">
-                            <div>• Found <span className="font-semibold text-blue-600">247 qualified CTOs</span> in Singapore fintech (100-1000 employees)</div>
-                            <div>• High intent signals detected for 31 prospects</div>
-                            <div>• Recommended: Multi-touch email + LinkedIn sequence</div>
-                            <div>• Compliance check: ✅ Passed</div>
+              <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200 shadow-lg">
+                <h3 className="text-2xl font-semibold text-gray-800 mb-6">
+                  Works seamlessly across your entire tech stack
+                </h3>
+                <Carousel
+                  opts={{
+                    align: "start",
+                    loop: true,
+                  }}
+                  className="w-full"
+                >
+                  <CarouselContent>
+                    {integrationImages.map((image, index) => (
+                      <CarouselItem key={index} className="basis-full">
+                        <div className="p-2">
+                          <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <img
+                              src={image.src}
+                              alt={image.alt}
+                              className="w-full h-auto object-contain max-h-96"
+                              loading="lazy"
+                            />
                           </div>
                         </div>
-                      </div>
-                    </div>
-
-                    {/* Message Options */}
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                        <span className="text-white text-sm font-bold">C</span>
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-medium text-blue-600 mb-1">Covexa</div>
-                        <div className="bg-blue-50 rounded-lg p-3 text-gray-700">
-                          <div className="font-medium mb-2">Generated 3 message variants:</div>
-                          <div className="text-sm space-y-2">
-                            <div className="bg-white p-2 rounded border-l-2 border-green-400">
-                              <span className="font-medium">A:</span> Compliance-focused (mentions recent MAS regulations)
-                            </div>
-                            <div className="bg-white p-2 rounded border-l-2 border-yellow-400">
-                              <span className="font-medium">B:</span> ROI-focused (emphasizes cost savings)
-                            </div>
-                            <div className="bg-white p-2 rounded border-l-2 border-purple-400">
-                              <span className="font-medium">C:</span> Innovation-focused (API-first approach)
-                            </div>
-                          </div>
-                          <div className="mt-2 text-sm text-gray-600">
-                            React with 🚀 to launch with variant A, or choose another option.
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Launch Confirmation */}
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
-                        <span className="text-gray-600 text-sm font-medium">J</span>
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-medium text-gray-800 mb-1">Jake (SDR)</div>
-                        <div className="bg-gray-100 rounded-lg p-3 text-gray-700">
-                          🚀 (Variant A looks perfect!)
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Campaign Launch */}
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                        <span className="text-white text-sm font-bold">C</span>
-                      </div>
-                      <div className="flex-1">
-                        <div className="font-medium text-blue-600 mb-1">Covexa</div>
-                        <div className="bg-green-50 rounded-lg p-3 text-gray-700 border border-green-200">
-                          <div className="font-medium text-green-800 mb-2">🚀 Campaign "Singapore Fintech CTOs" Launched!</div>
-                          <div className="text-sm space-y-1 text-gray-700">
-                            <div>• 247 prospects enrolled in 5-touch sequence</div>
-                            <div>• First emails sending in 10 minutes</div>
-                            <div>• LinkedIn outreach starting tomorrow 9 AM SGT</div>
-                            <div>• Real-time stats available in dashboard</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-4" />
+                  <CarouselNext className="right-4" />
+                </Carousel>
+                <p className="text-sm text-gray-500 mt-4">
+                  Navigate through our platform integrations using the arrows
+                </p>
               </div>
             </div>
           </div>
