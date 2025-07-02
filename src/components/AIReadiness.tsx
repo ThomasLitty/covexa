@@ -1,31 +1,30 @@
-
 import { AlertTriangle, CheckCircle } from "lucide-react";
 
 const AIReadiness = () => {
   const problems = [
     {
       problem: "Incomplete lead profiles",
-      solution: "VARA enriches from ZoomInfo/Clearbit",
+      solution: "Enriches from ZoomInfo/Clearbit",
       agent: "VARA"
     },
     {
       problem: "Segment confusion or overlap",
-      solution: "VARA applies ICP clustering",
+      solution: "Applies ICP clustering",
       agent: "VARA"
     },
     {
       problem: "Unknown consent status",
-      solution: "LIA enforces suppression rules",
+      solution: "Enforces suppression rules",
       agent: "LIA"
     },
     {
       problem: "Copy not tuned for personas",
-      solution: "LEXA adjusts tone per segment",
+      solution: "Adjusts tone per segment",
       agent: "LEXA"
     },
     {
       problem: "No feedback loop on what works",
-      solution: "NIRA scores performance and feeds PromptDB",
+      solution: "Scores performance and feeds PromptDB",
       agent: "NIRA"
     }
   ];
