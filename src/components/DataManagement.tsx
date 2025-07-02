@@ -1,5 +1,5 @@
 
-import { CheckCircle, FileSpreadsheet } from "lucide-react";
+import { CheckCircle, FileSpreadsheet, TrendingUp, Shield, Zap, Users } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
 const DataManagement = () => {
@@ -10,11 +10,36 @@ const DataManagement = () => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const features = [
-    "Enriches missing titles, industries, and emails",
-    "Standardizes company sizes and job roles automatically",
-    "Derives location data from IP addresses", 
-    "Suppresses risky or non-consented leads (e.g., GDPR)",
-    "Deduplicates records across sources"
+    {
+      icon: <CheckCircle size={20} className="text-green-500 flex-shrink-0" />,
+      title: "Smart Data Enrichment",
+      description: "Automatically fills missing titles, industries, and email addresses using AI-powered data matching across 300+ sources.",
+      stat: "95% accuracy rate"
+    },
+    {
+      icon: <Users size={20} className="text-blue-500 flex-shrink-0" />,
+      title: "Intelligent Standardization", 
+      description: "Converts messy job titles and company sizes into standardized formats that your sales team can actually work with.",
+      stat: "40+ job role categories"
+    },
+    {
+      icon: <TrendingUp size={20} className="text-purple-500 flex-shrink-0" />,
+      title: "Location Intelligence",
+      description: "Derives precise geographic data from IP addresses, company domains, and social profiles for better territory planning.",
+      stat: "200+ countries covered"
+    },
+    {
+      icon: <Shield size={20} className="text-red-500 flex-shrink-0" />,
+      title: "Compliance Protection",
+      description: "Automatically suppresses risky contacts and ensures GDPR/CCPA compliance before any outreach begins.",
+      stat: "100% compliance rate"
+    },
+    {
+      icon: <Zap size={20} className="text-orange-500 flex-shrink-0" />,
+      title: "Advanced Deduplication",
+      description: "Identifies and merges duplicate records across CRM, marketing automation, and sales tools using fuzzy matching.",
+      stat: "Up to 30% duplicate reduction"
+    }
   ];
 
   // Sample data with realistic minimum data requirements
@@ -120,13 +145,79 @@ const DataManagement = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <div className="space-y-4">
-              {features.map((feature, index) => (
-                <div key={index} className="flex items-center gap-3">
-                  <CheckCircle size={20} className="text-green-500 flex-shrink-0" />
-                  <span className="text-gray-700">{feature}</span>
+            <div className="space-y-6">
+              {/* Feature List */}
+              <div className="space-y-4">
+                {features.map((feature, index) => (
+                  <div key={index} className="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                    <div className="mt-1">
+                      {feature.icon}
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-lg font-semibold text-gray-900">{feature.title}</h3>
+                        <span className="text-sm font-medium text-blue-600 bg-blue-50 px-2 py-1 rounded">
+                          {feature.stat}
+                        </span>
+                      </div>
+                      <p className="text-gray-600 text-sm leading-relaxed">{feature.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Stats Section */}
+              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-100">
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Data Quality Impact</h4>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-blue-600">85%</div>
+                    <div className="text-sm text-gray-600">Fewer bounced emails</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-green-600">3.2x</div>
+                    <div className="text-sm text-gray-600">Higher response rates</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-purple-600">60%</div>
+                    <div className="text-sm text-gray-600">Time saved on research</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-orange-600">99.5%</div>
+                    <div className="text-sm text-gray-600">Compliance score</div>
+                  </div>
                 </div>
-              ))}
+              </div>
+
+              {/* Process Flow */}
+              <div className="bg-gray-50 rounded-2xl p-6">
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">How It Works</h4>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold text-sm">1</div>
+                    <span className="text-gray-700">Upload your contact list from any source</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 font-semibold text-sm">2</div>
+                    <span className="text-gray-700">AI analyzes and enriches missing data points</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-semibold text-sm">3</div>
+                    <span className="text-gray-700">Compliance check and risk assessment</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 font-semibold text-sm">4</div>
+                    <span className="text-gray-700">Clean, standardized data ready for outreach</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Integration Note */}
+              <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border border-green-200">
+                <p className="text-sm text-green-800 font-medium">
+                  ✅ Works seamlessly with your existing CRM, marketing automation, and sales tools
+                </p>
+              </div>
             </div>
 
             <div 
@@ -250,12 +341,6 @@ const DataManagement = () => {
                 </div>
               </div>
             </div>
-          </div>
-
-          <div className="mt-8">
-            <p className="text-lg text-gray-600 leading-relaxed">
-              Covexa works inside your team's tools — like Slack, HubSpot, and Gmail to clean, cluster, and activate your data with zero extra overhead.
-            </p>
           </div>
         </div>
       </div>
