@@ -99,13 +99,12 @@ const DataReadiness = () => {
           </div>
 
           {/* Result */}
-          <div className="bg-blue-600 text-white rounded-2xl p-8 text-center">
-            <h4 className="text-xl font-semibold mb-3 flex items-center justify-center gap-2">
-              ✅ Result
-            </h4>
-            <p className="text-blue-100 text-lg leading-relaxed">
-              Structured, enriched, suppression-ready GTM data — made actionable by agents that do the heavy lifting, not your ops team.
-            </p>
+          <div className="mt-16 text-center">
+            <div className="bg-blue-50 rounded-2xl p-8 max-w-4xl mx-auto">
+              <p className="text-lg text-gray-700 font-medium">
+                ✅ Result: Structured, enriched, suppression-ready GTM data — made actionable by agents that do the heavy lifting, not your ops team.
+              </p>
+            </div>
           </div>
         </div>
       </div>
