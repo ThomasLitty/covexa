@@ -1,3 +1,4 @@
+
 import { CheckCircle, FileSpreadsheet, TrendingUp, Shield, Zap, Users } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
@@ -182,14 +183,14 @@ const DataManagement = () => {
               {/* Google Sheets-like Interface */}
               <div className="bg-white rounded-lg shadow-sm overflow-hidden border">
                 {/* Header */}
-                <div className="bg-gray-50 border-b border-gray-200 px-4 py-3">
-                  <div className="grid grid-cols-6 gap-2 text-xs font-medium text-gray-600 uppercase tracking-wide">
-                    <div>Name</div>
-                    <div>Title</div>
-                    <div>Company</div>
-                    <div>Company Size</div>
-                    <div>Location</div>
-                    <div>Status</div>
+                <div className="bg-gray-50 border-b border-gray-200 px-2 sm:px-4 py-3">
+                  <div className="grid grid-cols-3 sm:grid-cols-6 gap-1 sm:gap-2 text-xs font-medium text-gray-600 uppercase tracking-wide">
+                    <div className="truncate">Name</div>
+                    <div className="truncate">Title</div>
+                    <div className="truncate sm:block hidden">Company</div>
+                    <div className="truncate sm:block hidden">Size</div>
+                    <div className="truncate sm:block hidden">Location</div>
+                    <div className="truncate">Status</div>
                   </div>
                 </div>
 
@@ -203,7 +204,7 @@ const DataManagement = () => {
                     return (
                       <div 
                         key={index}
-                        className={`grid grid-cols-6 gap-2 px-4 py-3 text-xs border-b border-gray-100 transition-all duration-500 ${
+                        className={`grid grid-cols-3 sm:grid-cols-6 gap-1 sm:gap-2 px-2 sm:px-4 py-3 text-xs border-b border-gray-100 transition-all duration-500 ${
                           rowStatus === 'enriched' 
                             ? 'bg-gradient-to-r from-green-50 to-emerald-50 border-green-200' 
                             : rowStatus === 'processing'
@@ -227,41 +228,41 @@ const DataManagement = () => {
                         }`}>
                           {rowData.title || '—'}
                         </div>
-                        <div className={`truncate ${
+                        <div className={`truncate sm:block hidden ${
                           rowStatus === 'enriched' ? 'text-green-700 font-medium' : 
                           rowStatus === 'processing' ? 'text-blue-700' :
                           !rowData.company ? 'text-gray-500' : 'text-gray-700'
                         }`}>
                           {rowData.company || '—'}
                         </div>
-                        <div className={`truncate ${
+                        <div className={`truncate sm:block hidden ${
                           rowStatus === 'enriched' ? 'text-green-700 font-medium' : 
                           rowStatus === 'processing' ? 'text-blue-700' :
                           !rowData.companySize ? 'text-gray-500' : 'text-gray-700'
                         }`}>
                           {rowData.companySize || '—'}
                         </div>
-                        <div className={`truncate ${
+                        <div className={`truncate sm:block hidden ${
                           rowStatus === 'enriched' ? 'text-green-700 font-medium' : 
                           rowStatus === 'processing' ? 'text-blue-700' :
                           !rowData.location ? 'text-gray-500' : 'text-gray-700'
                         }`}>
                           {rowData.location || (rowData.ip ? `IP: ${rowData.ip}` : '—')}
                         </div>
-                        <div className="flex items-center gap-2">
-                          <div className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                        <div className="flex items-center gap-1 sm:gap-2">
+                          <div className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
                             rowStatus === 'enriched' ? 'bg-green-500 shadow-md' : 
                             rowStatus === 'processing' ? 'bg-blue-500 animate-ping' :
                             rowStatus === 'insufficient' ? 'bg-red-500' : 'bg-yellow-500'
                           }`}></div>
-                          <span className={`text-xs font-medium ${
+                          <span className={`text-xs font-medium truncate ${
                             rowStatus === 'enriched' ? 'text-green-600' : 
                             rowStatus === 'processing' ? 'text-blue-600' :
                             rowStatus === 'insufficient' ? 'text-red-600' : 'text-yellow-600'
                           }`}>
                             {rowStatus === 'enriched' ? 'verified' : 
                              rowStatus === 'processing' ? 'enriching...' : 
-                             rowStatus === 'insufficient' ? 'insufficient data' : 'pending'}
+                             rowStatus === 'insufficient' ? 'insufficient' : 'pending'}
                           </span>
                         </div>
                       </div>
@@ -270,15 +271,15 @@ const DataManagement = () => {
                 </div>
 
                 {/* Footer showing enrichment stats */}
-                <div className="bg-gray-50 border-t border-gray-200 px-4 py-3">
-                  <div className="flex justify-between items-center">
+                <div className="bg-gray-50 border-t border-gray-200 px-2 sm:px-4 py-3">
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                     <div className="text-xs text-gray-500">
-                      8 total records • <span className="text-green-600 font-medium">{enrichedRows.size} enriched</span> • <span className="text-red-600 font-medium">{sampleData.filter(row => row.status === 'insufficient').length} insufficient data</span>
+                      8 total • <span className="text-green-600 font-medium">{enrichedRows.size} enriched</span> • <span className="text-red-600 font-medium">{sampleData.filter(row => row.status === 'insufficient').length} insufficient</span>
                     </div>
                     {processingRow !== null && (
                       <div className="text-xs text-blue-600 font-medium animate-pulse">
                         {sampleData[processingRow].status === 'insufficient' 
-                          ? `Skipping row ${processingRow + 1} - insufficient data`
+                          ? `Skipping row ${processingRow + 1}`
                           : `Processing row ${processingRow + 1}...`
                         }
                       </div>
