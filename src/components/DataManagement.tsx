@@ -1,6 +1,7 @@
 
 import { CheckCircle, FileSpreadsheet, TrendingUp, Shield, Zap, Users } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const DataManagement = () => {
   const [animationStep, setAnimationStep] = useState(0);
@@ -8,6 +9,7 @@ const DataManagement = () => {
   const [processingRow, setProcessingRow] = useState<number | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const { ref: demoRef, isVisible: demoVisible } = useScrollAnimation(0.5);
 
   const features = [
     {
@@ -120,6 +122,13 @@ const DataManagement = () => {
     };
   }, []);
 
+  // Trigger animation when section becomes visible
+  useEffect(() => {
+    if (demoVisible && !isAnimating) {
+      startAnimation();
+    }
+  }, [demoVisible, isAnimating]);
+
   const getRowData = (index: number) => {
     return enrichedRows.has(index) ? enrichedData[index] : sampleData[index];
   };
@@ -168,15 +177,14 @@ const DataManagement = () => {
             </div>
 
             <div 
+              ref={demoRef}
               className="bg-gradient-to-br from-blue-50 to-gray-50 rounded-3xl p-6 shadow-lg"
-              onMouseEnter={startAnimation}
-              onMouseLeave={stopAnimation}
             >
               <div className="text-center mb-6">
                 <FileSpreadsheet className="mx-auto text-blue-600 mb-4" size={32} />
                 <h4 className="text-lg font-semibold text-gray-900 mb-2">Live Data Enrichment & Standardization</h4>
                 <p className="text-sm text-gray-600">
-                  {!isAnimating ? "Hover to see data enrichment in action" : "Enriching & standardizing records..."}
+                  {!isAnimating ? "Watch data enrichment happen automatically" : "Enriching & standardizing records..."}
                 </p>
               </div>
 
