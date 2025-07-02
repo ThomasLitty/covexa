@@ -188,7 +188,7 @@ const HowItWorks = () => {
                           </div>
                         </div>
                         <div className="mt-2 text-xs text-gray-600">
-                          React with 🚀 to launch with variant A, or choose another option.
+                          Click to View and Approve or provide your feedback.
                         </div>
                       </div>
                     </div>
