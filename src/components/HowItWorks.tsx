@@ -143,7 +143,7 @@ const HowItWorks = () => {
                     <div className="flex-1 min-w-0">
                       <div className="font-medium text-gray-800 mb-1 text-sm">Jake (SDR)</div>
                       <div className="bg-gray-100 rounded-lg p-2 text-gray-700 text-sm">
-                        Demo bookings for our new API security platform. Target 100-1000 employees. Focus on compliance and data protection challenges.
+                        Demo bookings for our new API security platform. Target 100-1000 employees, Singapore, CTO or CISO. Focus on compliance and data protection challenges.
                       </div>
                     </div>
                   </div>
