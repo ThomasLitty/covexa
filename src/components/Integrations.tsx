@@ -96,9 +96,17 @@ const Integrations = () => {
             Works With the Tools
             <span className="text-blue-600"> You Already Use</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-            Covexa integrates with the tools your GTM team already uses — from Slack and Gmail to CRMs like HubSpot and Salesforce, and enrichment data from ZoomInfo and Clearbit. More integrations are on the way — including intent data platforms like 6sense, Bombora, and G2 to help prioritize and personalize outreach with real buying signals.
-          </p>
+          <div className="text-xl text-gray-600 max-w-4xl mx-auto space-y-4">
+            <p>
+              Covexa connects to your GTM ecosystem — integrating with CRMs like HubSpot and Salesforce, enrichment providers like ZoomInfo and Clearbit, and intent data platforms like 6sense, Bombora, and G2.
+            </p>
+            <p>
+              It works through lightweight apps in Slack, Gmail, Chrome, Outlook, and mobile — all powered by Covexa's cloud agents that orchestrate campaigns, ensure compliance, and track performance.
+            </p>
+            <p className="font-medium">
+              Wherever you work, Covexa activates. No tab overload. No platform lock-in.
+            </p>
+          </div>
         </div>
 
         <div className="max-w-6xl mx-auto overflow-hidden">
