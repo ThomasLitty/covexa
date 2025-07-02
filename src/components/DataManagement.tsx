@@ -1,4 +1,3 @@
-
 import { CheckCircle, FileSpreadsheet, TrendingUp, Shield, Zap, Users } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
@@ -134,7 +133,7 @@ const DataManagement = () => {
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="mb-12">
+          <div className="mb-12 text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Clean Data.
               <span className="text-blue-600"> Confident Outreach.</span>
