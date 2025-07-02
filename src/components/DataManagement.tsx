@@ -1,4 +1,3 @@
-
 import { CheckCircle, Database, ArrowRight, Shield, Users, Target, FileSpreadsheet } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
@@ -6,7 +5,6 @@ const DataManagement = () => {
   const [animationStep, setAnimationStep] = useState(0);
   const [enrichedRows, setEnrichedRows] = useState<Set<number>>(new Set());
   const [processingRow, setProcessingRow] = useState<number | null>(null);
-  const [currentStage, setCurrentStage] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -56,24 +54,18 @@ const DataManagement = () => {
     setAnimationStep(0);
     setEnrichedRows(new Set());
     setProcessingRow(null);
-    setCurrentStage(0);
 
     intervalRef.current = setInterval(() => {
       setAnimationStep((prev) => {
         if (prev < sampleData.length) {
           // Set processing state
           setProcessingRow(prev);
-          setCurrentStage(0);
           
-          // Animate through processing stages
-          setTimeout(() => setCurrentStage(1), 300);
-          setTimeout(() => setCurrentStage(2), 600);
-          setTimeout(() => setCurrentStage(3), 900);
+          // Complete enrichment after delay
           setTimeout(() => {
-            setCurrentStage(4);
             setEnrichedRows(current => new Set([...current, prev]));
             setProcessingRow(null);
-          }, 1200);
+          }, 800);
           
           return prev + 1;
         } else {
@@ -86,7 +78,7 @@ const DataManagement = () => {
           return prev;
         }
       });
-    }, 1500);
+    }, 1000);
   };
 
   const stopAnimation = () => {
@@ -98,7 +90,6 @@ const DataManagement = () => {
     setAnimationStep(0);
     setEnrichedRows(new Set());
     setProcessingRow(null);
-    setCurrentStage(0);
   };
 
   useEffect(() => {
@@ -270,45 +261,6 @@ const DataManagement = () => {
                     )}
                   </div>
                 </div>
-              </div>
-
-              {/* Processing Pipeline */}
-              <div className="mt-6 bg-white rounded-lg p-4 shadow-sm border">
-                <div className="text-xs font-medium text-gray-600 mb-4 uppercase tracking-wide">PROCESSING PIPELINE</div>
-                <div className="flex justify-between items-center">
-                  {pipelineSteps.map((step, index) => (
-                    <div key={index} className="flex flex-col items-center relative">
-                      <div className={`p-2 rounded-full transition-all duration-300 ${
-                        currentStage >= index ? 
-                        `${step.color} bg-current bg-opacity-10 scale-110 shadow-md` : 
-                        'text-gray-300'
-                      } ${currentStage === index ? 'animate-pulse ring-4 ring-current ring-opacity-20' : ''}`}>
-                        {step.icon}
-                      </div>
-                      <span className={`text-xs text-center mt-2 transition-colors ${
-                        currentStage >= index ? step.color : 'text-gray-400'
-                      }`}>
-                        {step.label}
-                      </span>
-                      {index < pipelineSteps.length - 1 && (
-                        <ArrowRight className={`absolute left-12 top-3 transition-colors ${
-                          currentStage > index ? 'text-blue-400' : 'text-gray-300'
-                        }`} size={16} />
-                      )}
-                    </div>
-                  ))}
-                </div>
-                {processingRow !== null && (
-                  <div className="mt-4 text-center">
-                    <div className="text-xs text-blue-600 font-medium">
-                      {currentStage === 0 && "Analyzing raw data..."}
-                      {currentStage === 1 && "Enriching missing fields..."}
-                      {currentStage === 2 && "Validating information..."}
-                      {currentStage === 3 && "Applying segmentation rules..."}
-                      {currentStage === 4 && "Enrichment complete!"}
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           </div>
