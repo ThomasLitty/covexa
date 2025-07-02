@@ -1,6 +1,7 @@
-import { Menu, X, Slack } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import WaitlistModal from "./WaitlistModal";
+import CovexaLogo from "./CovexaLogo";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -54,10 +55,7 @@ const Header = () => {
       <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md z-50 border-b border-gray-200 transition-all duration-300">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 text-2xl font-bold text-gray-900">
-              <Slack className="text-blue-600" size={28} />
-              Covexa
-            </div>
+            <CovexaLogo size="medium" />
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-8">
