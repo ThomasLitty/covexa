@@ -66,9 +66,9 @@ const HowItWorks = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Steps Section */}
-            <div className="space-y-6 pr-4">
+            <div className="space-y-6">
               {steps.map((step, index) => (
                 <div 
                   key={index}
@@ -95,7 +95,7 @@ const HowItWorks = () => {
             </div>
 
             {/* Chat Demo Section */}
-            <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200 shadow-lg h-fit">
+            <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200 shadow-lg sticky top-8">
               <div className="bg-white rounded-lg p-5 shadow-sm">
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-7 h-7 bg-blue-600 rounded flex items-center justify-center">
