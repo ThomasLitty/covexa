@@ -67,7 +67,7 @@ const BrandVoice = () => {
                     <div className="grid grid-cols-1 gap-4">
                       <div className="bg-white rounded-lg p-4 shadow-sm">
                         <div className="text-sm text-blue-600 font-medium mb-1">LEXA Output</div>
-                        <div className="text-sm text-gray-700">"Hi {{firstName}}, saw your team's recent growth milestone..."</div>
+                        <div className="text-sm text-gray-700">"Hi John, saw your team's recent growth milestone..."</div>
                       </div>
                     </div>
                   </div>
