@@ -131,15 +131,15 @@ const MeetTheAgents = () => {
                     }}
                   />
                   
-                  {/* Agent Card */}
-                  <div className="group flex flex-col items-center p-4 rounded-xl bg-white hover:shadow-lg transition-all duration-300 border border-gray-200 min-w-[140px]">
-                    <div className={`p-3 ${agent.color} rounded-full mb-3 group-hover:scale-110 transition-all duration-300`}>
-                      <div className="text-white">
+                  {/* Agent Circle */}
+                  <div className="group flex flex-col items-center">
+                    <div className={`w-24 h-24 ${agent.color} rounded-full shadow-lg flex flex-col items-center justify-center text-white group-hover:scale-110 transition-all duration-300`}>
+                      <div className="mb-1">
                         {agent.icon}
                       </div>
+                      <h5 className="font-semibold text-xs text-center">{agent.name}</h5>
                     </div>
-                    <h5 className="font-semibold text-gray-800 text-sm mb-1 text-center">{agent.name}</h5>
-                    <p className="text-xs text-gray-600 text-center leading-relaxed">{agent.role}</p>
+                    <p className="text-xs text-gray-600 text-center leading-relaxed mt-2 max-w-[100px]">{agent.role}</p>
                   </div>
                 </div>
               );
