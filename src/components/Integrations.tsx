@@ -1,15 +1,32 @@
+
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { useEffect, useState } from "react";
 
 const Integrations = () => {
+  const [api, setApi] = useState<any>();
+
+  // Auto-scroll functionality
+  useEffect(() => {
+    if (!api) return;
+
+    const interval = setInterval(() => {
+      api.scrollNext();
+    }, 3000); // Auto-scroll every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [api]);
+
   const integrations = [
     { 
       name: "Slack", 
       icon: (
-        <svg viewBox="0 0 24 24" className="w-10 h-10" fill="currentColor">
-          <path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.527 2.527 0 0 1 2.521 2.521 2.527 2.527 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z" />
-        </svg>
+        <img 
+          src="/lovable-uploads/1baa1fa2-cfe6-4ec4-bcf5-18661df0c49d.png" 
+          alt="Slack" 
+          className="w-10 h-10 object-contain"
+        />
       ),
-      color: "text-purple-600"
+      color: ""
     },
     { 
       name: "HubSpot", 
@@ -25,20 +42,24 @@ const Integrations = () => {
     { 
       name: "Gmail", 
       icon: (
-        <svg viewBox="0 0 24 24" className="w-10 h-10" fill="currentColor">
-          <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
-        </svg>
+        <img 
+          src="/lovable-uploads/cbee93df-3279-4077-852d-3527912d35c8.png" 
+          alt="Gmail" 
+          className="w-10 h-10 object-contain"
+        />
       ),
-      color: "text-red-600"
+      color: ""
     },
     { 
       name: "ZoomInfo", 
       icon: (
-        <svg viewBox="0 0 24 24" className="w-10 h-10" fill="currentColor">
-          <path d="M17.5 2h-11C5.12 2 4 3.12 4 4.5v15C4 20.88 5.12 22 6.5 22h11c1.38 0 2.5-1.12 2.5-2.5v-15C20 3.12 18.88 2 17.5 2zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"/>
-        </svg>
+        <img 
+          src="/lovable-uploads/4e39d334-f02f-4ff2-8fe7-5faab452d263.png" 
+          alt="ZoomInfo" 
+          className="w-10 h-10 object-contain"
+        />
       ),
-      color: "text-blue-600"
+      color: ""
     },
     { 
       name: "Clearbit", 
@@ -52,11 +73,13 @@ const Integrations = () => {
     { 
       name: "Salesforce", 
       icon: (
-        <svg viewBox="0 0 24 24" className="w-10 h-10" fill="currentColor">
-          <path d="M12.8 9.6c-.3-.6-.9-1.1-1.6-1.1-.9 0-1.6.7-1.6 1.6 0 .5.2.9.5 1.2-.8.2-1.4.9-1.4 1.7 0 1 .8 1.8 1.8 1.8.5 0 .9-.2 1.2-.5.3.3.7.5 1.2.5 1 0 1.8-.8 1.8-1.8 0-.8-.6-1.5-1.4-1.7.3-.3.5-.7.5-1.2 0-.7-.5-1.3-1.2-1.5zm-4.7-2.1c1.1 0 2 .9 2 2 0 .2 0 .4-.1.6.8-.4 1.7-.5 2.6-.2.4-.7 1.2-1.2 2.1-1.2 1.3 0 2.4 1.1 2.4 2.4 0 .6-.2 1.1-.6 1.5.9.3 1.5 1.1 1.5 2.1 0 1.2-1 2.2-2.2 2.2-.6 0-1.1-.2-1.5-.6-.3.4-.8.6-1.3.6-1 0-1.8-.8-1.8-1.8 0-.2 0-.4.1-.5-.8.4-1.7.5-2.6.2-.4.7-1.2 1.2-2.1 1.2-1.3 0-2.4-1.1-2.4-2.4 0-.6.2-1.1.6-1.5-.9-.3-1.5-1.1-1.5-2.1C3.9 8.7 4.9 7.7 6.1 7.5z"/>
-        </svg>
+        <img 
+          src="/lovable-uploads/c7471250-284f-4fa5-80d0-a6dfb60a933d.png" 
+          alt="Salesforce" 
+          className="w-10 h-10 object-contain"
+        />
       ),
-      color: "text-blue-500"
+      color: ""
     },
     { 
       name: "6sense", 
@@ -93,6 +116,7 @@ const Integrations = () => {
 
         <div className="max-w-6xl mx-auto">
           <Carousel
+            setApi={setApi}
             opts={{
               align: "start",
               loop: true,
@@ -102,8 +126,8 @@ const Integrations = () => {
             <CarouselContent className="-ml-2 md:-ml-4">
               {integrations.map((integration, index) => (
                 <CarouselItem key={index} className="pl-2 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex flex-col items-center justify-center p-6 bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 h-32">
-                    <div className={`mb-3 ${integration.color}`}>
+                  <div className="flex flex-col items-center justify-center p-6 bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 h-32 transform hover:scale-105">
+                    <div className={`mb-3 transition-transform duration-300 ${integration.color}`}>
                       {integration.icon}
                     </div>
                     <span className="text-sm font-medium text-gray-700 text-center">{integration.name}</span>
