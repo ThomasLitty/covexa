@@ -1,3 +1,4 @@
+
 import { AlertTriangle, CheckCircle } from "lucide-react";
 
 const AIReadiness = () => {
@@ -52,7 +53,7 @@ const AIReadiness = () => {
                 </h3>
                 <div className="space-y-4">
                   {problems.map((item, index) => (
-                    <div key={index} className="flex items-center gap-3 p-3 bg-white rounded-lg">
+                    <div key={index} className="flex items-center gap-3 p-3 bg-white rounded-lg min-h-[60px]">
                       <span className="text-red-500">🚫</span>
                       <span className="text-gray-700">{item.problem}</span>
                     </div>
@@ -67,10 +68,10 @@ const AIReadiness = () => {
                 </h3>
                 <div className="space-y-4">
                   {problems.map((item, index) => (
-                    <div key={index} className="p-3 bg-white rounded-lg">
-                      <div className="flex items-center justify-between mb-1">
+                    <div key={index} className="p-3 bg-white rounded-lg min-h-[60px] flex items-center">
+                      <div className="flex items-center justify-between w-full">
                         <span className="text-gray-700">{item.solution}</span>
-                        <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-medium">
+                        <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-medium ml-2 flex-shrink-0">
                           {item.agent}
                         </span>
                       </div>
