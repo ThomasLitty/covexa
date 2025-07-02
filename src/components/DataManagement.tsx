@@ -92,12 +92,18 @@ const DataManagement = () => {
           
           return prev + 1;
         } else {
-          // Animation completed
+          // Animation completed - reset for next cycle
           if (intervalRef.current) {
             clearInterval(intervalRef.current);
             intervalRef.current = null;
           }
           setIsAnimating(false);
+          // Reset after a short delay so user can see completion
+          setTimeout(() => {
+            setAnimationStep(0);
+            setEnrichedRows(new Set());
+            setProcessingRow(null);
+          }, 2000);
           return prev;
         }
       });
