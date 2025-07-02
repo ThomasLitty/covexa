@@ -17,7 +17,7 @@ const Header = () => {
   // Track active section for navigation highlighting
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'how-it-works', 'data-management', 'predictive-intelligence', 'use-cases', 'pricing', 'contact'];
+      const sections = ['home', 'how-it-works', 'data-management', 'predictive-intelligence', 'use-cases', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const sectionId of sections) {
@@ -41,7 +41,6 @@ const Header = () => {
     { id: 'how-it-works', label: 'How It Works' },
     { id: 'predictive-intelligence', label: 'Intelligence' },
     { id: 'use-cases', label: 'Use Cases' },
-    { id: 'pricing', label: 'Pricing' },
     { id: 'contact', label: 'Contact' }
   ];
 
@@ -72,6 +71,12 @@ const Header = () => {
             ))}
           </nav>
 
+          <div className="hidden md:block">
+            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105">
+              Join Waitlist
+            </button>
+          </div>
+
           {/* Mobile Menu Button */}
           <button
             className="md:hidden text-blue-600"
@@ -96,6 +101,9 @@ const Header = () => {
                   {item.label}
                 </button>
               ))}
+              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-300 text-center">
+                Join Waitlist
+              </button>
             </div>
           </nav>
         )}

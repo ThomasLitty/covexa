@@ -10,7 +10,6 @@ import PredictiveIntelligence from "@/components/PredictiveIntelligence";
 import UseCases from "@/components/UseCases";
 import Integrations from "@/components/Integrations";
 import Testimonials from "@/components/Testimonials";
-import Pricing from "@/components/Pricing";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 
@@ -58,10 +57,6 @@ const Index = () => {
         <div className="bg-gray-50">
           <Testimonials />
         </div>
-        
-        <section id="pricing" className="scroll-mt-20">
-          <Pricing />
-        </section>
         
         <section id="contact">
           <FinalCTA />
