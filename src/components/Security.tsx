@@ -60,12 +60,8 @@ const Security = () => {
 
           <div className="text-center">
             <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-8 text-white">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <Shield size={32} />
-                <h3 className="text-2xl font-bold">Enterprise-Grade Security & Privacy</h3>
-              </div>
-              <p className="text-xl text-blue-100">
-                AI you can trust — with controls you can prove.
+              <p className="text-2xl font-bold">
+                Enterprise-grade security. Covexa will protect it.
               </p>
             </div>
           </div>
