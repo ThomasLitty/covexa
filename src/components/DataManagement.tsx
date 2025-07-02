@@ -1,12 +1,14 @@
 
 import { CheckCircle, Database, ArrowRight, Shield, Users, Target, FileSpreadsheet } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const DataManagement = () => {
   const [animationStep, setAnimationStep] = useState(0);
   const [enrichedRows, setEnrichedRows] = useState<Set<number>>(new Set());
   const [processingRow, setProcessingRow] = useState<number | null>(null);
   const [currentStage, setCurrentStage] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const features = [
     "Enriches missing titles, industries, and emails",
@@ -47,8 +49,16 @@ const DataManagement = () => {
     { id: 12, name: "Anna Wilson", title: "Software Engineer", company: "Amazon", email: "anna.wilson@amazon.com", status: "verified" },
   ];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
+  const startAnimation = () => {
+    if (isAnimating) return;
+    
+    setIsAnimating(true);
+    setAnimationStep(0);
+    setEnrichedRows(new Set());
+    setProcessingRow(null);
+    setCurrentStage(0);
+
+    intervalRef.current = setInterval(() => {
       setAnimationStep((prev) => {
         if (prev < sampleData.length) {
           // Set processing state
@@ -56,29 +66,47 @@ const DataManagement = () => {
           setCurrentStage(0);
           
           // Animate through processing stages
-          setTimeout(() => setCurrentStage(1), 200);
-          setTimeout(() => setCurrentStage(2), 400);
-          setTimeout(() => setCurrentStage(3), 600);
+          setTimeout(() => setCurrentStage(1), 300);
+          setTimeout(() => setCurrentStage(2), 600);
+          setTimeout(() => setCurrentStage(3), 900);
           setTimeout(() => {
             setCurrentStage(4);
             setEnrichedRows(current => new Set([...current, prev]));
             setProcessingRow(null);
-          }, 800);
+          }, 1200);
           
           return prev + 1;
         } else {
-          // Reset animation after showing all data
-          setTimeout(() => {
-            setEnrichedRows(new Set());
-            setCurrentStage(0);
-            setProcessingRow(null);
-          }, 3000);
-          return 0;
+          // Animation completed
+          if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+          }
+          setIsAnimating(false);
+          return prev;
         }
       });
-    }, 1200);
+    }, 1500);
+  };
 
-    return () => clearInterval(interval);
+  const stopAnimation = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+    setIsAnimating(false);
+    setAnimationStep(0);
+    setEnrichedRows(new Set());
+    setProcessingRow(null);
+    setCurrentStage(0);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
   }, []);
 
   const getRowData = (index: number) => {
@@ -121,11 +149,17 @@ const DataManagement = () => {
               ))}
             </div>
 
-            <div className="bg-gradient-to-br from-blue-50 to-gray-50 rounded-3xl p-6 shadow-lg">
+            <div 
+              className="bg-gradient-to-br from-blue-50 to-gray-50 rounded-3xl p-6 shadow-lg"
+              onMouseEnter={startAnimation}
+              onMouseLeave={stopAnimation}
+            >
               <div className="text-center mb-6">
                 <FileSpreadsheet className="mx-auto text-blue-600 mb-4" size={32} />
                 <h4 className="text-lg font-semibold text-gray-900 mb-2">Live Data Enrichment</h4>
-                <p className="text-sm text-gray-600">Watch messy data become sales-ready in real-time</p>
+                <p className="text-sm text-gray-600">
+                  {!isAnimating ? "Hover to see messy data become sales-ready" : "Watch the data transformation in real-time"}
+                </p>
               </div>
 
               {/* Google Sheets-like Interface */}
