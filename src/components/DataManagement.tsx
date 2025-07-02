@@ -14,16 +14,18 @@ const DataManagement = () => {
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
+          <div className="mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Clean Data.
+              <span className="text-blue-600"> Confident Outreach.</span>
+            </h2>
+            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+              Most GTM tools assume your data is perfect. Covexa knows better.
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
             <div className="lg:col-span-2">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Clean Data.
-                <span className="text-blue-600"> Confident Outreach.</span>
-              </h2>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Most GTM tools assume your data is perfect. Covexa knows better.
-              </p>
-              
               <div className="space-y-4 mb-8">
                 {features.map((feature, index) => (
                   <div key={index} className="flex items-center gap-3">
@@ -32,10 +34,6 @@ const DataManagement = () => {
                   </div>
                 ))}
               </div>
-
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Covexa works inside your team's tools — like Slack, HubSpot, and Gmail to clean, cluster, and activate your data with zero extra overhead.
-              </p>
             </div>
 
             <div className="lg:col-span-1">
@@ -61,6 +59,12 @@ const DataManagement = () => {
                 </div>
               </div>
             </div>
+          </div>
+
+          <div className="mt-8">
+            <p className="text-lg text-gray-600 leading-relaxed">
+              Covexa works inside your team's tools — like Slack, HubSpot, and Gmail to clean, cluster, and activate your data with zero extra overhead.
+            </p>
           </div>
         </div>
       </div>
