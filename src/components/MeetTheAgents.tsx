@@ -1,4 +1,3 @@
-
 import { Database, MessageSquare, Shield, Send, Settings, BarChart3, Radar, User, Pen, Activity, Eye, Network } from "lucide-react";
 
 const MeetTheAgents = () => {
@@ -99,7 +98,7 @@ const MeetTheAgents = () => {
                   {centralAgent.icon}
                 </div>
                 <h3 className="text-2xl font-bold mb-1">{centralAgent.name}</h3>
-                <p className="text-gray-100 font-medium text-center px-4">Workflow Orchestration</p>
+                <p className="text-gray-100 font-medium text-center px-4">AI Orchestrator</p>
               </div>
             </div>
 
