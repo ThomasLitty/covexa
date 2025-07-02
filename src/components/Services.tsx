@@ -1,5 +1,5 @@
 
-import { Brain, Eye, MessageSquare, BarChart3, Image, Zap } from "lucide-react";
+import { Brain, Eye, MessageSquare, BarChart3, Image, Zap, ArrowRight } from "lucide-react";
 
 const Services = () => {
   const services = [
