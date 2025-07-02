@@ -159,7 +159,7 @@ const HowItWorks = () => {
                         <div className="font-medium mb-1">✅ Analysis Complete</div>
                         <div className="text-xs space-y-1">
                           <div>• Found <span className="font-semibold text-blue-600">247 qualified CTOs</span> in Singapore fintech (100-1000 employees)</div>
-                          <div>• High intent signals detected for 31 prospects</div>
+                          <div className="text-green-600 font-semibold">• High intent signals detected for 31 prospects ; Click here to view more details.</div>
                           <div>• Recommended: Multi-touch email + LinkedIn sequence</div>
                           <div>• Compliance check: ✅ Passed</div>
                         </div>
