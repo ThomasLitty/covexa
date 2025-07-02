@@ -15,34 +15,48 @@ const Hero = () => {
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation(0.2);
   const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
 
-  const integrationImages = [
+  const useCaseScenarios = [
     {
       src: "/lovable-uploads/0575a304-6d6d-4d75-a303-b43850b14f46.png",
-      alt: "Covexa Slack Integration"
+      alt: "SDR creating targeted campaign with Covexa agent guidance",
+      title: "Campaign Creation Made Simple",
+      description: "Watch Sarah launch a targeted campaign in 3 minutes with AI agent assistance"
     },
     {
       src: "/lovable-uploads/1baa1fa2-cfe6-4ec4-bcf5-18661df0c49d.png",
-      alt: "Covexa Google Sheets Integration"
+      alt: "Covexa analyzing Google Sheets lead data for campaign recommendations",
+      title: "Smart Lead Analysis",
+      description: "Covexa analyzes your lead data and suggests 'Build campaign from this sheet'"
     },
     {
       src: "/lovable-uploads/4e39d334-f02f-4ff2-8fe7-5faab452d263.png",
-      alt: "Covexa Google Meet Integration"
+      alt: "Real-time sales insights during Google Meet calls",
+      title: "Meeting Intelligence",
+      description: "Get real-time insights and recommendations during sales calls"
     },
     {
       src: "/lovable-uploads/a505b481-291c-4bc3-963d-6f98b5748177.png",
-      alt: "Covexa Google Calendar Integration"
+      alt: "Automated meeting prep and calendar integration workflow",
+      title: "Meeting Prep Automation",
+      description: "Automated meeting preparation with context and recommendations"
     },
     {
       src: "/lovable-uploads/a8a82d48-5586-40b8-a03f-3e37baf58c33.png",
-      alt: "Covexa Google Docs Integration"
+      alt: "Content briefs and campaign recaps in Google Docs",
+      title: "Content & Campaign Recaps",
+      description: "Automated content briefs and campaign performance summaries"
     },
     {
       src: "/lovable-uploads/ace93169-8927-4bc5-b35d-3d32181ccf7e.png",
-      alt: "Covexa Product Feedback Interface"
+      alt: "Product feedback automation and follow-up workflows",
+      title: "Feedback Automation",
+      description: "Automated responses and intelligent follow-up recommendations"
     },
     {
       src: "/lovable-uploads/bb6ecefa-1818-41f8-a4f0-083f999e9e4d.png",
-      alt: "Covexa Platform Overview"
+      alt: "Complete Covexa workflow orchestration across platforms",
+      title: "Orchestrated Workflows",
+      description: "See how Covexa orchestrates your entire GTM workflow seamlessly"
     }
   ];
 
@@ -75,12 +89,15 @@ const Hero = () => {
               </button>
             </div>
 
-            {/* Integration Carousel */}
+            {/* Use Case Scenarios Carousel */}
             <div className="max-w-4xl mx-auto">
               <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200 shadow-lg">
-                <h3 className="text-2xl font-semibold text-gray-800 mb-6">
-                  Works seamlessly across your entire tech stack
+                <h3 className="text-2xl font-semibold text-gray-800 mb-2">
+                  See Covexa in Action Across Real Workflows
                 </h3>
+                <p className="text-gray-600 mb-6">
+                  Watch how teams use Covexa to transform their GTM operations
+                </p>
                 <Carousel
                   opts={{
                     align: "start",
@@ -89,16 +106,24 @@ const Hero = () => {
                   className="w-full"
                 >
                   <CarouselContent>
-                    {integrationImages.map((image, index) => (
+                    {useCaseScenarios.map((scenario, index) => (
                       <CarouselItem key={index} className="basis-full">
                         <div className="p-2">
                           <div className="bg-white rounded-lg shadow-sm overflow-hidden">
                             <img
-                              src={image.src}
-                              alt={image.alt}
+                              src={scenario.src}
+                              alt={scenario.alt}
                               className="w-full h-auto object-contain max-h-96"
                               loading="lazy"
                             />
+                            <div className="p-4">
+                              <h4 className="font-semibold text-gray-800 mb-2">
+                                {scenario.title}
+                              </h4>
+                              <p className="text-sm text-gray-600">
+                                {scenario.description}
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </CarouselItem>
@@ -108,7 +133,7 @@ const Hero = () => {
                   <CarouselNext className="right-4" />
                 </Carousel>
                 <p className="text-sm text-gray-500 mt-4">
-                  Navigate through our platform integrations using the arrows
+                  Navigate through real use case scenarios using the arrows
                 </p>
               </div>
             </div>
