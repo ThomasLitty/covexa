@@ -5,7 +5,7 @@ const AIReadiness = () => {
   const problems = [
     {
       problem: "Incomplete lead profiles",
-      solution: "Enriches from ZoomInfo/Clearbit",
+      solution: "Enriches using inferred data or third party data",
       agent: "VARA"
     },
     {
