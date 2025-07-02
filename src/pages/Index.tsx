@@ -9,6 +9,7 @@ import DataManagement from "@/components/DataManagement";
 import BrandVoice from "@/components/BrandVoice";
 import PredictiveIntelligence from "@/components/PredictiveIntelligence";
 import UseCases from "@/components/UseCases";
+import DeploymentModel from "@/components/DeploymentModel";
 import Integrations from "@/components/Integrations";
 import Testimonials from "@/components/Testimonials";
 import FinalCTA from "@/components/FinalCTA";
@@ -52,6 +53,8 @@ const Index = () => {
         <section id="use-cases" className="scroll-mt-20">
           <UseCases />
         </section>
+        
+        <DeploymentModel />
         
         <div className="bg-gradient-to-b from-white to-gray-50 py-8">
           <Integrations />
