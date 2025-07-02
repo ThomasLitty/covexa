@@ -1,95 +1,91 @@
 
-import { CheckCircle, X, BarChart3 } from "lucide-react";
+import { AlertTriangle, CheckCircle } from "lucide-react";
 
 const AIReadiness = () => {
   const problems = [
     {
-      problem: "Incomplete or inconsistent data",
-      solution: "VARA enriches with 3rd-party and inferred signals"
+      problem: "Incomplete lead profiles",
+      solution: "Enriches using inferred data or third party data",
+      agent: "VARA"
     },
     {
-      problem: "Segment overlap or confusion", 
-      solution: "VARA applies clustering to match your ICP"
+      problem: "Segment confusion or overlap",
+      solution: "Applies ICP clustering",
+      agent: "VARA"
     },
     {
-      problem: "Unknown consent or compliance risk",
-      solution: "LIA suppresses and blocks risky outreach"
+      problem: "Unknown consent status",
+      solution: "Enforces suppression rules",
+      agent: "LIA"
     },
     {
-      problem: "Messaging not persona-aligned",
-      solution: "LEXA rewrites tone and CTAs for each segment"
+      problem: "Copy not tuned for personas",
+      solution: "Adjusts tone per segment",
+      agent: "LEXA"
     },
     {
-      problem: "No feedback on what actually works",
-      solution: "NIRA tracks results and updates PromptDB"
+      problem: "No feedback loop on what works",
+      solution: "Scores performance and feeds PromptDB",
+      agent: "NIRA"
     }
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+    <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className="max-w-5xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Make Your GTM AI-Ready
-            </h2>
-            <p className="text-lg text-gray-600 leading-relaxed max-w-4xl mx-auto">
-              Before AI can execute your GTM strategy, your systems need to be enriched, segmented, compliant — and clear. Covexa fixes the foundational problems that stall automation and weaken performance.
-            </p>
-          </div>
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Make Your GTM
+            <span className="text-blue-600"> AI-Ready</span>
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Before you can trust AI to write emails or launch campaigns, your systems need to be structured, compliant, and complete. Covexa gets you there — and it ensures that your brand voice stays intact every step of the way.
+          </p>
+        </div>
 
-          {/* Problems vs Solutions Grid */}
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
-            {/* Table Header */}
-            <div className="grid grid-cols-1 md:grid-cols-2 bg-gray-50 border-b border-gray-200">
-              <div className="flex items-center gap-3 p-6 border-r border-gray-200">
-                <X className="text-red-500 flex-shrink-0" size={24} />
-                <h3 className="text-lg font-semibold text-gray-900">Problem</h3>
+        <div className="max-w-5xl mx-auto">
+          <div className="bg-white rounded-3xl shadow-lg overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+              <div className="bg-red-50 p-8">
+                <h3 className="text-xl font-semibold text-red-800 mb-6 flex items-center gap-2">
+                  <AlertTriangle size={24} />
+                  Problem
+                </h3>
+                <div className="space-y-4">
+                  {problems.map((item, index) => (
+                    <div key={index} className="flex items-center gap-3 p-3 bg-white rounded-lg min-h-[60px]">
+                      <span className="text-red-500">🚫</span>
+                      <span className="text-gray-700">{item.problem}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="flex items-center gap-3 p-6">
-                <CheckCircle className="text-green-500 flex-shrink-0" size={24} />
-                <h3 className="text-lg font-semibold text-gray-900">Agent-Powered Fix</h3>
+
+              <div className="bg-green-50 p-8">
+                <h3 className="text-xl font-semibold text-green-800 mb-6 flex items-center gap-2">
+                  <CheckCircle size={24} />
+                  Covexa Agent Fix
+                </h3>
+                <div className="space-y-4">
+                  {problems.map((item, index) => (
+                    <div key={index} className="p-3 bg-white rounded-lg min-h-[60px] flex items-center">
+                      <div className="flex items-center justify-between w-full">
+                        <span className="text-gray-700">{item.solution}</span>
+                        <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-medium ml-2 flex-shrink-0">
+                          {item.agent}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-
-            {/* Table Rows */}
-            {problems.map((item, index) => (
-              <div key={index} className="grid grid-cols-1 md:grid-cols-2 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors duration-200">
-                <div className="p-6 border-r border-gray-200 flex items-center">
-                  <div className="flex items-start gap-3">
-                    <span className="text-red-500 text-lg mt-1">🚫</span>
-                    <p className="text-gray-700 leading-relaxed">{item.problem}</p>
-                  </div>
-                </div>
-                <div className="p-6 flex items-center">
-                  <div className="flex items-start gap-3">
-                    <span className="text-green-500 text-lg mt-1">✅</span>
-                    <p className="text-gray-700 leading-relaxed">
-                      <span className="font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded-md mr-2">
-                        {item.solution.split(' ')[0]}
-                      </span>
-                      {item.solution.substring(item.solution.indexOf(' ') + 1)}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Result */}
-          <div className="mt-12 text-center">
-            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl px-8 py-6">
-              <BarChart3 className="text-green-600 flex-shrink-0" size={24} />
-              <div className="text-left">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-lg">📊</span>
-                  <span className="font-semibold text-green-800">Result:</span>
-                </div>
-                <p className="text-green-800 leading-relaxed">
-                  Your GTM data becomes structured, enriched, and ready to power campaigns with precision — across any tool, channel, or region.
-                </p>
-              </div>
+            
+            <div className="bg-blue-600 text-white p-6 text-center">
+              <h4 className="text-xl font-semibold mb-2">📊 Result</h4>
+              <p className="text-blue-100">
+                Structured, AI-actionable GTM data — ready for automation and scale.
+              </p>
             </div>
           </div>
         </div>
