@@ -99,7 +99,7 @@ const MeetTheAgents = () => {
                 </div>
                 <h3 className="text-2xl font-bold mb-1">{centralAgent.name}</h3>
                 <p className="text-gray-100 font-medium mb-2">Your AI Assistant</p>
-                <p className="text-gray-200 text-sm">{centralAgent.description}</p>
+                <p className="text-gray-200 text-sm"></p>
               </div>
             </div>
             <p className="text-gray-600 mt-6 text-lg">Start here - ORRA handles everything else</p>
