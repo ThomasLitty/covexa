@@ -113,7 +113,7 @@ const Hero = () => {
                             <img
                               src={scenario.src}
                               alt={scenario.alt}
-                              className="w-full h-auto object-cover max-h-96"
+                              className="w-full h-auto object-contain max-h-[600px]"
                               loading="lazy"
                             />
                             <div className="p-4">
