@@ -1,5 +1,6 @@
 
-import { Mail, Phone, MapPin, Send, MessageSquare } from "lucide-react";
+import { Mail, MessageSquare, MapPin } from "lucide-react";
+import ContactForm from "./ContactForm";
 
 const Contact = () => {
   return (
@@ -68,51 +69,7 @@ const Contact = () => {
           </div>
 
           <div>
-            <form className="space-y-6">
-              <div>
-                <label className="block text-sm font-medium mb-2">Name *</label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 backdrop-blur-sm"
-                  placeholder="Your full name"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-2">Email *</label>
-                <input
-                  type="email"
-                  className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 backdrop-blur-sm"
-                  placeholder="your@email.com"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-2">AI Project Type</label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 backdrop-blur-sm"
-                  placeholder="Machine Learning, NLP, Computer Vision..."
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-2">Project Details *</label>
-                <textarea
-                  rows={5}
-                  className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 resize-none backdrop-blur-sm"
-                  placeholder="Tell us about your AI project requirements..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-              >
-                Send AI Inquiry
-                <Send size={18} />
-              </button>
-            </form>
+            <ContactForm />
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -23,12 +24,14 @@ import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
 
 const waitlistSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  company: z.string().optional(),
-  role: z.string().optional(),
-  phone: z.string().optional(),
-  country: z.string().optional(),
+  name: z.string().min(2, "Name must be at least 2 characters").max(100, "Name too long"),
+  email: z.string().email("Please enter a valid email address").max(255, "Email too long"),
+  company: z.string().max(200, "Company name too long").optional(),
+  role: z.string().max(100, "Role too long").optional(),
+  phone: z.string().max(20, "Phone number too long").optional(),
+  country: z.string().max(100, "Country name too long").optional(),
+  // Honeypot field - should remain empty
+  website: z.string().max(0, "Invalid submission").optional(),
 });
 
 type WaitlistFormData = z.infer<typeof waitlistSchema>;
@@ -41,6 +44,7 @@ interface WaitlistModalProps {
 
 const WaitlistModal = ({ isOpen, onClose, source = "unknown" }: WaitlistModalProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [lastSubmitTime, setLastSubmitTime] = useState<number>(0);
   const { toast } = useToast();
 
   const form = useForm<WaitlistFormData>({
@@ -52,38 +56,64 @@ const WaitlistModal = ({ isOpen, onClose, source = "unknown" }: WaitlistModalPro
       role: "",
       phone: "",
       country: "",
+      website: "",
     },
   });
 
+  const sanitizeString = (str: string): string => {
+    return str.trim().replace(/[<>\"'&]/g, "");
+  };
+
   const onSubmit = async (data: WaitlistFormData) => {
+    // Rate limiting - prevent submissions within 5 seconds
+    const now = Date.now();
+    if (now - lastSubmitTime < 5000) {
+      toast({
+        title: "Please wait",
+        description: "Please wait a moment before submitting again.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Check honeypot field
+    if (data.website) {
+      console.log("Bot submission detected");
+      return;
+    }
+
     setIsSubmitting(true);
-    console.log("Starting form submission...", data);
+    setLastSubmitTime(now);
+    console.log("Starting form submission...", { ...data, website: undefined });
     
     try {
-      // Replace this URL with your Google Apps Script Web App URL
-      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwoFrKItUhY55LawHfkPoUSPWCQegbJWIl8WLeiAx8zfidG-B3QvUnA-JYDlskLUfvCTA/exec";
+      const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL || 
+        "https://script.google.com/macros/s/AKfycbwoFrKItUhY55LawHfkPoUSPWCQegbJWIl8WLeiAx8zfidG-B3QvUnA-JYDlskLUfvCTA/exec";
       
-      const formData = {
-        ...data,
-        source,
+      const sanitizedData = {
+        name: sanitizeString(data.name),
+        email: sanitizeString(data.email),
+        company: data.company ? sanitizeString(data.company) : "",
+        role: data.role ? sanitizeString(data.role) : "",
+        phone: data.phone ? sanitizeString(data.phone) : "",
+        country: data.country ? sanitizeString(data.country) : "",
+        source: sanitizeString(source),
         timestamp: new Date().toISOString(),
       };
 
-      console.log("Sending data to Google Apps Script:", formData);
+      console.log("Sending sanitized data to Google Apps Script:", sanitizedData);
 
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
-        mode: "no-cors", // This helps with CORS issues
+        mode: "no-cors",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(sanitizedData),
       });
 
       console.log("Response received:", response);
 
-      // With no-cors mode, we can't read the response, so we assume success
-      // if no error was thrown
       toast({
         title: "Success!",
         description: "You've been added to our waitlist. We'll be in touch soon!",
@@ -115,6 +145,19 @@ const WaitlistModal = ({ isOpen, onClose, source = "unknown" }: WaitlistModalPro
         
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            {/* Honeypot field - hidden from users */}
+            <FormField
+              control={form.control}
+              name="website"
+              render={({ field }) => (
+                <FormItem className="hidden">
+                  <FormControl>
+                    <Input {...field} tabIndex={-1} autoComplete="off" />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            
             <FormField
               control={form.control}
               name="name"
