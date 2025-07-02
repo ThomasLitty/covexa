@@ -27,9 +27,9 @@ const Index = () => {
           <MeetTheAgents />
         </div>
         
-        <div className="bg-gradient-to-b from-white to-gray-50 py-8">
+        <section id="ai-readiness" className="bg-gradient-to-b from-white to-gray-50 py-8 scroll-mt-20">
           <AIReadiness />
-        </div>
+        </section>
         
         <DataReadiness />
         
