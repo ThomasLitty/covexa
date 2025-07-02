@@ -2,8 +2,8 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
-import DataManagement from "@/components/DataManagement";
 import AIReadiness from "@/components/AIReadiness";
+import DataManagement from "@/components/DataManagement";
 import BrandVoice from "@/components/BrandVoice";
 import MeetTheAgents from "@/components/MeetTheAgents";
 import PredictiveIntelligence from "@/components/PredictiveIntelligence";
@@ -26,13 +26,13 @@ const Index = () => {
           <HowItWorks />
         </section>
         
-        <section id="data-management" className="scroll-mt-20">
-          <DataManagement />
-        </section>
-        
         <div className="bg-gradient-to-b from-white to-gray-50 py-8">
           <AIReadiness />
         </div>
+        
+        <section id="data-management" className="scroll-mt-20">
+          <DataManagement />
+        </section>
         
         <div className="bg-gradient-to-b from-gray-50 to-white py-8">
           <BrandVoice />
