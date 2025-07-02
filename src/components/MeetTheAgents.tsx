@@ -1,5 +1,5 @@
 
-import { Database, MessageSquare, Shield, Send, Settings, BarChart3, Radar, User, Pen, PaperPlane, Activity, Eye } from "lucide-react";
+import { Database, MessageSquare, Shield, Send, Settings, BarChart3, Radar, User, Pen, Activity, Eye, Network } from "lucide-react";
 
 const MeetTheAgents = () => {
   // ORRA as the primary user interface
@@ -7,7 +7,7 @@ const MeetTheAgents = () => {
     name: "ORRA",
     role: "Orchestration & retry logic",
     description: "The only agent you need to talk to",
-    icon: <Activity size={40} />,
+    icon: <Network size={40} />,
     color: "bg-gray-600",
     textColor: "text-white",
     accentColor: "gray"
@@ -39,7 +39,7 @@ const MeetTheAgents = () => {
     {
       name: "MIRA",
       role: "Campaign execution + sequences",
-      icon: <PaperPlane size={20} />,
+      icon: <Send size={20} />,
       color: "bg-cyan-600",
       accentColor: "cyan"
     },
