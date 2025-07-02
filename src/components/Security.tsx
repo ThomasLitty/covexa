@@ -59,11 +59,9 @@ const Security = () => {
           </div>
 
           <div className="text-center">
-            <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-8 text-white">
-              <p className="text-2xl font-bold">
-                Enterprise-grade security. Covexa will protect it.
-              </p>
-            </div>
+            <p className="text-2xl font-bold text-gray-900">
+              Enterprise-grade security. Covexa will protect it.
+            </p>
           </div>
         </div>
       </div>
