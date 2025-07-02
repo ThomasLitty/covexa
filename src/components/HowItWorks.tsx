@@ -1,5 +1,5 @@
 
-import { Bot, Users, Shield, Zap, BarChart3 } from "lucide-react";
+import { Bot, Users, Shield, Zap, BarChart3, Network, Radar } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const HowItWorks = () => {
@@ -8,43 +8,59 @@ const HowItWorks = () => {
   const steps = [
     {
       number: "1",
-      title: "Segment and enrich your leads",
-      agent: "VARA",
-      description: "AI agent analyzes and enriches lead data with missing information",
-      icon: <Users className="w-6 h-6" />,
-      color: "bg-blue-500"
+      title: "Orchestrate and analyze",
+      agent: "ORRA",
+      description: "Central AI orchestrator receives your request and coordinates all specialist agents to execute your campaign",
+      icon: <Network className="w-6 h-6" />,
+      color: "bg-gray-600"
     },
     {
-      number: "2", 
-      title: "Generate tone-perfect copy",
-      agent: "LEXA",
-      description: "Creates personalized messaging that resonates with each segment",
-      icon: <Bot className="w-6 h-6" />,
-      color: "bg-purple-500"
+      number: "2",
+      title: "Detect intent and score leads",
+      agent: "TORA",
+      description: "Analyzes prospect behavior and engagement signals to identify high-intent leads and priority targets",
+      icon: <Radar className="w-6 h-6" />,
+      color: "bg-orange-600"
     },
     {
       number: "3",
-      title: "Apply compliance rules", 
-      agent: "LIA",
-      description: "Ensures all outreach meets legal and company compliance standards",
-      icon: <Shield className="w-6 h-6" />,
-      color: "bg-green-500"
+      title: "Segment and enrich your leads",
+      agent: "VARA",
+      description: "Validates and enriches lead data with missing information, ensuring complete prospect profiles",
+      icon: <Users className="w-6 h-6" />,
+      color: "bg-green-600"
     },
     {
-      number: "4",
-      title: "Sequence and fallback logic",
-      agent: "MIRA + ORRA", 
-      description: "Sets up smart sequences with automated follow-up workflows",
-      icon: <Zap className="w-6 h-6" />,
-      color: "bg-orange-500"
+      number: "4", 
+      title: "Generate tone-perfect copy",
+      agent: "LEXA",
+      description: "Creates personalized messaging that resonates with each segment using your brand voice",
+      icon: <Bot className="w-6 h-6" />,
+      color: "bg-indigo-600"
     },
     {
       number: "5",
-      title: "Launch and track results",
+      title: "Apply compliance rules", 
+      agent: "LIA",
+      description: "Ensures all outreach meets legal and company compliance standards before any contact",
+      icon: <Shield className="w-6 h-6" />,
+      color: "bg-red-600"
+    },
+    {
+      number: "6",
+      title: "Execute campaign sequences",
+      agent: "MIRA", 
+      description: "Deploys multi-channel sequences with smart timing and automated follow-up workflows",
+      icon: <Zap className="w-6 h-6" />,
+      color: "bg-cyan-600"
+    },
+    {
+      number: "7",
+      title: "Track and optimize results",
       agent: "NIRA",
-      description: "Deploys campaigns and provides real-time performance analytics", 
+      description: "Provides real-time performance analytics and optimization recommendations", 
       icon: <BarChart3 className="w-6 h-6" />,
-      color: "bg-red-500"
+      color: "bg-violet-600"
     }
   ];
 
@@ -62,7 +78,7 @@ const HowItWorks = () => {
               How It Works
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Five AI agents work together to transform your GTM operations from messy data to closed deals
+              Seven AI agents work together to transform your GTM operations from messy data to closed deals
             </p>
           </div>
 
