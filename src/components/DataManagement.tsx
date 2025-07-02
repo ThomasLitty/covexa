@@ -1,4 +1,3 @@
-
 import { CheckCircle, FileSpreadsheet, TrendingUp, Shield, Zap, Users } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
@@ -164,52 +163,6 @@ const DataManagement = () => {
                     </div>
                   </div>
                 ))}
-              </div>
-
-              {/* Stats Section */}
-              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-100">
-                <h4 className="text-lg font-semibold text-gray-900 mb-4">Data Quality Impact</h4>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-blue-600">85%</div>
-                    <div className="text-sm text-gray-600">Fewer bounced emails</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-green-600">3.2x</div>
-                    <div className="text-sm text-gray-600">Higher response rates</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-purple-600">60%</div>
-                    <div className="text-sm text-gray-600">Time saved on research</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-orange-600">99.5%</div>
-                    <div className="text-sm text-gray-600">Compliance score</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Process Flow */}
-              <div className="bg-gray-50 rounded-2xl p-6">
-                <h4 className="text-lg font-semibold text-gray-900 mb-4">How It Works</h4>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold text-sm">1</div>
-                    <span className="text-gray-700">Upload your contact list from any source</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 font-semibold text-sm">2</div>
-                    <span className="text-gray-700">AI analyzes and enriches missing data points</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-semibold text-sm">3</div>
-                    <span className="text-gray-700">Compliance check and risk assessment</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 font-semibold text-sm">4</div>
-                    <span className="text-gray-700">Clean, standardized data ready for outreach</span>
-                  </div>
-                </div>
               </div>
 
               {/* Integration Note */}
