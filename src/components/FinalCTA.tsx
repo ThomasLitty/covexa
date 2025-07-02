@@ -8,15 +8,15 @@ const FinalCTA = () => {
         <div className="max-w-4xl mx-auto text-center">
           <div className="flex items-center justify-center gap-2 mb-6">
             <Slack size={32} />
-            <span className="text-2xl font-bold">Turn Slack into Your GTM Command Center</span>
+            <span className="text-2xl font-bold">Turn Your Workspace into a GTM Command Center</span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">
             Ready to Transform Your Outbound?
           </h2>
           
           <p className="text-xl text-blue-100 mb-8 leading-relaxed max-w-3xl mx-auto">
-            Covexa turns your messy CRM and campaign ideas into outbound execution — intelligently, compliantly, and fast.
+            Covexa turns your messy CRM and campaign ideas into clean, compliant, and conversion-ready GTM execution — powered by intelligent agents and built on a compliance-first foundation you can trust.
           </p>
 
           <button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold flex items-center gap-2 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mx-auto">

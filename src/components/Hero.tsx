@@ -7,12 +7,12 @@ const Hero = () => {
       <div className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-            Outbound,
-            <span className="text-blue-600"> Orchestrated.</span>
+            The AI Agent System
+            <span className="text-blue-600"> for Modern GTM</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto">
-            Covexa is your AI GTM copilot — segment leads, generate messaging, and launch campaigns directly from Slack. No dashboards. No guesswork. Just pipeline.
+            Covexa is your GTM execution layer — unify messy data, accelerate campaign creation, and orchestrate AI-powered outreach that leverages real-time intent signals and works across the tools your team already uses.
           </p>
 
           <div className="flex justify-center mb-16">

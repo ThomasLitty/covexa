@@ -1,8 +1,13 @@
 
-import { Target, Settings, TrendingUp, Users } from "lucide-react";
+import { Target, Settings, TrendingUp, Users, Crown, RefreshCw, Database } from "lucide-react";
 
 const UseCases = () => {
   const roles = [
+    {
+      role: "CRO",
+      value: "Faster GTM execution, clear visibility, and confidence in compliance",
+      icon: <Crown size={32} />
+    },
     {
       role: "SDR Manager",
       value: "Launch compliant sequences in minutes",
@@ -14,14 +19,24 @@ const UseCases = () => {
       icon: <Settings size={32} />
     },
     {
-      role: "AE",
+      role: "AE (Account Exec)",
       value: "Follow up post-call with AI-generated sequences",
       icon: <Users size={32} />
+    },
+    {
+      role: "Customer Success",
+      value: "Trigger renewals or upsell sequences from internal feedback",
+      icon: <RefreshCw size={32} />
     },
     {
       role: "Head of Growth",
       value: "Test ICPs with real-time outbound feedback",
       icon: <TrendingUp size={32} />
+    },
+    {
+      role: "Data Intelligence",
+      value: "Feed clean, enriched, and scored data into your GTM reporting stack",
+      icon: <Database size={32} />
     }
   ];
 
@@ -35,7 +50,7 @@ const UseCases = () => {
           </h2>
         </div>
 
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {roles.map((item, index) => (
             <div key={index} className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-shadow duration-300">
               <div className="flex items-center gap-4 mb-4">

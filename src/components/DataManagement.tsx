@@ -34,7 +34,7 @@ const DataManagement = () => {
               </div>
 
               <p className="text-lg text-gray-600 leading-relaxed">
-                You don't need another dashboard. Covexa works inside Slack and your CRM to clean, cluster, and activate your data with zero extra overhead.
+                Covexa works inside your team's tools — like Slack, HubSpot, and Gmail to clean, cluster, and activate your data with zero extra overhead.
               </p>
             </div>
 

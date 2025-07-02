@@ -39,7 +39,7 @@ const AIReadiness = () => {
             <span className="text-blue-600"> AI-Ready</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Before you can trust AI to write emails or launch campaigns, your systems need to be structured, compliant, and complete. Covexa gets you there.
+            Before you can trust AI to write emails or launch campaigns, your systems need to be structured, compliant, and complete. Covexa gets you there — and it ensures that your brand voice stays intact every step of the way.
           </p>
         </div>
 

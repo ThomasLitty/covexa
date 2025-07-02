@@ -45,8 +45,8 @@ const HowItWorks = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Slack-Powered Campaigns.
-            <span className="text-blue-600"> Agent-Driven Results.</span>
+            Campaigns Powered by Where You Work.
+            <span className="text-blue-600"> Results Driven by AI Agents.</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Covexa is built on intelligent modular agents — each specialized in a GTM task — working together to handle segmentation, copy, enrichment, compliance, and launch.

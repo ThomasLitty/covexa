@@ -19,8 +19,8 @@ const Integrations = () => {
             Works With the Tools
             <span className="text-blue-600"> You Already Use</span>
           </h2>
-          <p className="text-xl text-gray-600">
-            Start with just Slack. Add CRM, data, and enrichment tools as you scale.
+          <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+            Covexa integrates with the tools your GTM team already uses — from Slack and Gmail to CRMs like HubSpot and Salesforce, and enrichment data from ZoomInfo and Clearbit. More integrations are on the way — including intent data platforms like 6sense, Bombora, and G2 to help prioritize and personalize outreach with real buying signals.
           </p>
         </div>
 
