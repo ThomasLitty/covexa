@@ -17,46 +17,46 @@ const Hero = () => {
 
   const useCaseScenarios = [
     {
-      src: "/lovable-uploads/0575a304-6d6d-4d75-a303-b43850b14f46.png",
-      alt: "SDR creating targeted campaign with Covexa agent guidance",
-      title: "Campaign Creation Made Simple",
-      description: "Watch Sarah launch a targeted campaign in 3 minutes with AI agent assistance"
+      src: "/lovable-uploads/7be959f6-f2a5-493c-8347-7ad329d9bab0.png",
+      alt: "Slack campaign creation with Covexa AI agent assistance",
+      title: "Campaign Creation in Slack",
+      description: "Watch Lauren request a campaign and see Covexa AI instantly build a targeted outreach sequence with personalized messaging"
     },
     {
-      src: "/lovable-uploads/1baa1fa2-cfe6-4ec4-bcf5-18661df0c49d.png",
-      alt: "Covexa analyzing Google Sheets lead data for campaign recommendations",
-      title: "Smart Lead Analysis",
-      description: "Covexa analyzes your lead data and suggests 'Build campaign from this sheet'"
+      src: "/lovable-uploads/3cd9c9d4-1513-4b73-8670-86bec895d230.png",
+      alt: "Slack campaign performance reporting and analytics",
+      title: "Campaign Performance Reporting",
+      description: "Real-time campaign results delivered directly in Slack with detailed metrics and actionable insights"
     },
     {
-      src: "/lovable-uploads/4e39d334-f02f-4ff2-8fe7-5faab452d263.png",
-      alt: "Real-time sales insights during Google Meet calls",
-      title: "Meeting Intelligence",
-      description: "Get real-time insights and recommendations during sales calls"
+      src: "/lovable-uploads/af5c854c-0bb3-400b-897c-0a9e3103881e.png",
+      alt: "Google Sheets smart campaign building from lead data",
+      title: "Smart Campaign from Sheets",
+      description: "Covexa analyzes your Google Sheets data and suggests 'Build campaign from this Sheet' with intelligent lead segmentation"
     },
     {
-      src: "/lovable-uploads/a505b481-291c-4bc3-963d-6f98b5748177.png",
-      alt: "Automated meeting prep and calendar integration workflow",
-      title: "Meeting Prep Automation",
-      description: "Automated meeting preparation with context and recommendations"
+      src: "/lovable-uploads/8bf1d466-ee0c-4b9e-97a3-4bfdb232fc41.png",
+      alt: "Google Meet real-time sales intelligence and insights",
+      title: "Real-time Meeting Intelligence",
+      description: "Get live insights, talking points, and next steps during Google Meet calls to close more deals"
     },
     {
-      src: "/lovable-uploads/a8a82d48-5586-40b8-a03f-3e37baf58c33.png",
-      alt: "Content briefs and campaign recaps in Google Docs",
-      title: "Content & Campaign Recaps",
-      description: "Automated content briefs and campaign performance summaries"
+      src: "/lovable-uploads/4e37be15-d5de-4262-9b69-2aaf6278b2d2.png",
+      alt: "Google Docs automated content briefs and campaign recaps",
+      title: "Automated Content Generation",
+      description: "Covexa creates detailed content briefs and campaign performance summaries directly in Google Docs"
     },
     {
-      src: "/lovable-uploads/ace93169-8927-4bc5-b35d-3d32181ccf7e.png",
-      alt: "Product feedback automation and follow-up workflows",
-      title: "Feedback Automation",
-      description: "Automated responses and intelligent follow-up recommendations"
+      src: "/lovable-uploads/ba9cc40f-c4e1-4a6f-8e66-9c756eb05a79.png",
+      alt: "Google Calendar meeting preparation with contextual insights",
+      title: "Intelligent Meeting Prep",
+      description: "Automated meeting preparation with prospect insights and personalized talking points synced to your calendar"
     },
     {
-      src: "/lovable-uploads/bb6ecefa-1818-41f8-a4f0-083f999e9e4d.png",
-      alt: "Complete Covexa workflow orchestration across platforms",
-      title: "Orchestrated Workflows",
-      description: "See how Covexa orchestrates your entire GTM workflow seamlessly"
+      src: "/lovable-uploads/c2cd93ed-d843-4bf3-bb74-9f24abf562a2.png",
+      alt: "Automated product feedback handling and response workflows",
+      title: "Product Feedback Automation",
+      description: "Intelligent customer feedback analysis with automated responses and smart follow-up recommendations"
     }
   ];
 
@@ -93,10 +93,10 @@ const Hero = () => {
             <div className="max-w-4xl mx-auto">
               <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200 shadow-lg">
                 <h3 className="text-2xl font-semibold text-gray-800 mb-2">
-                  See Covexa in Action Across Real Workflows
+                  See Covexa in Action Across Your Workflow
                 </h3>
                 <p className="text-gray-600 mb-6">
-                  Watch how teams use Covexa to transform their GTM operations
+                  Real screenshots showing how Covexa works seamlessly within your existing tools
                 </p>
                 <Carousel
                   opts={{
@@ -133,7 +133,7 @@ const Hero = () => {
                   <CarouselNext className="right-4" />
                 </Carousel>
                 <p className="text-sm text-gray-500 mt-4">
-                  Navigate through real use case scenarios using the arrows
+                  Navigate through real workflow examples using the arrows
                 </p>
               </div>
             </div>
