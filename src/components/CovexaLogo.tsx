@@ -21,9 +21,9 @@ const CovexaLogo: React.FC<CovexaLogoProps> = ({
   };
 
   const textSizes = {
-    small: 'text-lg',
-    medium: 'text-xl',
-    large: 'text-2xl'
+    small: 'text-xl',
+    medium: 'text-2xl',
+    large: 'text-3xl'
   };
 
   const getColors = () => {
