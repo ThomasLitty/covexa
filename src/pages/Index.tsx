@@ -2,6 +2,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import StructuredData from "@/components/StructuredData";
+import TextContentExtractor from "@/components/TextContentExtractor";
 import usePerformanceMonitoring from "@/hooks/usePerformanceMonitoring";
 import useSocialPreview from "@/hooks/useSocialPreview";
 import MeetTheAgents from "@/components/MeetTheAgents";
@@ -26,6 +27,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <StructuredData />
+      <TextContentExtractor />
       <Header />
       <main>
         <section id="home">

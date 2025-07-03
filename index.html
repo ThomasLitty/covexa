@@ -37,7 +37,7 @@
   </head>
 
   <body>
-    <!-- Critical above-the-fold content for crawlers -->
+    <!-- Critical above-the-fold content for crawlers and GPTs -->
     <noscript>
       <div style="text-align: center; padding: 2rem; font-family: system-ui, sans-serif;">
         <h1 style="font-size: 2.5rem; margin-bottom: 1rem; color: #1f2937;">
@@ -46,11 +46,31 @@
         <p style="font-size: 1.25rem; color: #6b7280; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
           Private, compliance-ready intelligent AI GTM execution layer that coordinates apps, agents, and actions across your entire revenue stack.
         </p>
+        <p style="color: #374151; margin-bottom: 1rem;">
+          <strong>AI Agents:</strong> ORRA, MIRA, VARA, LIA, LEXA, TORA, NIRA
+        </p>
+        <p style="color: #374151; margin-bottom: 2rem;">
+          <strong>Features:</strong> CRM unification, compliance automation, real-time intent signals, revenue analytics
+        </p>
         <a href="mailto:hello@covexa.ai" style="background: #2563eb; color: white; padding: 1rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600;">
           Contact Us
         </a>
       </div>
     </noscript>
+    
+    <!-- GPT-accessible content -->
+    <script type="application/json" id="gpt-data">
+    {
+      "company": "Covexa",
+      "product": "AI Agent System for Modern GTM", 
+      "description": "Private, compliance-ready intelligent AI GTM execution layer",
+      "agents": ["ORRA", "MIRA", "VARA", "LIA", "LEXA", "TORA", "NIRA"],
+      "features": ["CRM unification", "Compliance automation", "Real-time intent", "Revenue analytics"],
+      "status": "Waitlist phase",
+      "url": "https://covexa.ai"
+    }
+    </script>
+    
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
