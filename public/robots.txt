@@ -1,14 +1,14 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
 User-agent: *
 Allow: /
+
+# Important pages
+Allow: /sitemap.xml
+Allow: /og-hero.png
+
+# Block common bot traps
+Disallow: /admin
+Disallow: /api
+Disallow: /*.json$
+
+# Sitemap location
+Sitemap: https://covexa.ai/sitemap.xml
