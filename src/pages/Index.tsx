@@ -1,6 +1,7 @@
 
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import StructuredData from "@/components/StructuredData";
 import MeetTheAgents from "@/components/MeetTheAgents";
 import HowItWorks from "@/components/HowItWorks";
 import AIReadiness from "@/components/AIReadiness";
@@ -19,6 +20,7 @@ import Footer from "@/components/Footer";
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <StructuredData />
       <Header />
       <main>
         <section id="home">
