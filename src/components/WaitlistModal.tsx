@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import useFocusTrap from "@/hooks/useFocusTrap";
 import {
   Dialog,
   DialogContent,
@@ -44,6 +45,7 @@ interface WaitlistModalProps {
 
 const WaitlistModal = ({ isOpen, onClose, source = "unknown" }: WaitlistModalProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  useFocusTrap(isOpen);
   const [lastSubmitTime, setLastSubmitTime] = useState<number>(0);
   const { toast } = useToast();
 

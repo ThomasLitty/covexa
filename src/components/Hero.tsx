@@ -25,9 +25,13 @@ const Hero = () => {
             </p>
 
             <div className="flex justify-center mb-16">
-              <button onClick={() => setIsWaitlistOpen(true)} className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold flex items-center gap-2 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+              <button 
+                onClick={() => setIsWaitlistOpen(true)} 
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold flex items-center gap-2 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                aria-label="Join the waitlist for early access to Covexa"
+              >
                 Join the Waitlist
-                <ArrowRight size={20} />
+                <ArrowRight size={20} aria-hidden="true" />
               </button>
             </div>
           </div>

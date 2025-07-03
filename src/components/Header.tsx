@@ -63,9 +63,11 @@ const Header = () => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`text-gray-700 hover:text-blue-600 transition-all duration-300 relative ${
+                  className={`text-gray-700 hover:text-blue-600 transition-all duration-300 relative focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md px-2 py-1 ${
                     activeSection === item.id ? 'text-blue-600 font-medium' : ''
                   }`}
+                  aria-label={`Navigate to ${item.label} section`}
+                  tabIndex={0}
                 >
                   {item.label}
                   {activeSection === item.id && (
@@ -78,7 +80,8 @@ const Header = () => {
             <div className="hidden md:block">
               <button 
                 onClick={() => handleWaitlistClick('header-desktop')}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                aria-label="Join the waitlist for early access"
               >
                 Join Waitlist
               </button>
@@ -86,8 +89,10 @@ const Header = () => {
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden text-blue-600"
+              className="md:hidden text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md p-1"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isMenuOpen}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -101,16 +106,19 @@ const Header = () => {
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className={`text-gray-700 hover:text-blue-600 transition-colors duration-300 text-left ${
+                    className={`text-gray-700 hover:text-blue-600 transition-colors duration-300 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md px-2 py-1 ${
                       activeSection === item.id ? 'text-blue-600 font-medium' : ''
                     }`}
+                    aria-label={`Navigate to ${item.label} section`}
+                    tabIndex={0}
                   >
                     {item.label}
                   </button>
                 ))}
                 <button 
                   onClick={() => handleWaitlistClick('header-mobile')}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-300 text-center"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-300 text-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  aria-label="Join the waitlist for early access"
                 >
                   Join Waitlist
                 </button>
