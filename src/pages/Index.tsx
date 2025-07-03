@@ -2,6 +2,8 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import StructuredData from "@/components/StructuredData";
+import usePerformanceMonitoring from "@/hooks/usePerformanceMonitoring";
+import useSocialPreview from "@/hooks/useSocialPreview";
 import MeetTheAgents from "@/components/MeetTheAgents";
 import HowItWorks from "@/components/HowItWorks";
 import AIReadiness from "@/components/AIReadiness";
@@ -18,6 +20,9 @@ import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 
 const Index = () => {
+  usePerformanceMonitoring();
+  useSocialPreview();
+  
   return (
     <div className="min-h-screen">
       <StructuredData />
