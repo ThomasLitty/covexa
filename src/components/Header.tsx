@@ -2,6 +2,7 @@ import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import WaitlistModal from "./WaitlistModal";
 import CovexaLogo from "./CovexaLogo";
+import { useThrottledScroll } from "../hooks/useThrottledScroll";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,27 +17,27 @@ const Header = () => {
     setIsMenuOpen(false);
   };
 
-  // Track active section for navigation highlighting
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['home', 'ai-readiness', 'how-it-works', 'use-cases'];
-      const scrollPosition = window.scrollY + 100;
+  // Track active section for navigation highlighting with throttling
+  const handleScroll = useThrottledScroll(() => {
+    const sections = ['home', 'ai-readiness', 'how-it-works', 'use-cases'];
+    const scrollPosition = window.scrollY + 100;
 
-      for (const sectionId of sections) {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(sectionId);
-            break;
-          }
+    for (const sectionId of sections) {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const { offsetTop, offsetHeight } = element;
+        if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+          setActiveSection(sectionId);
+          break;
         }
       }
-    };
+    }
+  }, 16);
 
-    window.addEventListener('scroll', handleScroll);
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [handleScroll]);
 
   const navItems = [
     { id: 'home', label: 'Home' },
@@ -52,8 +53,11 @@ const Header = () => {
 
   return (
     <>
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
       <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md z-50 border-b border-gray-200 transition-all duration-300">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-4 py-3 md:py-4">
           <div className="flex items-center justify-between">
             <CovexaLogo size="medium" />
 
@@ -80,7 +84,7 @@ const Header = () => {
             <div className="hidden md:block">
               <button 
                 onClick={() => handleWaitlistClick('header-desktop')}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 touch-target"
                 aria-label="Join the waitlist for early access"
               >
                 Join Waitlist
@@ -89,7 +93,7 @@ const Header = () => {
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md p-1"
+              className="md:hidden text-primary focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-md p-2 touch-target"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={isMenuOpen}
@@ -117,7 +121,7 @@ const Header = () => {
                 ))}
                 <button 
                   onClick={() => handleWaitlistClick('header-mobile')}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-300 text-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-2 rounded-lg font-medium transition-colors duration-300 text-center focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 touch-target"
                   aria-label="Join the waitlist for early access"
                 >
                   Join Waitlist
