@@ -13,7 +13,7 @@ const Footer = () => {
             AI Orchestration Platform for Intelligent GTM Execution
           </p>
           <div className="text-sm text-gray-500">
-            © 2024 Covexa. All rights reserved. | Powered by AI Agents
+            © 2025 Covexa. All rights reserved. | Powered by AI Agents
           </div>
         </div>
       </div>
