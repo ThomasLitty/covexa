@@ -1,8 +1,13 @@
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import LazyImage from "./LazyImage";
 
 const Integrations = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
   const integrations = [
     { 
       name: "Slack", 
@@ -102,11 +107,39 @@ const Integrations = () => {
     }
   ];
 
-  // Duplicate the array to create seamless loop
-  const duplicatedIntegrations = [...integrations, ...integrations];
+  // Triple the array for smoother infinite loop
+  const tripleIntegrations = [...integrations, ...integrations, ...integrations];
+
+  // Intersection Observer for performance
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
+    };
+  }, []);
+
+  const handleMouseEnter = () => {
+    setIsPaused(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsPaused(false);
+  };
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section ref={containerRef} className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -127,19 +160,22 @@ const Integrations = () => {
         </div>
 
         <div className="max-w-6xl mx-auto overflow-hidden">
-          <div className="flex space-x-8" style={{
-            animation: 'scroll 30s linear infinite',
-            animationPlayState: 'running'
-          }}
-          onMouseEnter={(e) => e.currentTarget.style.animationPlayState = 'paused'}
-          onMouseLeave={(e) => e.currentTarget.style.animationPlayState = 'running'}
+          <div 
+            ref={scrollRef}
+            className="flex space-x-8 animate-scroll"
+            style={{
+              animationPlayState: isVisible && !isPaused ? 'running' : 'paused',
+              willChange: 'transform'
+            }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
-            {duplicatedIntegrations.map((integration, index) => (
+            {tripleIntegrations.map((integration, index) => (
               <div 
                 key={index} 
-                className="flex-shrink-0 flex items-center justify-center p-8 bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 w-32 h-32"
+                className="flex-shrink-0 flex items-center justify-center p-8 bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 w-32 h-32 hover:scale-105"
               >
-                <div className="transition-transform duration-300 hover:scale-110">
+                <div className="transition-transform duration-300">
                   {integration.icon}
                 </div>
               </div>
@@ -149,12 +185,30 @@ const Integrations = () => {
       </div>
 
       <style>{`
-        @keyframes scroll {
+        @media (prefers-reduced-motion: no-preference) {
+          .animate-scroll {
+            animation: seamless-scroll 45s linear infinite;
+          }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+          .animate-scroll {
+            animation: none;
+          }
+        }
+        
+        @keyframes seamless-scroll {
           0% {
-            transform: translateX(0);
+            transform: translate3d(0, 0, 0);
           }
           100% {
-            transform: translateX(-50%);
+            transform: translate3d(-33.333%, 0, 0);
+          }
+        }
+        
+        @media (max-width: 768px) {
+          .animate-scroll {
+            animation-duration: 60s;
           }
         }
       `}</style>
