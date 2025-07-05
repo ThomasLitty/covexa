@@ -59,15 +59,46 @@ const Header = () => {
       <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md z-50 border-b border-gray-200 transition-all duration-300">
         <div className="container mx-auto px-4 py-3 md:py-4">
           <div className="flex items-center justify-between">
-            <CovexaLogo size="medium" />
+            <CovexaLogo 
+              size="small" 
+              className="sm:hidden" 
+            />
+            <CovexaLogo 
+              size="medium" 
+              className="hidden sm:block lg:hidden" 
+            />
+            <CovexaLogo 
+              size="large" 
+              className="hidden lg:block" 
+            />
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex space-x-8">
+            <nav className="hidden lg:flex space-x-8">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`text-gray-700 hover:text-blue-600 transition-all duration-300 relative focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md px-2 py-1 ${
+                  className={`text-gray-700 hover:text-blue-600 transition-all duration-300 relative focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md px-3 py-2 ${
+                    activeSection === item.id ? 'text-blue-600 font-medium' : ''
+                  }`}
+                  aria-label={`Navigate to ${item.label} section`}
+                  tabIndex={0}
+                >
+                  {item.label}
+                  {activeSection === item.id && (
+                    <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-600 rounded-full" />
+                  )}
+                </button>
+              ))}
+            </nav>
+
+            {/* Tablet Navigation */}
+            <nav className="hidden md:flex lg:hidden space-x-4">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`text-gray-700 hover:text-blue-600 transition-all duration-300 relative focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md px-2 py-2 text-sm ${
                     activeSection === item.id ? 'text-blue-600 font-medium' : ''
                   }`}
                   aria-label={`Navigate to ${item.label} section`}
