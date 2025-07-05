@@ -60,16 +60,8 @@ const Header = () => {
         <div className="container mx-auto px-4 py-3 md:py-4">
           <div className="flex items-center justify-between">
             <CovexaLogo 
-              size="small" 
-              className="sm:hidden" 
-            />
-            <CovexaLogo 
               size="medium" 
-              className="hidden sm:block lg:hidden" 
-            />
-            <CovexaLogo 
-              size="large" 
-              className="hidden lg:block" 
+              className="w-auto h-8 sm:h-10 lg:h-12" 
             />
 
             {/* Desktop Navigation */}
