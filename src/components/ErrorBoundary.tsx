@@ -36,8 +36,17 @@ class ErrorBoundary extends Component<Props, State> {
       errorInfo
     });
 
-    // Log error to monitoring service in production
-    console.error('Error Boundary caught an error:', error, errorInfo);
+    // Secure error logging - only in development or with sanitized data
+    if (import.meta.env.DEV) {
+      console.error('Error Boundary caught an error:', error, errorInfo);
+    } else {
+      // In production, log sanitized error information
+      console.error('Application error occurred', {
+        message: error.message,
+        timestamp: new Date().toISOString(),
+        // Don't log full stack trace or component stack in production
+      });
+    }
   }
 
   handleReset = () => {

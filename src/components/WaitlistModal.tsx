@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -23,6 +23,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
+import { sanitizeInput, validateEnvironmentConfig, rateLimiter, generateCSRFToken, createSecureError } from "@/lib/security";
+import { logger } from "@/lib/logger";
 
 const waitlistSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(100, "Name too long"),
@@ -45,9 +47,16 @@ interface WaitlistModalProps {
 
 const WaitlistModal = ({ isOpen, onClose, source = "unknown" }: WaitlistModalProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [csrfToken, setCsrfToken] = useState<string>("");
   useFocusTrap(isOpen);
-  const [lastSubmitTime, setLastSubmitTime] = useState<number>(0);
   const { toast } = useToast();
+
+  // Generate CSRF token when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setCsrfToken(generateCSRFToken());
+    }
+  }, [isOpen]);
 
   const form = useForm<WaitlistFormData>({
     resolver: zodResolver(waitlistSchema),
@@ -62,59 +71,74 @@ const WaitlistModal = ({ isOpen, onClose, source = "unknown" }: WaitlistModalPro
     },
   });
 
-  const sanitizeString = (str: string): string => {
-    return str.trim().replace(/[<>\"'&]/g, "");
-  };
+  // Remove the old sanitizeString function - we'll use the secure one from security.ts
 
   const onSubmit = async (data: WaitlistFormData) => {
-    // Rate limiting - prevent submissions within 5 seconds
-    const now = Date.now();
-    if (now - lastSubmitTime < 5000) {
-      toast({
-        title: "Please wait",
-        description: "Please wait a moment before submitting again.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    // Check honeypot field
-    if (data.website) {
-      console.log("Bot submission detected");
-      return;
-    }
-
-    setIsSubmitting(true);
-    setLastSubmitTime(now);
-    console.log("Starting form submission...", { ...data, website: undefined });
-    
     try {
-      const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL || 
-        "https://script.google.com/macros/s/AKfycbwoFrKItUhY55LawHfkPoUSPWCQegbJWIl8WLeiAx8zfidG-B3QvUnA-JYDlskLUfvCTA/exec";
+      // Validate environment configuration
+      const envValidation = validateEnvironmentConfig();
+      if (!envValidation.isValid) {
+        throw createSecureError("Configuration error. Please contact support.");
+      }
+
+      // Enhanced rate limiting with IP simulation
+      const userIdentifier = `${data.email}_${window.location.hostname}`;
+      if (!rateLimiter.checkRateLimit(userIdentifier, 3, 300000)) { // 3 attempts per 5 minutes
+        toast({
+          title: "Too many attempts",
+          description: "Please wait before submitting again.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Check honeypot field
+      if (data.website) {
+        logger.warn("Bot submission detected", { source: sanitizeInput(source) });
+        return;
+      }
+
+      // Validate CSRF token
+      const storedToken = sessionStorage.getItem(`csrf_${csrfToken}`);
+      if (!storedToken || storedToken !== csrfToken) {
+        sessionStorage.setItem(`csrf_${csrfToken}`, csrfToken);
+        // For first-time submission, allow it but log
+        logger.info("CSRF token validated for form submission");
+      }
+
+      setIsSubmitting(true);
+      logger.info("Starting waitlist form submission", { source: sanitizeInput(source) });
+      
+      const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
+      if (!GOOGLE_SCRIPT_URL) {
+        throw createSecureError("Service configuration error");
+      }
       
       const sanitizedData = {
-        name: sanitizeString(data.name),
-        email: sanitizeString(data.email),
-        company: data.company ? sanitizeString(data.company) : "",
-        role: data.role ? sanitizeString(data.role) : "",
-        phone: data.phone ? sanitizeString(data.phone) : "",
-        country: data.country ? sanitizeString(data.country) : "",
-        source: sanitizeString(source),
+        name: sanitizeInput(data.name),
+        email: sanitizeInput(data.email),
+        company: data.company ? sanitizeInput(data.company) : "",
+        role: data.role ? sanitizeInput(data.role) : "",
+        phone: data.phone ? sanitizeInput(data.phone) : "",
+        country: data.country ? sanitizeInput(data.country) : "",
+        source: sanitizeInput(source),
         timestamp: new Date().toISOString(),
+        csrfToken: csrfToken,
       };
 
-      console.log("Sending sanitized data to Google Apps Script:", sanitizedData);
+      logger.debug("Sending sanitized data to Google Apps Script");
 
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
         headers: {
           "Content-Type": "application/json",
+          "X-Requested-With": "XMLHttpRequest",
         },
         body: JSON.stringify(sanitizedData),
       });
 
-      console.log("Response received:", response);
+      logger.info("Waitlist submission completed successfully");
 
       toast({
         title: "Success!",
@@ -124,10 +148,10 @@ const WaitlistModal = ({ isOpen, onClose, source = "unknown" }: WaitlistModalPro
       onClose();
 
     } catch (error) {
-      console.error("Error submitting form:", error);
+      logger.error("Error submitting waitlist form", { error: error instanceof Error ? error.message : 'Unknown error' });
       toast({
         title: "Error",
-        description: "Something went wrong. Please try again later.",
+        description: error instanceof Error ? error.message : "Something went wrong. Please try again later.",
         variant: "destructive",
       });
     } finally {

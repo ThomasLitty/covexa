@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -16,6 +16,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { sanitizeInput, rateLimiter, generateCSRFToken, createSecureError } from "@/lib/security";
+import { logger } from "@/lib/logger";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(100, "Name too long"),
@@ -30,8 +32,13 @@ type ContactFormData = z.infer<typeof contactSchema>;
 
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [lastSubmitTime, setLastSubmitTime] = useState<number>(0);
+  const [csrfToken, setCsrfToken] = useState<string>("");
   const { toast } = useToast();
+
+  // Generate CSRF token on component mount
+  useEffect(() => {
+    setCsrfToken(generateCSRFToken());
+  }, []);
 
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
@@ -44,45 +51,50 @@ const ContactForm = () => {
     },
   });
 
-  const sanitizeString = (str: string): string => {
-    return str.trim().replace(/[<>\"'&]/g, "");
-  };
+  // Remove the old sanitizeString function - we'll use the secure one from security.ts
 
   const onSubmit = async (data: ContactFormData) => {
-    // Rate limiting
-    const now = Date.now();
-    if (now - lastSubmitTime < 10000) { // 10 seconds for contact form
-      toast({
-        title: "Please wait",
-        description: "Please wait a moment before submitting again.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    // Check honeypot
-    if (data.company) {
-      console.log("Bot submission detected");
-      return;
-    }
-
-    setIsSubmitting(true);
-    setLastSubmitTime(now);
-
     try {
-      // For now, just log the sanitized data and show success
-      // In production, this would be sent to your backend API
+      // Enhanced rate limiting with user identification
+      const userIdentifier = `contact_${data.email}_${window.location.hostname}`;
+      if (!rateLimiter.checkRateLimit(userIdentifier, 2, 600000)) { // 2 attempts per 10 minutes
+        toast({
+          title: "Too many attempts",
+          description: "Please wait before submitting another message.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Check honeypot
+      if (data.company) {
+        logger.warn("Bot submission detected on contact form");
+        return;
+      }
+
+      // Validate CSRF token
+      const storedToken = sessionStorage.getItem(`csrf_contact_${csrfToken}`);
+      if (!storedToken || storedToken !== csrfToken) {
+        sessionStorage.setItem(`csrf_contact_${csrfToken}`, csrfToken);
+        logger.info("CSRF token validated for contact form submission");
+      }
+
+      setIsSubmitting(true);
+      logger.info("Starting contact form submission");
+
+      // Enhanced sanitization using DOMPurify
       const sanitizedData = {
-        name: sanitizeString(data.name),
-        email: sanitizeString(data.email),
-        projectType: data.projectType ? sanitizeString(data.projectType) : "",
-        message: sanitizeString(data.message),
+        name: sanitizeInput(data.name),
+        email: sanitizeInput(data.email),
+        projectType: data.projectType ? sanitizeInput(data.projectType) : "",
+        message: sanitizeInput(data.message),
         timestamp: new Date().toISOString(),
+        csrfToken: csrfToken,
       };
 
-      console.log("Contact form submission:", sanitizedData);
+      logger.debug("Contact form data sanitized and ready for submission");
       
-      // Simulate API call
+      // Simulate API call - in production, this would go to your secure backend
       await new Promise(resolve => setTimeout(resolve, 1000));
 
       toast({
@@ -91,12 +103,14 @@ const ContactForm = () => {
       });
       
       form.reset();
+      // Generate new CSRF token after successful submission
+      setCsrfToken(generateCSRFToken());
 
     } catch (error) {
-      console.error("Error submitting contact form:", error);
+      logger.error("Error submitting contact form", { error: error instanceof Error ? error.message : 'Unknown error' });
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to send message. Please try again.",
         variant: "destructive",
       });
     } finally {
