@@ -8,6 +8,7 @@ const DataManagement = () => {
   const [enrichedRows, setEnrichedRows] = useState<Set<number>>(new Set());
   const [processingRow, setProcessingRow] = useState<number | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [hasCompleted, setHasCompleted] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const [demoVisible, setDemoVisible] = useState(false);
   const demoRef = useRef<HTMLDivElement>(null);
@@ -69,7 +70,7 @@ const DataManagement = () => {
   ];
 
   const startAnimation = () => {
-    if (isAnimating) return;
+    if (isAnimating || hasCompleted) return;
     
     setIsAnimating(true);
     setAnimationStep(0);
@@ -92,22 +93,25 @@ const DataManagement = () => {
           
           return prev + 1;
         } else {
-          // Animation completed - reset for next cycle
+          // Animation completed - stop here, don't reset
           if (intervalRef.current) {
             clearInterval(intervalRef.current);
             intervalRef.current = null;
           }
           setIsAnimating(false);
-          // Reset after a short delay so user can see completion
-          setTimeout(() => {
-            setAnimationStep(0);
-            setEnrichedRows(new Set());
-            setProcessingRow(null);
-          }, 2000);
+          setHasCompleted(true);
           return prev;
         }
       });
     }, 1000);
+  };
+
+  const restartAnimation = () => {
+    setHasCompleted(false);
+    setAnimationStep(0);
+    setEnrichedRows(new Set());
+    setProcessingRow(null);
+    startAnimation();
   };
 
   const stopAnimation = () => {
@@ -135,12 +139,16 @@ const DataManagement = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setDemoVisible(true);
-          if (!isAnimating) {
+          // Only start animation if it hasn't completed yet and isn't already running
+          if (!isAnimating && !hasCompleted) {
             startAnimation();
           }
         } else {
           setDemoVisible(false);
-          stopAnimation();
+          // Stop animation when scrolling away, but preserve completed state
+          if (isAnimating) {
+            stopAnimation();
+          }
         }
       },
       { threshold: 0.5 }
@@ -155,7 +163,7 @@ const DataManagement = () => {
         observer.unobserve(demoRef.current);
       }
     };
-  }, [isAnimating]);
+  }, [isAnimating, hasCompleted]);
 
   const getRowData = (index: number) => {
     return enrichedRows.has(index) ? enrichedData[index] : sampleData[index];
@@ -211,9 +219,19 @@ const DataManagement = () => {
               <div className="text-center mb-6">
                 <FileSpreadsheet className="mx-auto text-blue-600 mb-4" size={32} />
                 <h4 className="text-lg font-semibold text-gray-900 mb-2">Live Data Enrichment & Standardization</h4>
-                <p className="text-sm text-gray-600">
-                  {!isAnimating ? "Watch data enrichment happen automatically" : "Enriching & standardizing records..."}
+                <p className="text-sm text-gray-600 mb-3">
+                  {hasCompleted ? "✅ Enrichment completed! See how clean data transforms outreach." :
+                   isAnimating ? "Enriching & standardizing records..." : 
+                   "Watch data enrichment happen automatically"}
                 </p>
+                {hasCompleted && (
+                  <button 
+                    onClick={restartAnimation}
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md text-sm font-medium transition-colors"
+                  >
+                    Restart Demo
+                  </button>
+                )}
               </div>
 
               {/* Google Sheets-like Interface */}
