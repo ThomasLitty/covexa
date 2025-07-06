@@ -59,12 +59,9 @@ const Contact = () => {
 
             <div className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 p-6 rounded-2xl">
               <h4 className="text-xl font-semibold mb-2">Ready to innovate with AI?</h4>
-              <p className="text-purple-100 mb-4">
+              <p className="text-purple-100">
                 Let's discuss how our AI solutions can transform your business and unlock new possibilities.
               </p>
-              <button className="bg-white text-purple-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-300 hover:scale-105 transform">
-                Schedule AI Consultation
-              </button>
             </div>
           </div>
 
