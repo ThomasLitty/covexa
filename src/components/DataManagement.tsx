@@ -106,13 +106,6 @@ const DataManagement = () => {
     }, 1000);
   };
 
-  const restartAnimation = () => {
-    setHasCompleted(false);
-    setAnimationStep(0);
-    setEnrichedRows(new Set());
-    setProcessingRow(null);
-    startAnimation();
-  };
 
   const stopAnimation = () => {
     if (intervalRef.current) {
@@ -219,19 +212,11 @@ const DataManagement = () => {
               <div className="text-center mb-6">
                 <FileSpreadsheet className="mx-auto text-blue-600 mb-4" size={32} />
                 <h4 className="text-lg font-semibold text-gray-900 mb-2">Live Data Enrichment & Standardization</h4>
-                <p className="text-sm text-gray-600 mb-3">
-                  {hasCompleted ? "✅ Enrichment completed! See how clean data transforms outreach." :
-                   isAnimating ? "Enriching & standardizing records..." : 
-                   "Watch data enrichment happen automatically"}
-                </p>
-                {hasCompleted && (
-                  <button 
-                    onClick={restartAnimation}
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md text-sm font-medium transition-colors"
-                  >
-                    Restart Demo
-                  </button>
-                )}
+                 <p className="text-sm text-gray-600 mb-3">
+                   {hasCompleted ? "✅ Enrichment completed! See how clean data transforms outreach." :
+                    isAnimating ? "Enriching & standardizing records..." : 
+                    "Watch data enrichment happen automatically"}
+                 </p>
               </div>
 
               {/* Google Sheets-like Interface */}
