@@ -2,18 +2,18 @@ const IntegrationsContent = () => {
   return (
     <div className="text-center mb-16">
       <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-        Works With the Tools
-        <span className="text-blue-600"> You Already Use</span>
+        Connects With Your
+        <span className="text-blue-600"> Existing Stack</span>
       </h2>
       <div className="text-xl text-gray-600 max-w-4xl mx-auto space-y-4">
         <p>
-          Covexa connects to your GTM ecosystem — integrating with CRMs like HubSpot and Salesforce, enrichment providers like ZoomInfo and Clearbit, and intent data platforms like 6sense, Bombora, and G2.
+          Covexa integrates seamlessly with your HRIS, engagement platforms, and collaboration tools — connecting data from Workday, BambooHR, Culture Amp, Qualtrics, Microsoft 365, and more.
         </p>
         <p>
-          It works through lightweight apps in Slack, Gmail, Chrome, Outlook, and mobile — all powered by Covexa's cloud agents that orchestrate campaigns, ensure compliance, and track performance.
+          Our vendor-neutral architecture preserves your existing investments while adding the intelligence layer that transforms siloed data into actionable insights.
         </p>
         <p className="font-medium">
-          Wherever you work, Covexa activates. No tab overload. No platform lock-in.
+          One platform. Complete visibility. Zero disruption to existing workflows.
         </p>
       </div>
     </div>

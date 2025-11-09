@@ -16,12 +16,12 @@ const Hero = () => {
         <div className="container mx-auto px-4 py-20">
           <div ref={heroRef} className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-              The AI Agent System
-              <span className="text-blue-600"> for Modern GTM</span>
+              The Emotional Health
+              <span className="text-blue-600"> Infrastructure for Enterprises</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto">
-              Covexa is your GTM execution layer — unify messy data, accelerate campaign creation, and orchestrate AI-powered outreach that leverages real-time intent signals and works across the tools your team already uses— an intelligent GTM execution layer that coordinates apps, agents, and actions across your entire revenue stack.
+              Covexa transforms emotional health from a wellness initiative into a governed business system — unifying people data, well-being signals, and productivity metrics into actionable intelligence for Boards and CHROs. Measure what matters: from how people feel to how they perform.
             </p>
 
             <div className="flex justify-center mb-16">

@@ -4,23 +4,29 @@ const TextContentExtractor = () => {
   useEffect(() => {
     // Add structured text content to window for GPT access
     const pageContent = {
-      title: "Covexa – The AI Agent System for Modern GTM",
-      description: "Private, compliance-ready intelligent AI GTM execution layer that coordinates apps, agents, and actions across your entire revenue stack.",
+      title: "Covexa – The Emotional Health Infrastructure for Enterprises",
+      description: "Governed infrastructure that connects emotional well-being to business performance through Flourish and Focus modules.",
       sections: {
-        hero: "The AI Agent System for Modern GTM - Covexa is your GTM execution layer — unify messy data, accelerate campaign creation, and orchestrate AI-powered outreach that leverages real-time intent signals and works across the tools your team already uses.",
-        agents: "Meet our AI agents: ORRA (Orchestration), MIRA (Market Intelligence), VARA (Voice & Relationship), LIA (Lead Intelligence), LEXA (Lead Extraction), TORA (Task Orchestration), and NIRA (Revenue Intelligence)",
-        features: [
-          "AI-powered GTM execution",
-          "CRM data unification", 
-          "Compliance-first automation",
-          "Multi-agent orchestration",
-          "Real-time intent signals",
-          "Email automation",
-          "Lead enrichment",
-          "Revenue analytics"
+        hero: "The Emotional Health Infrastructure for Enterprises - Measure what matters: from how people feel to how they perform.",
+        modules: "Flourish (Well-being Intelligence) - Quantifies organizational well-being and resilience. Focus (Productivity Intelligence) - Correlates performance data with well-being indicators to prevent burnout.",
+        infrastructure: [
+          "EchoPulse Engine - Data fusion layer",
+          "Governed Analytics - Role-based dashboards", 
+          "Privacy-First Design - Anonymized aggregation",
+          "Enterprise Integration - HRIS and collaboration tools"
         ],
-        integrations: ["Slack", "HubSpot", "Gmail", "ZoomInfo", "Clearbit", "Salesforce", "6sense", "Bombora"],
-        cta: "Join the Waitlist - Be the first to experience Covexa's AI-powered GTM platform"
+        features: [
+          "Emotional health tracking",
+          "Productivity intelligence", 
+          "ESG reporting integration",
+          "Burnout risk detection",
+          "ISO 45003 compliance",
+          "People analytics",
+          "Well-being measurement",
+          "ROI tracking"
+        ],
+        integrations: ["Slack", "Workday", "Microsoft 365", "Culture Amp", "BambooHR", "Salesforce", "Qualtrics", "SAP SuccessFactors"],
+        cta: "Join the Waitlist - Be the first to experience Covexa's emotional health infrastructure"
       }
     };
 
@@ -39,8 +45,12 @@ const TextContentExtractor = () => {
         <p>${pageContent.sections.hero}</p>
       </section>
       <section>
-        <h2>AI Agents</h2>
-        <p>${pageContent.sections.agents}</p>
+        <h2>Platform Modules</h2>
+        <p>${pageContent.sections.modules}</p>
+      </section>
+      <section>
+        <h2>Infrastructure</h2>
+        <ul>${pageContent.sections.infrastructure.map(f => `<li>${f}</li>`).join('')}</ul>
       </section>
       <section>
         <h2>Features</h2>

@@ -1,8 +1,8 @@
-# Covexa - AI Orchestration Platform
+# Covexa - Emotional Health Infrastructure for Enterprises
 
 ## About
 
-Covexa is an AI Orchestration Platform for Intelligent GTM Execution featuring AI agents VARA, LIA, LEXA, TORA, and NIRA.
+Covexa is the emotional health operating system for enterprises — a governed infrastructure that connects well-being to performance through Flourish (Well-being Intelligence) and Focus (Productivity Intelligence) modules.
 
 ## Development
 

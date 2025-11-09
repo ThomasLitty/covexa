@@ -7,49 +7,34 @@ const UseCases = () => {
 
   const roles = [
     {
-      role: "CRO",
-      value: "Faster GTM execution, clear visibility, and confidence in compliance",
+      role: "Board Members",
+      value: "ESG-ready people metrics tied to retention, share price, and organizational resilience",
       icon: <Crown size={32} />
     },
     {
-      role: "SDR Manager",
-      value: "Launch compliant sequences in minutes",
-      icon: <Target size={32} />
-    },
-    {
-      role: "RevOps",
-      value: "Clean CRM data and enforce outreach rules",
-      icon: <Settings size={32} />
-    },
-    {
-      role: "AE (Account Exec)",
-      value: "Follow up post-call with AI-generated sequences",
+      role: "Chief Human Resources Officer",
+      value: "Unified well-being and performance intelligence with real-time risk detection",
       icon: <Users size={32} />
     },
     {
-      role: "Customer Success",
-      value: "Trigger renewals or upsell sequences from internal feedback",
-      icon: <RefreshCw size={32} />
-    },
-    {
-      role: "Head of Growth",
-      value: "Test ICPs with real-time outbound feedback",
+      role: "Chief Financial Officer",
+      value: "ROI tracking on wellness investments with clear correlation to business outcomes",
       icon: <TrendingUp size={32} />
     },
     {
-      role: "Data Intelligence",
-      value: "Feed clean, enriched, and scored data into your GTM reporting stack",
-      icon: <Database size={32} />
-    },
-    {
-      role: "Marketing Ops",
-      value: "Automate lead scoring and campaign attribution with clean data flows",
-      icon: <GitBranch size={32} />
-    },
-    {
-      role: "Reporting and Analytics",
-      value: "Get unified GTM metrics with real-time performance dashboards",
+      role: "People Analytics Leaders",
+      value: "Governed data infrastructure that connects sentiment, engagement, and productivity",
       icon: <BarChart size={32} />
+    },
+    {
+      role: "Wellness & Benefits Teams",
+      value: "Measure program effectiveness with anonymized behavioral and outcome data",
+      icon: <Target size={32} />
+    },
+    {
+      role: "Department Heads",
+      value: "Team-level insights on workload, collaboration patterns, and burnout risk",
+      icon: <Settings size={32} />
     }
   ];
 
@@ -63,8 +48,8 @@ const UseCases = () => {
           }`}
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Built for GTM Teams
-            <span className="text-blue-600"> That Ship Fast</span>
+            Built for Enterprise Leaders
+            <span className="text-blue-600"> Who Value People</span>
           </h2>
         </div>
 
