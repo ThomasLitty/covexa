@@ -51,10 +51,12 @@ const WaitlistModal = ({ isOpen, onClose, source = "unknown" }: WaitlistModalPro
   useFocusTrap(isOpen);
   const { toast } = useToast();
 
-  // Generate CSRF token when modal opens
+  // Generate CSRF token when modal opens and store it
   useEffect(() => {
     if (isOpen) {
-      setCsrfToken(generateCSRFToken());
+      const token = generateCSRFToken();
+      setCsrfToken(token);
+      sessionStorage.setItem(`csrf_waitlist_${token}`, token);
     }
   }, [isOpen]);
 
@@ -99,11 +101,15 @@ const WaitlistModal = ({ isOpen, onClose, source = "unknown" }: WaitlistModalPro
       }
 
       // Validate CSRF token
-      const storedToken = sessionStorage.getItem(`csrf_${csrfToken}`);
+      const storedToken = sessionStorage.getItem(`csrf_waitlist_${csrfToken}`);
       if (!storedToken || storedToken !== csrfToken) {
-        sessionStorage.setItem(`csrf_${csrfToken}`, csrfToken);
-        // For first-time submission, allow it but log
-        logger.info("CSRF token validated for form submission");
+        logger.warn("Invalid CSRF token on waitlist form submission");
+        toast({
+          title: "Security Error",
+          description: "Invalid security token. Please refresh and try again.",
+          variant: "destructive",
+        });
+        return;
       }
 
       setIsSubmitting(true);

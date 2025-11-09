@@ -35,9 +35,11 @@ const ContactForm = () => {
   const [csrfToken, setCsrfToken] = useState<string>("");
   const { toast } = useToast();
 
-  // Generate CSRF token on component mount
+  // Generate CSRF token on component mount and store it
   useEffect(() => {
-    setCsrfToken(generateCSRFToken());
+    const token = generateCSRFToken();
+    setCsrfToken(token);
+    sessionStorage.setItem(`csrf_contact_${token}`, token);
   }, []);
 
   const form = useForm<ContactFormData>({
@@ -75,8 +77,13 @@ const ContactForm = () => {
       // Validate CSRF token
       const storedToken = sessionStorage.getItem(`csrf_contact_${csrfToken}`);
       if (!storedToken || storedToken !== csrfToken) {
-        sessionStorage.setItem(`csrf_contact_${csrfToken}`, csrfToken);
-        logger.info("CSRF token validated for contact form submission");
+        logger.warn("Invalid CSRF token on contact form submission");
+        toast({
+          title: "Security Error",
+          description: "Invalid security token. Please refresh and try again.",
+          variant: "destructive",
+        });
+        return;
       }
 
       setIsSubmitting(true);
@@ -104,7 +111,9 @@ const ContactForm = () => {
       
       form.reset();
       // Generate new CSRF token after successful submission
-      setCsrfToken(generateCSRFToken());
+      const newToken = generateCSRFToken();
+      setCsrfToken(newToken);
+      sessionStorage.setItem(`csrf_contact_${newToken}`, newToken);
 
     } catch (error) {
       logger.error("Error submitting contact form", { error: error instanceof Error ? error.message : 'Unknown error' });

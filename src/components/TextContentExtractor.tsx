@@ -33,38 +33,12 @@ const TextContentExtractor = () => {
     // Make content globally accessible
     (window as any).covexaContent = pageContent;
     
-    // Add to document for GPT scraping
+    // Add to document for GPT scraping - using textContent for security
     const contentDiv = document.createElement('div');
     contentDiv.id = 'gpt-readable-content';
     contentDiv.style.display = 'none';
-    contentDiv.innerHTML = `
-      <h1>${pageContent.title}</h1>
-      <p>${pageContent.description}</p>
-      <section>
-        <h2>Hero Section</h2>
-        <p>${pageContent.sections.hero}</p>
-      </section>
-      <section>
-        <h2>Platform Modules</h2>
-        <p>${pageContent.sections.modules}</p>
-      </section>
-      <section>
-        <h2>Infrastructure</h2>
-        <ul>${pageContent.sections.infrastructure.map(f => `<li>${f}</li>`).join('')}</ul>
-      </section>
-      <section>
-        <h2>Features</h2>
-        <ul>${pageContent.sections.features.map(f => `<li>${f}</li>`).join('')}</ul>
-      </section>
-      <section>
-        <h2>Integrations</h2>
-        <ul>${pageContent.sections.integrations.map(i => `<li>${i}</li>`).join('')}</ul>
-      </section>
-      <section>
-        <h2>Call to Action</h2>
-        <p>${pageContent.sections.cta}</p>
-      </section>
-    `;
+    // Use textContent instead of innerHTML to prevent XSS
+    contentDiv.textContent = JSON.stringify(pageContent, null, 2);
     
     document.body.appendChild(contentDiv);
   }, []);
